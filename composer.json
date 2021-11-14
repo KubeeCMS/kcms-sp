@@ -1,0 +1,44 @@
+{
+    "name": "kubeecms/kcms-sp",
+    "description": "Auto-publish on Social Media platforms.",
+    "keywords": [
+        "kcms",
+        "social",
+        "publish"
+    ],
+    "homepage": "https://github.com/KubeeCMS/kcms-sp",
+    "license": "GPL-2.0-or-later",
+    "authors": [{
+        "name": "KubeeCMS",
+        "email": "contact@kubeecms.com",
+        "homepage": "https://github.com/KubeeCMS/kcms-sp"
+    }],
+    "type": "wordpress-plugin",
+    "config": {
+        "sort-packages": true,
+        "preferred-install": {
+            "wp-media/phpunit": "source"
+        },
+        "process-timeout": 0
+    },
+    "support": {
+        "issues": "https://github.com/KubeeCMS/kcms-sp/issues",
+        "source": "https://github.com/KubeeCMS/kcms-sp/"
+    },
+    "repositories": [{
+        "type": "composer",
+        "url": "https://wpackagist.org"
+    }],
+    "require": {
+        "tumblr/tumblr": "^0.4.0",
+        "a5hleyrich/wp-background-processing": "^1.0",
+        "google/apiclient": "2.5.0",
+        "abraham/twitteroauth": "1.1.0",
+        "guzzlehttp/guzzle": "6.5.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "FSPoster\\": ""
+        }
+    }
+}
