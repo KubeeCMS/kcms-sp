@@ -120,12 +120,16 @@ trait Popup
 				$ajaxUrl   = 'settings_node_activity_change';
 				$tableName = 'account_node_status';
 				$fieldName = 'node_id';
-			}
+
+                $forAll = DB::DB()->get_row( 'SELECT for_all FROM ' . DB::table( 'account_nodes' ) . ' WHERE id = "' . $id . '"' )->for_all;
+            }
 			else
 			{
 				$ajaxUrl   = 'account_activity_change';
 				$tableName = 'account_status';
 				$fieldName = 'account_id';
+
+                $forAll = DB::DB()->get_row( 'SELECT for_all FROM ' . DB::table( 'accounts' ) . ' WHERE id = "' . $id . '"' )->for_all;
 			}
 
 			$info        = DB::fetch( $tableName, [ $fieldName => $id, 'user_id' => get_current_user_id() ] );
@@ -137,6 +141,7 @@ trait Popup
 			$ajaxUrl     = 'bulk_activate_conditionally';
 			$filter_type = '';
 			$categories  = [];
+            $forAll = 0;
 		}
 
 		Pages::modal( 'Accounts', 'activate_with_condition', [
@@ -144,7 +149,8 @@ trait Popup
 			'ids'         => $ids,
 			'ajaxUrl'     => $ajaxUrl,
 			'filter_type' => $filter_type,
-			'categories'  => $categories
+			'categories'  => $categories,
+            'for_all'     => $forAll
 		] );
 	}
 

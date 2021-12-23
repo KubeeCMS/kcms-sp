@@ -108,7 +108,7 @@
     border: 0 !important
 }
 
-.select2-dropdown, .select2-container {
+.fsp-modal .fsp-select2-container, .fsp-select2-dropdown {
     z-index: 100000000
 }
 

@@ -38,7 +38,7 @@ class CronJob
 				{
 					AccountService::checkAccounts();
 				}
-			} );
+			}, 20 );
 		}
 		else if ( Helper::getOption( 'virtual_cron_job_disabled', '0' ) != '1' )
 		{
@@ -60,7 +60,7 @@ class CronJob
 		{
 			add_action( 'init', function () {
 				self::$backgroundProcess->dispatch();
-			} );
+			}, 20 );
 		}
 		else
 		{
@@ -71,7 +71,7 @@ class CronJob
 			{
 				add_action( 'init', function () {
 					self::$backgroundProcess->dispatch();
-				} );
+				}, 20 );
 			}
 			else
 			{
@@ -81,7 +81,7 @@ class CronJob
 				{
 					add_action( 'init', function () {
 						self::$backgroundProcess->dispatch();
-					} );
+					}, 20 );
 				}
 			}
 		}

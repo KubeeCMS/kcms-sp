@@ -16,6 +16,7 @@ use FSPoster\App\Libraries\linkedin\Linkedin;
 use FSPoster\App\Libraries\pinterest\Pinterest;
 use FSPoster\App\Libraries\fb\FacebookCookieApi;
 use FSPoster\App\Libraries\instagram\InstagramApi;
+use FSPoster\App\Libraries\twitter\TwitterPrivateAPI;
 
 trait Ajax
 {
@@ -110,12 +111,21 @@ trait Ajax
 		$rows_count     = Request::post( 'rows_count', '4', 'int', [ '4', '8', '15' ] );
 		$filter_results = Request::post( 'filter_results', 'all', 'string', [ 'all', 'error', 'ok' ] );
 
+		$feedId = Request::post( 'feed_id', 0, 'num' );
+
+		$page = empty( $feedId ) ? $page : 1;
+
 		if ( ! ( $page > 0 ) )
 		{
 			Helper::response( FALSE );
 		}
 
 		$query_add = '';
+
+		if ( ! empty( $feedId ) )
+		{
+			$query_add = 'AND id = ' . $feedId;
+		}
 
 		if ( $schedule_id > 0 )
 		{
@@ -196,7 +206,15 @@ trait Ajax
 				}
 				else if ( $feedInf[ 'driver' ] === 'twitter' )
 				{
-					$insights = Twitter::getStats( $feedInf[ 'driver_post_id' ], $accessToken, $node_info2[ 'access_token_secret' ], $appId, $proxy );
+					if ( empty( $options ) )
+					{
+						$insights = Twitter::getStats( $feedInf[ 'driver_post_id' ], $accessToken, $node_info2[ 'access_token_secret' ], $appId, $proxy );
+					}
+					else
+					{
+						$tw       = new TwitterPrivateAPI( $options, $proxy );
+						$insights = $tw->getStats( $feedInf[ 'driver_post_id' ] );
+					}
 				}
 				else if ( $feedInf[ 'driver' ] === 'instagram' )
 				{
@@ -317,15 +335,15 @@ trait Ajax
 
 			if ( ! empty( $sharedFrom ) )
 			{
-				$sharedFromArray  = [
-					'manual_share' => fsp__( 'Shared Manually' ),
-					'direct_share' => fsp__( 'Shared by the Direct Share' ),
-					'schedule' => fsp__( 'Shared by the Schedule Module' ),
-					'auto_post' => fsp__( 'Auto-posted' ),
+				$sharedFromArray = [
+					'manual_share'         => fsp__( 'Shared Manually' ),
+					'direct_share'         => fsp__( 'Shared by the Direct Share' ),
+					'schedule'             => fsp__( 'Shared by the Schedule Module' ),
+					'auto_post'            => fsp__( 'Auto-posted' ),
 					'manual_share_retried' => fsp__( 'Shared Manually (Retried)' ),
 					'direct_share_retried' => fsp__( 'Shared by the Direct Share (Retried)' ),
-					'schedule_retried' => fsp__( 'Shared by the Schedule Module (Retried)' ),
-					'auto_post_retried' => fsp__( 'Auto-posted (Retried)' ),
+					'schedule_retried'     => fsp__( 'Shared by the Schedule Module (Retried)' ),
+					'auto_post_retried'    => fsp__( 'Auto-posted (Retried)' ),
 				];
 
 				if ( array_key_exists( $sharedFrom, $sharedFromArray ) )
@@ -355,7 +373,7 @@ trait Ajax
 				'wp_post_id'   => $feedInf[ 'post_id' ],
 				'hide_stats'   => $hide_stats,
 
-				'shared_from'  => $sharedFrom,
+				'shared_from'   => $sharedFrom,
 				'has_post_link' => ! ( $postInf->post_type === 'fs_post_tmp' ),
 				'is_deleted'    => ! $node_info
 
@@ -429,6 +447,7 @@ trait Ajax
 
 	public function fs_clear_logs ()
 	{
+		$schedule_id      = Request::post( 'schedule_id', '0', 'num' );
 		$selectedAccounts = Request::post( 'selected_accounts', [], 'array' );
 		$type             = Request::post( 'type', 'all', 'string', [
 			'all',
@@ -437,13 +456,20 @@ trait Ajax
 			'only_selected_logs'
 		] );
 
+		$query_add = '';
 
-		$userId      = get_current_user_id();
-		$deleteQuery = "DELETE FROM " . DB::table( 'feeds' ) . ' WHERE blog_id=\'' . Helper::getBlogId() . '\' AND (is_sended=1 OR (send_time+INTERVAL 1 DAY)<NOW()) AND ( (node_type=\'account\' AND (SELECT COUNT(0) FROM ' . DB::table( 'accounts' ) . ' tb2 WHERE tb2.blog_id=\'' . Helper::getBlogId() . '\' AND tb2.id=' . DB::table( 'feeds' ) . '.node_id AND (tb2.user_id=\'' . $userId . '\' OR tb2.is_public=1))>0) OR (node_type<>\'account\' AND (SELECT COUNT(0) FROM ' . DB::table( 'account_nodes' ) . ' tb2 WHERE tb2.id=' . DB::table( 'feeds' ) . '.node_id AND (tb2.user_id=\'' . $userId . '\')>0 OR tb2.is_public=1)) )';
+		if ( $schedule_id > 0 )
+		{
+			$query_add = ' AND schedule_id=\'' . (int) $schedule_id . '\'';
+		}
+
+		$userId = get_current_user_id();
+
+		$deleteQuery = "DELETE FROM " . DB::table( 'feeds' ) . ' WHERE blog_id=\'' . Helper::getBlogId() . '\' AND (is_sended=1 OR (send_time+INTERVAL 1 DAY)<NOW()) AND ( user_id=\'' . $userId . '\' OR ( user_id IS NULL AND ( (node_type=\'account\' AND (SELECT COUNT(0) FROM ' . DB::table( 'accounts' ) . ' tb2 WHERE tb2.blog_id=\'' . Helper::getBlogId() . '\' AND tb2.id=' . DB::table( 'feeds' ) . '.node_id AND (tb2.user_id=\'' . $userId . '\' OR tb2.is_public=1))>0) OR (node_type<>\'account\' AND (SELECT COUNT(0) FROM ' . DB::table( 'account_nodes' ) . ' tb2 WHERE tb2.id=' . DB::table( 'feeds' ) . '.node_id AND (tb2.user_id=\'' . $userId . '\')>0 OR tb2.is_public=1)) )))';
 
 		if ( $type === 'all' )
 		{
-			DB::DB()->query( $deleteQuery );
+			DB::DB()->query( $deleteQuery . ' OR user_id IS NULL OR user_id=0' );
 		}
 		else if ( $type === 'only_successful_logs' )
 		{
@@ -458,7 +484,6 @@ trait Ajax
 			if ( ! empty( $selectedAccounts ) )
 			{
 				$set = implode( ', ', $selectedAccounts );
-
 
 				DB::DB()->query( $deleteQuery . ' AND id IN(' . $set . ') ' );
 			}
@@ -477,17 +502,42 @@ trait Ajax
 
 	public function export_logs_to_csv ()
 	{
+		$schedule_id    = Request::post( 'schedule_id', '0', 'num' );
+		$filter_results = Request::post( 'filter_results', 'all', 'string', [ 'all', 'error', 'ok' ] );
+
+		$query_add = '';
+
+		if ( $schedule_id > 0 )
+		{
+			$query_add = ' AND schedule_id=\'' . (int) $schedule_id . '\'';
+		}
+
+		if ( $filter_results === 'error' || $filter_results === 'ok' )
+		{
+			$query_add .= ' AND status = "' . $filter_results . '"';
+		}
+
 		$f         = fopen( 'php://memory', 'w' );
 		$delimiter = ',';
 		$filename  = 'FS-Poster_logs_' . date( 'Y-m-d' ) . '.csv';
-		$fields    = [ //'ID',
-		               'Account Name', 'Account Link', 'Date', 'Post Link', 'Publication Link', 'Social Network', 'Share Method', 'Status', 'Error Message' ];
+		$fields    = [
+			//fsp__( 'ID' ),
+			fsp__( 'Account Name' ),
+			fsp__( 'Account Link' ),
+			fsp__( 'Date' ),
+			fsp__( 'Post Link' ),
+			fsp__( 'Publication Link' ),
+			fsp__( 'Social Network' ),
+			fsp__( 'Share Method' ),
+			fsp__( 'Status' ),
+			fsp__( 'Error Message' )
+		];
 
 		fputcsv( $f, $fields, $delimiter );
 
-		$userId     = get_current_user_id();
-		$getData    = DB::DB()->get_results( 'SELECT `id`, `driver`, `node_id`, `node_type`, `post_id`, `shared_from`, `send_time` AS `date`, `status`, `driver_post_id`, `driver_post_id2`, `error_msg` FROM ' . DB::table( 'feeds' ) . ' tb1 WHERE blog_id=\'' . Helper::getBlogId() . '\' AND is_sended=1 AND ( user_id=\'' . $userId . '\' OR ( user_id IS NULL AND ( (node_type=\'account\' AND ( (SELECT COUNT(0) FROM ' . DB::table( 'accounts' ) . ' tb2 WHERE tb2.id=tb1.node_id AND (tb2.user_id=\'' . $userId . '\' OR tb2.is_public=1))>0 OR node_id NOT IN (SELECT id FROM ' . DB::table( 'accounts' ) . ') ) ) OR (node_type<>\'account\' AND ( (SELECT COUNT(0) FROM ' . DB::table( 'account_nodes' ) . ' tb2 WHERE tb2.id=tb1.node_id AND (tb2.user_id=\'' . $userId . '\')>0 OR tb2.is_public=1) OR node_id NOT IN (SELECT id FROM ' . DB::table( 'account_nodes' ) . ') ) ) ) ) )', ARRAY_A );
-		$networks   = [
+		$userId   = get_current_user_id();
+		$getData  = DB::DB()->get_results( 'SELECT `id`, `driver`, `node_id`, `node_type`, `post_id`, `shared_from`, `send_time` AS `date`, `status`, `driver_post_id`, `driver_post_id2`, `error_msg` FROM ' . DB::table( 'feeds' ) . ' tb1 WHERE blog_id=\'' . Helper::getBlogId() . '\' AND is_sended=1 AND ( user_id=\'' . $userId . '\' OR ( user_id IS NULL AND ( (node_type=\'account\' AND ( (SELECT COUNT(0) FROM ' . DB::table( 'accounts' ) . ' tb2 WHERE tb2.id=tb1.node_id AND (tb2.user_id=\'' . $userId . '\' OR tb2.is_public=1))>0 OR node_id NOT IN (SELECT id FROM ' . DB::table( 'accounts' ) . ') ) ) OR (node_type<>\'account\' AND ( (SELECT COUNT(0) FROM ' . DB::table( 'account_nodes' ) . ' tb2 WHERE tb2.id=tb1.node_id AND (tb2.user_id=\'' . $userId . '\')>0 OR tb2.is_public=1) OR node_id NOT IN (SELECT id FROM ' . DB::table( 'account_nodes' ) . ') ) ) ) ) )' . $query_add, ARRAY_A );
+		$networks = [
 			'fb'        => 'Facebook',
 			'twitter'   => 'Twitter',
 			'instagram' => 'Instagram',

@@ -315,7 +315,7 @@ class FacebookCookieApi
 				$accID     = $node_info[ 'account_id' ];
 			}
 
-			AccountService::disable_account( $accID, fsp__( 'The account is disconnected from the FS Poster plugin. Please add your account to the plugin without deleting the account from the plugin; as a result, account settings will remain as it is.' ) );
+			AccountService::disable_account( $accID, fsp__( 'The account is disconnected from the plugin. Please add your account to the plugin again by getting the cookie on the browser. <a href="https://www.fs-poster.com/documentation/fs-poster-schedule-auto-publish-wordpress-posts-to-instagram">How to?</a>', [], FALSE  ) );
 
 			return [
 				'status'    => 'error',

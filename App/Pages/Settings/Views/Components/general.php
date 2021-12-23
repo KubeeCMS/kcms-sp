@@ -17,10 +17,10 @@ defined( 'ABSPATH' ) or exit;
 	<div class="fsp-settings-col">
 		<select class="fsp-form-input select2-init" id="fs_allowed_post_types" name="fs_allowed_post_types[]" multiple>
 			<?php
-			$selecttedTypes = explode( '|', Helper::getOption( 'allowed_post_types', 'post|page|attachment|product' ) );
+			$selectedTypes = explode( '|', Helper::getOption( 'allowed_post_types', 'post|page|attachment|product' ) );
 			foreach ( get_post_types() as $post_type )
 			{
-				echo '<option value="' . htmlspecialchars( $post_type ) . '"' . ( in_array( $post_type, $selecttedTypes ) ? ' selected' : '' ) . '>' . htmlspecialchars( $post_type ) . '</option>';
+				echo '<option value="' . htmlspecialchars( $post_type ) . '"' . ( in_array( $post_type, $selectedTypes ) ? ' selected' : '' ) . '>' . htmlspecialchars( $post_type ) . '</option>';
 			}
 			?>
 		</select>

@@ -181,10 +181,14 @@ defined( 'ABSPATH' ) or exit;
 						{UNIQ_ID}
 						<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Unique ID' ); ?>"></i>
 					</button>
-					<button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{cf_KEY}">
-						{CF_KEY}
-						<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Custom fields. Replace KEY with the custom field name.' ); ?>"></i>
-					</button>
+                    <button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{cf_KEY}">
+                        {CF_KEY}
+                        <i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'URL encoded custom field. Replace KEY with the custom field name.' ); ?>"></i>
+                    </button>
+                    <button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{cf_KEY_raw}">
+                        {CF_KEY_RAW}
+                        <i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Raw custom field. Replace KEY with the custom field name.' ); ?>"></i>
+                    </button>
 				</div>
 			</div>
 		</div>

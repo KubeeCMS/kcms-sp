@@ -131,11 +131,19 @@ class Twitter extends SocialNetwork
 		else if ( isset( $result->errors ) && is_array( $result->errors ) && ! empty( $result->errors ) )
 		{
 			$error    = reset( $result->errors );
-			$errorMsg = isset( $error->message ) && is_string( $error->message ) ? (string) $error->message : 'Error! (-)';
+
+            if ( $error->code == 185 )
+            {
+                $errorMsg = fsp__('The Standard APP has reached the hourly limit for sharing posts. The limit is assigned by Twitter and you either need to <a href="https://www.fs-poster.com/documentation/fs-poster-schedule-share-wordpress-posts-to-twitter-automatically" target="_blank">create a Twitter App</a> for your own use or use the <a href="https://www.fs-poster.com/documentation/fs-poster-schedule-share-wordpress-posts-to-twitter-automatically" target="_blank">Cookie method</a> to add your account to the plugin.', [], false );
+            }
+            else
+            {
+                $errorMsg = isset( $error->message ) && is_string( $error->message ) ? (string) $error->message : 'Error! (-)';
+            }
 
 			return [
 				'status'    => 'error',
-				'error_msg' => $errorMsg
+				'error_msg' => htmlspecialchars($errorMsg)
 			];
 		}
 		else
@@ -237,6 +245,11 @@ class Twitter extends SocialNetwork
 		$connection = new TwitterOAuth( $appInf[ 'app_key' ], $appInf[ 'app_secret' ], $oauth_token, $oauth_token_secret, $proxy );
 		$user       = $connection->get( "account/verify_credentials" );
 
+        if ( isset( $user->errors[0]->code ) && $user->errors[0]->code == 453 )
+        {
+            self::error(fsp__( 'You need to apply for Elevated access via the Developer Portal to share posts. <a href="https://www.fs-poster.com/documentation/fs-poster-schedule-share-wordpress-posts-to-twitter-automatically">How to?</a>', [], FALSE ), FALSE );
+        }
+
 		if ( ! ( ! empty( $user ) && isset( $user->id ) ) )
 		{
 			self::error();
@@ -254,15 +267,7 @@ class Twitter extends SocialNetwork
 			'profile_id' => $user->id_str
 		] );
 
-		if ( $checkUserExist )
-		{
-			$accId = $checkUserExist[ 'id' ];
-
-			DB::DB()->delete( DB::table( 'accounts' ), [ 'id' => $accId ] );
-			DB::DB()->delete( DB::table( 'account_access_tokens' ), [ 'account_id' => $accId ] );
-		}
-
-		DB::DB()->insert( DB::table( 'accounts' ), [
+		$dataSQL = [
 			'blog_id'    => Helper::getBlogId(),
 			'user_id'    => get_current_user_id(),
 			'driver'     => 'twitter',
@@ -271,10 +276,24 @@ class Twitter extends SocialNetwork
 			'email'      => '',
 			'username'   => $user->screen_name,
 			'proxy'      => $proxy
-		] );
+		];
+
+		if ( $checkUserExist && empty ($checkUserExist['options']) )
+		{
+			$accId = $checkUserExist[ 'id' ];
+			DB::DB()->update(DB::table( 'accounts' ), $dataSQL, ['id' => $accId]);
+			DB::DB()->delete( DB::table( 'account_access_tokens' ), [ 'account_id' => $accId ] );
+		}
+		else
+		{
+			DB::DB()->insert( DB::table( 'accounts' ), $dataSQL );
+			$accId = DB::DB()->insert_id;
+		}
+
+
 
 		DB::DB()->insert( DB::table( 'account_access_tokens' ), [
-			'account_id'          => DB::DB()->insert_id,
+			'account_id'          => $accId,
 			'app_id'              => $appInf[ 'id' ],
 			'access_token'        => $oauth_token,
 			'access_token_secret' => $oauth_token_secret

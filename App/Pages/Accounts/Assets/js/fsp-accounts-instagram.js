@@ -29,14 +29,9 @@
 			}
 			else if ( selectedMethod === '3' ) // app method
 			{
-				let appID = $( '#fspModalStep_3 #fspModalAppSelector' ).val().trim();
 				let proxy = $( '#fspProxy' ).val().trim();
+				let appID = $( '#fspModalStep_3 #fspModalAppSelector' ).val().trim();
 				let openURL = `${ fspConfig.siteURL }/?instagram_app_redirect=${ appID }&proxy=${ proxy }`;
-
-				if ( $( '#fspModalStep_3 #fspModalAppSelector > option:selected' ).data( 'is-standart' ).toString() === '1' )
-				{
-					openURL = `${ fspConfig.standartAppURL }&proxy=${ proxy }&encode=true`;
-				}
 
 				window.open( openURL, 'fs-app', 'width=750, height=550' );
 			}

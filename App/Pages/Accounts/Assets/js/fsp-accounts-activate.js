@@ -6,6 +6,8 @@
 	doc.ready( function () {
 		$('body').append("<style>.select2-search__field{width:100%!important;display:block;}</style>");
 		$( '.select2-init' ).select2( {
+			containerCssClass: 'fsp-select2-container',
+			dropdownCssClass: 'fsp-select2-dropdown',
 			placeholder: fsp__( 'Click to search categories, tags... ( min. 2 character )' ),
 			//width: 'style',
 			ajax: {

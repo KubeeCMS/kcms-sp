@@ -76,7 +76,7 @@ defined( 'ABSPATH' ) or exit;
 		<div class="fsp-settings-label-text"><?php echo fsp__( 'Custom message' ); ?>
 			<i class="fas fa-angle-up fsp-settings-collapse-state fsp-is-rotated"></i>
 		</div>
-		<div class="fsp-settings-label-subtext"><?php echo fsp__( 'You can customize the text of the shared post as you like by using the current keywords.' ); ?></div>
+		<div class="fsp-settings-label-subtext"><?php echo fsp__( 'You can customize the text of the shared post as you like by using the available keywords. You can add the keywords to the custom message section easily by clicking on the keyword.' ); ?></div>
 	</div>
 	<div class="fsp-settings-collapse">
 		<div class="fsp-settings-col">
@@ -112,6 +112,10 @@ defined( 'ABSPATH' ) or exit;
 						{PRODUCT_REGULAR_PRICE}
 						<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'WooCommerce - product price' ); ?>"></i>
 					</button>
+					<button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{terms}">
+						{TERMS}
+						<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Post Terms' ); ?>"></i>
+					</button>
 					<button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{product_sale_price}">
 						{PRODUCT_SALE_PRICE}
 						<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'WooCommerce - product sale price' ); ?>"></i>
@@ -132,6 +136,10 @@ defined( 'ABSPATH' ) or exit;
 						{EXCERPT}
 						<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Post excerpt' ); ?>"></i>
 					</button>
+                    <button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{product_description}">
+                        {PRODUCT_DESCRIPTION}
+                        <i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Product short description' ); ?>"></i>
+                    </button>
 					<button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{categories}">
 						{CATEGORIES}
 						<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Post Categories' ); ?>"></i>

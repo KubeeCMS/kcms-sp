@@ -19,12 +19,12 @@ trait Popup
 
 	public function add_node_to_group ()
 	{
-		$group_id   = Request::post( 'group_id', NULL, 'num' );
-		$nodes      = Pages::action( 'Accounts', 'get_nodes', $group_id );
+		$group_id = Request::post( 'group_id', NULL, 'num' );
+		$nodes    = Pages::action( 'Accounts', 'get_nodes', $group_id );
 
 		$data = [
-			'nodes'     => $nodes,
-			'group_id'  => $group_id,
+			'nodes'    => $nodes,
+			'group_id' => $group_id,
 		];
 
 		Pages::modal( 'Accounts', 'groups/add_node_to_group', $data );
@@ -36,11 +36,13 @@ trait Popup
 		$account_and_nodes   = Request::post( 'nodes', NULL, 'array' );
 		$group_id            = Request::post( 'group_id', NULL, 'num' );
 
+		$group_ids = is_null( $group_id ) ? [] : [ $group_id ];
+
+		$account_ids = [];
+		$node_ids    = [];
+
 		if ( ! is_null( $account_and_nodes ) )
 		{
-			$account_ids = [];
-			$node_ids    = [];
-
 			foreach ( $account_and_nodes as $accountNodeInf )
 			{
 				if ( empty( $accountNodeInf ) )
@@ -55,7 +57,11 @@ trait Popup
 					continue;
 				}
 
-				if ( $accountNodeInf[ 1 ] === 'account' )
+				if ( $accountNodeInf[ 0 ] === 'fsp' )
+				{
+					$group_ids[] = (int) $accountNodeInf[ 2 ];
+				}
+				else if ( $accountNodeInf[ 1 ] === 'account' )
 				{
 					$account_ids[] = (int) $accountNodeInf[ 2 ];
 				}
@@ -64,71 +70,73 @@ trait Popup
 					$node_ids[] = (int) $accountNodeInf[ 2 ];
 				}
 			}
-
-			$account_ids = implode( ',', $account_ids );
-			$node_ids    = implode( ',', $node_ids );
-
-			if ( ! empty( $account_ids ) )
-			{
-				$accounts = DB::DB()->get_results( DB::DB()->prepare( "
-					SELECT 
-						tb2.*, IFNULL(tb1.filter_type, 'no') AS filter_type, tb1.categories, (SELECT GROUP_CONCAT(`name`) FROM " . DB::WPtable( 'terms', TRUE ) . " WHERE FIND_IN_SET(term_id,tb1.categories) ) AS categories_name,'account' AS node_type 
-					FROM " . DB::table( 'accounts' ) . " tb2
-					LEFT JOIN " . DB::table( 'account_status' ) . " tb1 ON tb2.id=tb1.account_id AND tb1.user_id=%d
-					WHERE (tb2.user_id=%d OR tb2.is_public=1) AND tb2.blog_id=%d AND tb2.id IN ({$account_ids})
-					ORDER BY name", [ get_current_user_id(), get_current_user_id(), Helper::getBlogId() ] ), ARRAY_A );
-			}
-			else
-			{
-				$accounts = [];
-			}
-
-			if ( ! empty( $node_ids ) )
-			{
-				$active_nodes = DB::DB()->get_results( DB::DB()->prepare( "
-				SELECT 
-					tb2.*, IFNULL(tb1.filter_type, 'no') AS filter_type, tb1.categories, (SELECT GROUP_CONCAT(`name`) FROM " . DB::WPtable( 'terms', TRUE ) . " WHERE FIND_IN_SET(term_id,tb1.categories) ) AS categories_name 
-				FROM " . DB::table( 'account_nodes' ) . " tb2
-				LEFT JOIN " . DB::table( 'account_node_status' ) . " tb1 ON tb2.id=tb1.node_id AND tb1.user_id=%d
-				WHERE (tb2.user_id=%d OR tb2.is_public=1) AND tb2.blog_id=%d AND tb2.id IN ({$node_ids})
-				ORDER BY (CASE node_type WHEN 'ownpage' THEN 1 WHEN 'group' THEN 2 WHEN 'page' THEN 3 END), name", [
-					get_current_user_id(),
-					get_current_user_id(),
-					Helper::getBlogId()
-				] ), ARRAY_A );
-			}
-			else
-			{
-				$active_nodes = [];
-			}
 		}
-		else if ( ! is_null( $group_id ) )
+
+		$group_nodes    = [];
+		$group_accounts = [];
+		$active_nodes   = [];
+		$accounts       = [];
+
+		if ( ! empty( $group_ids ) )
 		{
-			$accounts = DB::DB()->get_results( DB::DB()->prepare( "
+			$group_ids = array_unique( $group_ids );
+
+			$in = '(' . implode( ',', $group_ids ) . ')';
+
+			$group_accounts = DB::DB()->get_results( DB::DB()->prepare( "
 					SELECT 
 						tb2.*, IFNULL(tb1.filter_type, 'no') AS filter_type, tb1.categories, (SELECT GROUP_CONCAT(`name`) FROM " . DB::WPtable( 'terms', TRUE ) . " WHERE FIND_IN_SET(term_id,tb1.categories) ) AS categories_name,'account' AS node_type 
 					FROM " . DB::table( 'accounts' ) . " tb2
 					LEFT JOIN " . DB::table( 'account_status' ) . " tb1 ON tb2.id=tb1.account_id AND tb1.user_id=%d
-					WHERE (tb2.user_id=%d OR tb2.is_public=1) AND tb2.blog_id=%d AND tb2.id IN (SELECT gdt.node_id FROM `" . DB::table( 'account_groups_data' ) . "` gdt WHERE gdt.group_id=$group_id AND gdt.node_type='account')
+					WHERE (tb2.user_id=%d OR tb2.is_public=1) AND tb2.blog_id=%d AND tb2.id IN (SELECT gdt.node_id FROM `" . DB::table( 'account_groups_data' ) . "` gdt WHERE gdt.group_id IN $in AND gdt.node_type='account')
 					ORDER BY name", [ get_current_user_id(), get_current_user_id(), Helper::getBlogId() ] ), ARRAY_A );
 
-			$accounts = empty( $accounts ) ? [] : $accounts;
+			$group_accounts = empty( $group_accounts ) ? [] : $group_accounts;
 
-			$active_nodes = DB::DB()->get_results( DB::DB()->prepare( "
+			$group_nodes = DB::DB()->get_results( DB::DB()->prepare( "
 				SELECT 
 					tb2.*, IFNULL(tb1.filter_type, 'no') AS filter_type, tb1.categories, (SELECT GROUP_CONCAT(`name`) FROM " . DB::WPtable( 'terms', TRUE ) . " WHERE FIND_IN_SET(term_id,tb1.categories) ) AS categories_name 
 				FROM " . DB::table( 'account_nodes' ) . " tb2
 				LEFT JOIN " . DB::table( 'account_node_status' ) . " tb1 ON tb2.id=tb1.node_id AND tb1.user_id=%d
-				WHERE (tb2.user_id=%d OR tb2.is_public=1) AND tb2.blog_id=%d AND tb2.id IN (SELECT gdt.node_id FROM `" . DB::table( 'account_groups_data' ) . "` gdt WHERE gdt.group_id=$group_id AND gdt.node_type='node')
+				WHERE (tb2.user_id=%d OR tb2.is_public=1) AND tb2.blog_id=%d AND tb2.id IN (SELECT gdt.node_id FROM `" . DB::table( 'account_groups_data' ) . "` gdt WHERE gdt.group_id=$in AND gdt.node_type='node')
 				ORDER BY (CASE node_type WHEN 'ownpage' THEN 1 WHEN 'group' THEN 2 WHEN 'page' THEN 3 END), name", [
 				get_current_user_id(),
 				get_current_user_id(),
 				Helper::getBlogId()
 			] ), ARRAY_A );
 
-			$active_nodes = empty( $active_nodes ) ? [] : $active_nodes;
+			$group_nodes = empty( $group_nodes ) ? [] : $group_nodes;
 		}
-		else
+
+		if ( ! empty( $account_ids ) )
+		{
+			$account_ids = implode( ',', $account_ids );
+			$accounts    = DB::DB()->get_results( DB::DB()->prepare( "
+					SELECT 
+						tb2.*, IFNULL(tb1.filter_type, 'no') AS filter_type, tb1.categories, (SELECT GROUP_CONCAT(`name`) FROM " . DB::WPtable( 'terms', TRUE ) . " WHERE FIND_IN_SET(term_id,tb1.categories) ) AS categories_name,'account' AS node_type 
+					FROM " . DB::table( 'accounts' ) . " tb2
+					LEFT JOIN " . DB::table( 'account_status' ) . " tb1 ON tb2.id=tb1.account_id AND tb1.user_id=%d
+					WHERE (tb2.user_id=%d OR tb2.is_public=1) AND tb2.blog_id=%d AND tb2.id IN ({$account_ids})
+					ORDER BY name", [ get_current_user_id(), get_current_user_id(), Helper::getBlogId() ] ), ARRAY_A );
+		}
+
+		if ( ! empty( $node_ids ) )
+		{
+            $node_ids = implode( ',' , $node_ids );
+			$active_nodes = DB::DB()->get_results( DB::DB()->prepare( "
+				SELECT 
+					tb2.*, IFNULL(tb1.filter_type, 'no') AS filter_type, tb1.categories, (SELECT GROUP_CONCAT(`name`) FROM " . DB::WPtable( 'terms', TRUE ) . " WHERE FIND_IN_SET(term_id,tb1.categories) ) AS categories_name 
+				FROM " . DB::table( 'account_nodes' ) . " tb2
+				LEFT JOIN " . DB::table( 'account_node_status' ) . " tb1 ON tb2.id=tb1.node_id AND tb1.user_id=%d
+				WHERE (tb2.user_id=%d OR tb2.is_public=1) AND tb2.blog_id=%d AND tb2.id IN ({$node_ids})
+				ORDER BY (CASE node_type WHEN 'ownpage' THEN 1 WHEN 'group' THEN 2 WHEN 'page' THEN 3 END), name", [
+				get_current_user_id(),
+				get_current_user_id(),
+				Helper::getBlogId()
+			] ), ARRAY_A );
+		}
+
+		if ( is_null( $account_and_nodes ) && empty( $group_ids ) )
 		{
 			$accounts = DB::DB()->get_results( DB::DB()->prepare( "
 				SELECT tb2.*, tb1.filter_type, tb1.categories, (SELECT GROUP_CONCAT(`name`) FROM " . DB::WPtable( 'terms', TRUE ) . " WHERE FIND_IN_SET(term_id,tb1.categories) ) AS categories_name,'account' AS node_type 
@@ -147,7 +155,7 @@ trait Popup
 			] ), ARRAY_A );
 		}
 
-		$active_nodes = array_merge( $accounts, $active_nodes );
+		$active_nodes = array_merge( $accounts, $active_nodes, $group_nodes, $group_accounts );
 
 		foreach ( $active_nodes as $aKey => $node_info )
 		{
@@ -179,21 +187,21 @@ trait Popup
 
 		$custom_messages = [
 			'fb'          => Helper::getOption( 'post_text_message_fb', "{title}" ),
-			'fb_h'          => Helper::getOption( 'post_text_message_fb_h', "{title}" ),
+			'fb_h'        => Helper::getOption( 'post_text_message_fb_h', "{title}" ),
 			'instagram'   => Helper::getOption( 'post_text_message_instagram', "{title}" ),
 			'instagram_h' => Helper::getOption( 'post_text_message_instagram_h', "{title}" ),
 			'twitter'     => Helper::getOption( 'post_text_message_twitter', "{title}" ),
 			'linkedin'    => Helper::getOption( 'post_text_message_linkedin', "{title}" ),
-			'tumblr'      => Helper::getOption( 'post_text_message_tumblr', "{title}" ),
+			'tumblr'      => Helper::getOption( 'post_text_message_tumblr', "<img src='{featured_image_url}'>\n\n{content_full}" ),
 			'reddit'      => Helper::getOption( 'post_text_message_reddit', "{title}" ),
 			'vk'          => Helper::getOption( 'post_text_message_vk', "{title}" ),
 			'ok'          => Helper::getOption( 'post_text_message_ok', "{title}" ),
-			'plurk'       => Helper::getOption( 'post_text_message_plurk', "{title}" ),
-			'pinterest'   => Helper::getOption( 'post_text_message_pinterest', "{title}" ),
+			'plurk'       => Helper::getOption( 'post_text_message_plurk', "{title}\n\n{featured_image_url}\n\n{content_short_200}" ),
+			'pinterest'   => Helper::getOption( 'post_text_message_pinterest', "{content_short_500}" ),
 			'google_b'    => Helper::getOption( 'post_text_message_google_b', "{title}" ),
-			'blogger'     => Helper::getOption( 'post_text_message_blogger', "{content_full}" ),
+			'blogger'     => Helper::getOption( 'post_text_message_blogger', "<img src='{featured_image_url}'>\n\n{content_full} \n\n<a href='{link}'>{link}</a>" ),
 			'telegram'    => Helper::getOption( 'post_text_message_telegram', "{title}" ),
-			'medium'      => Helper::getOption( 'post_text_message_medium', "{title}" ),
+			'medium'      => Helper::getOption( 'post_text_message_medium', "{title}\n\n<img src='{featured_image_url}'>\n\n{content_full}\n\n<a href='{link}'>{link}</a>" ),
 			'wordpress'   => Helper::getOption( 'post_text_message_wordpress', "{content_full}" )
 		];
 		$post_ids        = Request::post( 'post_ids', '', 'string' );
@@ -390,21 +398,21 @@ trait Popup
 
 		$default_custom_messages = [
 			'fb'          => Helper::getOption( 'post_text_message_fb', "{title}" ),
-			'fb_h'          => Helper::getOption( 'post_text_message_fb_h', "{title}" ),
+			'fb_h'        => Helper::getOption( 'post_text_message_fb_h', "{title}" ),
 			'instagram'   => Helper::getOption( 'post_text_message_instagram', "{title}" ),
 			'instagram_h' => Helper::getOption( 'post_text_message_instagram_h', "{title}" ),
 			'twitter'     => Helper::getOption( 'post_text_message_twitter', "{title}" ),
 			'linkedin'    => Helper::getOption( 'post_text_message_linkedin', "{title}" ),
-			'tumblr'      => Helper::getOption( 'post_text_message_tumblr', "{title}" ),
+			'tumblr'      => Helper::getOption( 'post_text_message_tumblr', "<img src='{featured_image_url}'>\n\n{content_full}" ),
 			'reddit'      => Helper::getOption( 'post_text_message_reddit', "{title}" ),
 			'vk'          => Helper::getOption( 'post_text_message_vk', "{title}" ),
 			'ok'          => Helper::getOption( 'post_text_message_ok', "{title}" ),
-			'pinterest'   => Helper::getOption( 'post_text_message_pinterest', "{title}" ),
-			'plurk'       => Helper::getOption( 'post_text_message_plurk', "{title}" ),
+			'pinterest'   => Helper::getOption( 'post_text_message_pinterest', "{content_short_500}" ),
+			'plurk'       => Helper::getOption( 'post_text_message_plurk', "{title}\n\n{featured_image_url}\n\n{content_short_200}" ),
 			'google_b'    => Helper::getOption( 'post_text_message_google_b', "{title}" ),
-			'blogger'     => Helper::getOption( 'post_text_message_blogger', "{content_full}" ),
+			'blogger'     => Helper::getOption( 'post_text_message_blogger', "<img src='{featured_image_url}'>\n\n{content_full} \n\n<a href='{link}'>{link}</a>" ),
 			'telegram'    => Helper::getOption( 'post_text_message_telegram', "{title}" ),
-			'medium'      => Helper::getOption( 'post_text_message_medium', "{title}" )
+			'medium'      => Helper::getOption( 'post_text_message_medium', "{title}\n\n<img src='{featured_image_url}'>\n\n{content_full}\n\n<a href='{link}'>{link}</a>" )
 		];
 
 		$custom_messages = array_merge( $default_custom_messages, json_decode( $schedule_info[ 'custom_post_message' ], TRUE ) );
@@ -416,10 +424,13 @@ trait Popup
 
 		$post_ids_count = empty( $schedule_info[ 'save_post_ids' ] ) ? 0 : count( explode( ',', $schedule_info[ 'save_post_ids' ] ) );
 
+		$isAllTimes = $schedule_info[ 'filter_posts_date_range_from' ] < Date::dateTimeSQL('-995 years') && $schedule_info[ 'filter_posts_date_range_to' ] > Date::dateTimeSQL('+ 995 years');
+
 		Pages::modal( 'Schedules', 'add', [
 			'id'             => $scheduleId,
 			'info'           => $schedule_info,
 			'activeNodes'    => $active_nodes,
+			'is_all_times'   => $isAllTimes,
 			'postTypes'      => $post_types,
 			'customMessages' => $custom_messages,
 			'title'          => $schedule_info[ 'status' ] === 'finished' ? fsp__( 'RE-SCHEDULE' ) : fsp__( 'EDIT SCHEDULE' ),
@@ -575,21 +586,21 @@ trait Popup
 			} );
 			$default_custom_messages = [
 				'fb'          => Helper::getOption( 'post_text_message_fb', "{title}" ),
-				'fb_h'          => Helper::getOption( 'post_text_message_fb_h', "{title}" ),
+				'fb_h'        => Helper::getOption( 'post_text_message_fb_h', "{title}" ),
 				'instagram'   => Helper::getOption( 'post_text_message_instagram', "{title}" ),
 				'instagram_h' => Helper::getOption( 'post_text_message_instagram_h', "{title}" ),
 				'twitter'     => Helper::getOption( 'post_text_message_twitter', "{title}" ),
 				'linkedin'    => Helper::getOption( 'post_text_message_linkedin', "{title}" ),
-				'tumblr'      => Helper::getOption( 'post_text_message_tumblr', "{title}" ),
+				'tumblr'      => Helper::getOption( 'post_text_message_tumblr', "<img src='{featured_image_url}'>\n\n{content_full}" ),
 				'reddit'      => Helper::getOption( 'post_text_message_reddit', "{title}" ),
 				'vk'          => Helper::getOption( 'post_text_message_vk', "{title}" ),
 				'ok'          => Helper::getOption( 'post_text_message_ok', "{title}" ),
-				'plurk'       => Helper::getOption( 'post_text_message_plurk', "{title}" ),
-				'pinterest'   => Helper::getOption( 'post_text_message_pinterest', "{title}" ),
+				'plurk'       => Helper::getOption( 'post_text_message_plurk', "{title}\n\n{featured_image_url}\n\n{content_short_200}" ),
+				'pinterest'   => Helper::getOption( 'post_text_message_pinterest', "{content_short_500}" ),
 				'google_b'    => Helper::getOption( 'post_text_message_google_b', "{title}" ),
-				'blogger'     => Helper::getOption( 'post_text_message_blogger', "{content_full}" ),
+				'blogger'     => Helper::getOption( 'post_text_message_blogger', "<img src='{featured_image_url}'>\n\n{content_full} \n\n<a href='{link}'>{link}</a>" ),
 				'telegram'    => Helper::getOption( 'post_text_message_telegram', "{title}" ),
-				'medium'      => Helper::getOption( 'post_text_message_medium', "{title}" )
+				'medium'      => Helper::getOption( 'post_text_message_medium', "{title}\n\n<img src='{featured_image_url}'>\n\n{content_full}\n\n<a href='{link}'>{link}</a>" )
 			];
 			$custom_messages         = array_merge( $default_custom_messages, $customPostMessages );
 

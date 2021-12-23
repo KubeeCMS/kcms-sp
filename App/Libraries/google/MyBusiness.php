@@ -29,7 +29,7 @@
  *
  * @author Google, Inc.
  */
-class Google_Service_MyBusiness extends Google_Service
+class GoogleFSP_Service_MyBusiness extends Google_Service
 {
 
 
@@ -66,7 +66,7 @@ class Google_Service_MyBusiness extends Google_Service
     $this->version = 'v4';
     $this->serviceName = 'mybusiness';
 
-    $this->accounts = new Google_Service_MyBusiness_Accounts_Resource(
+    $this->accounts = new GoogleFSP_Service_MyBusiness_Accounts_Resource(
         $this,
         $this->serviceName,
         'accounts',
@@ -188,7 +188,7 @@ class Google_Service_MyBusiness extends Google_Service
           )
         )
     );
-    $this->accounts_admins = new Google_Service_MyBusiness_AccountsAdmins_Resource(
+    $this->accounts_admins = new GoogleFSP_Service_MyBusiness_AccountsAdmins_Resource(
         $this,
         $this->serviceName,
         'admins',
@@ -238,7 +238,7 @@ class Google_Service_MyBusiness extends Google_Service
           )
         )
     );
-    $this->accounts_invitations = new Google_Service_MyBusiness_AccountsInvitations_Resource(
+    $this->accounts_invitations = new GoogleFSP_Service_MyBusiness_AccountsInvitations_Resource(
         $this,
         $this->serviceName,
         'invitations',
@@ -282,7 +282,7 @@ class Google_Service_MyBusiness extends Google_Service
           )
         )
     );
-    $this->accounts_locations = new Google_Service_MyBusiness_AccountsLocations_Resource(
+    $this->accounts_locations = new GoogleFSP_Service_MyBusiness_AccountsLocations_Resource(
         $this,
         $this->serviceName,
         'locations',
@@ -534,7 +534,7 @@ class Google_Service_MyBusiness extends Google_Service
           )
         )
     );
-    $this->accounts_locations_admins = new Google_Service_MyBusiness_AccountsLocationsAdmins_Resource(
+    $this->accounts_locations_admins = new GoogleFSP_Service_MyBusiness_AccountsLocationsAdmins_Resource(
         $this,
         $this->serviceName,
         'admins',
@@ -584,7 +584,7 @@ class Google_Service_MyBusiness extends Google_Service
           )
         )
     );
-    $this->accounts_locations_followers = new Google_Service_MyBusiness_AccountsLocationsFollowers_Resource(
+    $this->accounts_locations_followers = new GoogleFSP_Service_MyBusiness_AccountsLocationsFollowers_Resource(
         $this,
         $this->serviceName,
         'followers',
@@ -604,7 +604,7 @@ class Google_Service_MyBusiness extends Google_Service
           )
         )
     );
-    $this->accounts_locations_localPosts = new Google_Service_MyBusiness_AccountsLocationsLocalPosts_Resource(
+    $this->accounts_locations_localPosts = new GoogleFSP_Service_MyBusiness_AccountsLocationsLocalPosts_Resource(
         $this,
         $this->serviceName,
         'localPosts',
@@ -686,7 +686,7 @@ class Google_Service_MyBusiness extends Google_Service
           )
         )
     );
-    $this->accounts_locations_media = new Google_Service_MyBusiness_AccountsLocationsMedia_Resource(
+    $this->accounts_locations_media = new GoogleFSP_Service_MyBusiness_AccountsLocationsMedia_Resource(
         $this,
         $this->serviceName,
         'media',
@@ -768,7 +768,7 @@ class Google_Service_MyBusiness extends Google_Service
           )
         )
     );
-    $this->accounts_locations_media_customers = new Google_Service_MyBusiness_AccountsLocationsMediaCustomers_Resource(
+    $this->accounts_locations_media_customers = new GoogleFSP_Service_MyBusiness_AccountsLocationsMediaCustomers_Resource(
         $this,
         $this->serviceName,
         'customers',
@@ -806,7 +806,7 @@ class Google_Service_MyBusiness extends Google_Service
           )
         )
     );
-    $this->accounts_locations_questions = new Google_Service_MyBusiness_AccountsLocationsQuestions_Resource(
+    $this->accounts_locations_questions = new GoogleFSP_Service_MyBusiness_AccountsLocationsQuestions_Resource(
         $this,
         $this->serviceName,
         'questions',
@@ -876,7 +876,7 @@ class Google_Service_MyBusiness extends Google_Service
           )
         )
     );
-    $this->accounts_locations_questions_answers = new Google_Service_MyBusiness_AccountsLocationsQuestionsAnswers_Resource(
+    $this->accounts_locations_questions_answers = new GoogleFSP_Service_MyBusiness_AccountsLocationsQuestionsAnswers_Resource(
         $this,
         $this->serviceName,
         'answers',
@@ -928,7 +928,7 @@ class Google_Service_MyBusiness extends Google_Service
           )
         )
     );
-    $this->accounts_locations_reviews = new Google_Service_MyBusiness_AccountsLocationsReviews_Resource(
+    $this->accounts_locations_reviews = new GoogleFSP_Service_MyBusiness_AccountsLocationsReviews_Resource(
         $this,
         $this->serviceName,
         'reviews',
@@ -990,7 +990,7 @@ class Google_Service_MyBusiness extends Google_Service
           )
         )
     );
-    $this->accounts_locations_verifications = new Google_Service_MyBusiness_AccountsLocationsVerifications_Resource(
+    $this->accounts_locations_verifications = new GoogleFSP_Service_MyBusiness_AccountsLocationsVerifications_Resource(
         $this,
         $this->serviceName,
         'verifications',
@@ -1028,7 +1028,7 @@ class Google_Service_MyBusiness extends Google_Service
           )
         )
     );
-    $this->attributes = new Google_Service_MyBusiness_Attributes_Resource(
+    $this->attributes = new GoogleFSP_Service_MyBusiness_Attributes_Resource(
         $this,
         $this->serviceName,
         'attributes',
@@ -1067,7 +1067,7 @@ class Google_Service_MyBusiness extends Google_Service
           )
         )
     );
-    $this->categories = new Google_Service_MyBusiness_Categories_Resource(
+    $this->categories = new GoogleFSP_Service_MyBusiness_Categories_Resource(
         $this,
         $this->serviceName,
         'categories',
@@ -1128,7 +1128,7 @@ class Google_Service_MyBusiness extends Google_Service
           )
         )
     );
-    $this->chains = new Google_Service_MyBusiness_Chains_Resource(
+    $this->chains = new GoogleFSP_Service_MyBusiness_Chains_Resource(
         $this,
         $this->serviceName,
         'chains',
@@ -1161,7 +1161,7 @@ class Google_Service_MyBusiness extends Google_Service
           )
         )
     );
-    $this->googleLocations = new Google_Service_MyBusiness_GoogleLocations_Resource(
+    $this->googleLocations = new GoogleFSP_Service_MyBusiness_GoogleLocations_Resource(
         $this,
         $this->serviceName,
         'googleLocations',
@@ -1193,11 +1193,11 @@ class Google_Service_MyBusiness extends Google_Service
  * The "accounts" collection of methods.
  * Typical usage is:
  *  <code>
- *   $mybusinessService = new Google_Service_MyBusiness(...);
+ *   $mybusinessService = new GoogleFSP_Service_MyBusiness(...);
  *   $accounts = $mybusinessService->accounts;
  *  </code>
  */
-class Google_Service_MyBusiness_Accounts_Resource extends Google_Service_Resource
+class GoogleFSP_Service_MyBusiness_Accounts_Resource extends Google_Service_Resource
 {
 
   /**
@@ -1214,13 +1214,13 @@ class Google_Service_MyBusiness_Accounts_Resource extends Google_Service_Resourc
    * @opt_param string primaryOwner The resource name of the account which will be
    * the primary owner of the account being created. It should be of the form
    * `accounts/{account_id}/`.
-   * @return Google_Service_MyBusiness_Account
+   * @return GoogleFSP_Service_MyBusiness_Account
    */
-  public function create(Google_Service_MyBusiness_Account $postBody, $optParams = array())
+  public function create(GoogleFSP_Service_MyBusiness_Account $postBody, $optParams = array())
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('create', array($params), "Google_Service_MyBusiness_Account");
+    return $this->call('create', array($params), "GoogleFSP_Service_MyBusiness_Account");
   }
 
   /**
@@ -1230,13 +1230,13 @@ class Google_Service_MyBusiness_Accounts_Resource extends Google_Service_Resourc
    * @param string $name The resource name for the notification settings to be
    * cleared.
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_MybusinessEmpty
+   * @return GoogleFSP_Service_MyBusiness_MybusinessEmpty
    */
   public function deleteNotifications($name, $optParams = array())
   {
     $params = array('name' => $name);
     $params = array_merge($params, $optParams);
-    return $this->call('deleteNotifications', array($params), "Google_Service_MyBusiness_MybusinessEmpty");
+    return $this->call('deleteNotifications', array($params), "GoogleFSP_Service_MyBusiness_MybusinessEmpty");
   }
 
   /**
@@ -1248,13 +1248,13 @@ class Google_Service_MyBusiness_Accounts_Resource extends Google_Service_Resourc
    * for.
    * @param Google_GenerateAccountNumberRequest $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_Account
+   * @return GoogleFSP_Service_MyBusiness_Account
    */
-  public function generateAccountNumber($name, Google_Service_MyBusiness_GenerateAccountNumberRequest $postBody, $optParams = array())
+  public function generateAccountNumber($name, GoogleFSP_Service_MyBusiness_GenerateAccountNumberRequest $postBody, $optParams = array())
   {
     $params = array('name' => $name, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('generateAccountNumber', array($params), "Google_Service_MyBusiness_Account");
+    return $this->call('generateAccountNumber', array($params), "GoogleFSP_Service_MyBusiness_Account");
   }
 
   /**
@@ -1263,13 +1263,13 @@ class Google_Service_MyBusiness_Accounts_Resource extends Google_Service_Resourc
    *
    * @param string $name The name of the account to fetch.
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_Account
+   * @return GoogleFSP_Service_MyBusiness_Account
    */
   public function get($name, $optParams = array())
   {
     $params = array('name' => $name);
     $params = array_merge($params, $optParams);
-    return $this->call('get', array($params), "Google_Service_MyBusiness_Account");
+    return $this->call('get', array($params), "GoogleFSP_Service_MyBusiness_Account");
   }
 
   /**
@@ -1278,13 +1278,13 @@ class Google_Service_MyBusiness_Accounts_Resource extends Google_Service_Resourc
    *
    * @param string $name The notification settings resource name.
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_Notifications
+   * @return GoogleFSP_Service_MyBusiness_Notifications
    */
   public function getNotifications($name, $optParams = array())
   {
     $params = array('name' => $name);
     $params = array_merge($params, $optParams);
-    return $this->call('getNotifications', array($params), "Google_Service_MyBusiness_Notifications");
+    return $this->call('getNotifications', array($params), "GoogleFSP_Service_MyBusiness_Notifications");
   }
 
   /**
@@ -1308,13 +1308,13 @@ class Google_Service_MyBusiness_Accounts_Resource extends Google_Service_Resourc
    * then no constraints are applied and all accounts (paginated) are retrieved
    * for the requested account. For example, a request with the filter
    * `type=USER_GROUP` will only return user groups.
-   * @return Google_Service_MyBusiness_ListAccountsResponse
+   * @return GoogleFSP_Service_MyBusiness_ListAccountsResponse
    */
   public function listAccounts($optParams = array())
   {
     $params = array();
     $params = array_merge($params, $optParams);
-    return $this->call('list', array($params), "Google_Service_MyBusiness_ListAccountsResponse");
+    return $this->call('list', array($params), "GoogleFSP_Service_MyBusiness_ListAccountsResponse");
   }
 
   /**
@@ -1336,13 +1336,13 @@ class Google_Service_MyBusiness_Accounts_Resource extends Google_Service_Resourc
    * minimum is 1, and maximum page size is 100.
    * @opt_param string pageToken If specified, the next page of locations is
    * retrieved.
-   * @return Google_Service_MyBusiness_ListRecommendedGoogleLocationsResponse
+   * @return GoogleFSP_Service_MyBusiness_ListRecommendedGoogleLocationsResponse
    */
   public function listRecommendGoogleLocations($name, $optParams = array())
   {
     $params = array('name' => $name);
     $params = array_merge($params, $optParams);
-    return $this->call('listRecommendGoogleLocations', array($params), "Google_Service_MyBusiness_ListRecommendedGoogleLocationsResponse");
+    return $this->call('listRecommendGoogleLocations', array($params), "GoogleFSP_Service_MyBusiness_ListRecommendedGoogleLocationsResponse");
   }
 
   /**
@@ -1357,13 +1357,13 @@ class Google_Service_MyBusiness_Accounts_Resource extends Google_Service_Resourc
    *
    * @opt_param bool validateOnly If true, the request is validated without
    * actually updating the account.
-   * @return Google_Service_MyBusiness_Account
+   * @return GoogleFSP_Service_MyBusiness_Account
    */
-  public function update($name, Google_Service_MyBusiness_Account $postBody, $optParams = array())
+  public function update($name, GoogleFSP_Service_MyBusiness_Account $postBody, $optParams = array())
   {
     $params = array('name' => $name, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('update', array($params), "Google_Service_MyBusiness_Account");
+    return $this->call('update', array($params), "GoogleFSP_Service_MyBusiness_Account");
   }
 
   /**
@@ -1377,13 +1377,13 @@ class Google_Service_MyBusiness_Accounts_Resource extends Google_Service_Resourc
    * @param string $name The notification settings resource name.
    * @param Google_Notifications $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_Notifications
+   * @return GoogleFSP_Service_MyBusiness_Notifications
    */
-  public function updateNotifications($name, Google_Service_MyBusiness_Notifications $postBody, $optParams = array())
+  public function updateNotifications($name, GoogleFSP_Service_MyBusiness_Notifications $postBody, $optParams = array())
   {
     $params = array('name' => $name, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('updateNotifications', array($params), "Google_Service_MyBusiness_Notifications");
+    return $this->call('updateNotifications', array($params), "GoogleFSP_Service_MyBusiness_Notifications");
   }
 }
 
@@ -1391,11 +1391,11 @@ class Google_Service_MyBusiness_Accounts_Resource extends Google_Service_Resourc
  * The "admins" collection of methods.
  * Typical usage is:
  *  <code>
- *   $mybusinessService = new Google_Service_MyBusiness(...);
+ *   $mybusinessService = new GoogleFSP_Service_MyBusiness(...);
  *   $admins = $mybusinessService->admins;
  *  </code>
  */
-class Google_Service_MyBusiness_AccountsAdmins_Resource extends Google_Service_Resource
+class GoogleFSP_Service_MyBusiness_AccountsAdmins_Resource extends Google_Service_Resource
 {
 
   /**
@@ -1408,13 +1408,13 @@ class Google_Service_MyBusiness_AccountsAdmins_Resource extends Google_Service_R
    * for.
    * @param Google_Admin $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_Admin
+   * @return GoogleFSP_Service_MyBusiness_Admin
    */
-  public function create($parent, Google_Service_MyBusiness_Admin $postBody, $optParams = array())
+  public function create($parent, GoogleFSP_Service_MyBusiness_Admin $postBody, $optParams = array())
   {
     $params = array('parent' => $parent, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('create', array($params), "Google_Service_MyBusiness_Admin");
+    return $this->call('create', array($params), "GoogleFSP_Service_MyBusiness_Admin");
   }
 
   /**
@@ -1423,13 +1423,13 @@ class Google_Service_MyBusiness_AccountsAdmins_Resource extends Google_Service_R
    * @param string $name The resource name of the admin to remove from the
    * account.
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_MybusinessEmpty
+   * @return GoogleFSP_Service_MyBusiness_MybusinessEmpty
    */
   public function delete($name, $optParams = array())
   {
     $params = array('name' => $name);
     $params = array_merge($params, $optParams);
-    return $this->call('delete', array($params), "Google_Service_MyBusiness_MybusinessEmpty");
+    return $this->call('delete', array($params), "GoogleFSP_Service_MyBusiness_MybusinessEmpty");
   }
 
   /**
@@ -1438,13 +1438,13 @@ class Google_Service_MyBusiness_AccountsAdmins_Resource extends Google_Service_R
    * @param string $parent The name of the account from which to retrieve a list
    * of admins.
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_ListAccountAdminsResponse
+   * @return GoogleFSP_Service_MyBusiness_ListAccountAdminsResponse
    */
   public function listAccountsAdmins($parent, $optParams = array())
   {
     $params = array('parent' => $parent);
     $params = array_merge($params, $optParams);
-    return $this->call('list', array($params), "Google_Service_MyBusiness_ListAccountAdminsResponse");
+    return $this->call('list', array($params), "GoogleFSP_Service_MyBusiness_ListAccountAdminsResponse");
   }
 
   /**
@@ -1454,24 +1454,24 @@ class Google_Service_MyBusiness_AccountsAdmins_Resource extends Google_Service_R
    * @param string $name The resource name of the admin to update.
    * @param Google_Admin $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_Admin
+   * @return GoogleFSP_Service_MyBusiness_Admin
    */
-  public function patch($name, Google_Service_MyBusiness_Admin $postBody, $optParams = array())
+  public function patch($name, GoogleFSP_Service_MyBusiness_Admin $postBody, $optParams = array())
   {
     $params = array('name' => $name, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('patch', array($params), "Google_Service_MyBusiness_Admin");
+    return $this->call('patch', array($params), "GoogleFSP_Service_MyBusiness_Admin");
   }
 }
 /**
  * The "invitations" collection of methods.
  * Typical usage is:
  *  <code>
- *   $mybusinessService = new Google_Service_MyBusiness(...);
+ *   $mybusinessService = new GoogleFSP_Service_MyBusiness(...);
  *   $invitations = $mybusinessService->invitations;
  *  </code>
  */
-class Google_Service_MyBusiness_AccountsInvitations_Resource extends Google_Service_Resource
+class GoogleFSP_Service_MyBusiness_AccountsInvitations_Resource extends Google_Service_Resource
 {
 
   /**
@@ -1480,13 +1480,13 @@ class Google_Service_MyBusiness_AccountsInvitations_Resource extends Google_Serv
    * @param string $name The name of the invitation that is being accepted.
    * @param Google_AcceptInvitationRequest $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_MybusinessEmpty
+   * @return GoogleFSP_Service_MyBusiness_MybusinessEmpty
    */
-  public function accept($name, Google_Service_MyBusiness_AcceptInvitationRequest $postBody, $optParams = array())
+  public function accept($name, GoogleFSP_Service_MyBusiness_AcceptInvitationRequest $postBody, $optParams = array())
   {
     $params = array('name' => $name, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('accept', array($params), "Google_Service_MyBusiness_MybusinessEmpty");
+    return $this->call('accept', array($params), "GoogleFSP_Service_MyBusiness_MybusinessEmpty");
   }
 
   /**
@@ -1496,13 +1496,13 @@ class Google_Service_MyBusiness_AccountsInvitations_Resource extends Google_Serv
    * declined.
    * @param Google_DeclineInvitationRequest $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_MybusinessEmpty
+   * @return GoogleFSP_Service_MyBusiness_MybusinessEmpty
    */
-  public function decline($name, Google_Service_MyBusiness_DeclineInvitationRequest $postBody, $optParams = array())
+  public function decline($name, GoogleFSP_Service_MyBusiness_DeclineInvitationRequest $postBody, $optParams = array())
   {
     $params = array('name' => $name, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('decline', array($params), "Google_Service_MyBusiness_MybusinessEmpty");
+    return $this->call('decline', array($params), "GoogleFSP_Service_MyBusiness_MybusinessEmpty");
   }
 
   /**
@@ -1515,24 +1515,24 @@ class Google_Service_MyBusiness_AccountsInvitations_Resource extends Google_Serv
    *
    * @opt_param string targetType Specifies which target types should appear in
    * the response.
-   * @return Google_Service_MyBusiness_ListInvitationsResponse
+   * @return GoogleFSP_Service_MyBusiness_ListInvitationsResponse
    */
   public function listAccountsInvitations($parent, $optParams = array())
   {
     $params = array('parent' => $parent);
     $params = array_merge($params, $optParams);
-    return $this->call('list', array($params), "Google_Service_MyBusiness_ListInvitationsResponse");
+    return $this->call('list', array($params), "GoogleFSP_Service_MyBusiness_ListInvitationsResponse");
   }
 }
 /**
  * The "locations" collection of methods.
  * Typical usage is:
  *  <code>
- *   $mybusinessService = new Google_Service_MyBusiness(...);
+ *   $mybusinessService = new GoogleFSP_Service_MyBusiness(...);
  *   $locations = $mybusinessService->locations;
  *  </code>
  */
-class Google_Service_MyBusiness_AccountsLocations_Resource extends Google_Service_Resource
+class GoogleFSP_Service_MyBusiness_AccountsLocations_Resource extends Google_Service_Resource
 {
 
   /**
@@ -1544,13 +1544,13 @@ class Google_Service_MyBusiness_AccountsLocations_Resource extends Google_Servic
    * @param string $name The resource name of the location to associate.
    * @param Google_AssociateLocationRequest $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_MybusinessEmpty
+   * @return GoogleFSP_Service_MyBusiness_MybusinessEmpty
    */
-  public function associate($name, Google_Service_MyBusiness_AssociateLocationRequest $postBody, $optParams = array())
+  public function associate($name, GoogleFSP_Service_MyBusiness_AssociateLocationRequest $postBody, $optParams = array())
   {
     $params = array('name' => $name, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('associate', array($params), "Google_Service_MyBusiness_MybusinessEmpty");
+    return $this->call('associate', array($params), "GoogleFSP_Service_MyBusiness_MybusinessEmpty");
   }
 
   /**
@@ -1560,13 +1560,13 @@ class Google_Service_MyBusiness_AccountsLocations_Resource extends Google_Servic
    * @param string $name The name of the account from which to fetch locations.
    * @param Google_BatchGetLocationsRequest $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_BatchGetLocationsResponse
+   * @return GoogleFSP_Service_MyBusiness_BatchGetLocationsResponse
    */
-  public function batchGet($name, Google_Service_MyBusiness_BatchGetLocationsRequest $postBody, $optParams = array())
+  public function batchGet($name, GoogleFSP_Service_MyBusiness_BatchGetLocationsRequest $postBody, $optParams = array())
   {
     $params = array('name' => $name, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('batchGet', array($params), "Google_Service_MyBusiness_BatchGetLocationsResponse");
+    return $this->call('batchGet', array($params), "GoogleFSP_Service_MyBusiness_BatchGetLocationsResponse");
   }
 
   /**
@@ -1579,13 +1579,13 @@ class Google_Service_MyBusiness_AccountsLocations_Resource extends Google_Servic
    * reviews across multiple locations.
    * @param Google_BatchGetReviewsRequest $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_BatchGetReviewsResponse
+   * @return GoogleFSP_Service_MyBusiness_BatchGetReviewsResponse
    */
-  public function batchGetReviews($name, Google_Service_MyBusiness_BatchGetReviewsRequest $postBody, $optParams = array())
+  public function batchGetReviews($name, GoogleFSP_Service_MyBusiness_BatchGetReviewsRequest $postBody, $optParams = array())
   {
     $params = array('name' => $name, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('batchGetReviews', array($params), "Google_Service_MyBusiness_BatchGetReviewsResponse");
+    return $this->call('batchGetReviews', array($params), "GoogleFSP_Service_MyBusiness_BatchGetReviewsResponse");
   }
 
   /**
@@ -1595,13 +1595,13 @@ class Google_Service_MyBusiness_AccountsLocations_Resource extends Google_Servic
    * @param string $name The resource name of the location to disassociate.
    * @param Google_ClearLocationAssociationRequest $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_MybusinessEmpty
+   * @return GoogleFSP_Service_MyBusiness_MybusinessEmpty
    */
-  public function clearAssociation($name, Google_Service_MyBusiness_ClearLocationAssociationRequest $postBody, $optParams = array())
+  public function clearAssociation($name, GoogleFSP_Service_MyBusiness_ClearLocationAssociationRequest $postBody, $optParams = array())
   {
     $params = array('name' => $name, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('clearAssociation', array($params), "Google_Service_MyBusiness_MybusinessEmpty");
+    return $this->call('clearAssociation', array($params), "GoogleFSP_Service_MyBusiness_MybusinessEmpty");
   }
 
   /**
@@ -1617,13 +1617,13 @@ class Google_Service_MyBusiness_AccountsLocations_Resource extends Google_Servic
    * actually creating the location.
    * @opt_param string requestId A unique request ID for the server to detect
    * duplicated requests. We recommend using UUIDs. Max length is 50 characters.
-   * @return Google_Service_MyBusiness_Location
+   * @return GoogleFSP_Service_MyBusiness_Location
    */
-  public function create($parent, Google_Service_MyBusiness_Location $postBody, $optParams = array())
+  public function create($parent, GoogleFSP_Service_MyBusiness_Location $postBody, $optParams = array())
   {
     $params = array('parent' => $parent, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('create', array($params), "Google_Service_MyBusiness_Location");
+    return $this->call('create', array($params), "GoogleFSP_Service_MyBusiness_Location");
   }
 
   /**
@@ -1634,13 +1634,13 @@ class Google_Service_MyBusiness_AccountsLocations_Resource extends Google_Servic
    *
    * @param string $name The name of the location to delete.
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_MybusinessEmpty
+   * @return GoogleFSP_Service_MyBusiness_MybusinessEmpty
    */
   public function delete($name, $optParams = array())
   {
     $params = array('name' => $name);
     $params = array_merge($params, $optParams);
-    return $this->call('delete', array($params), "Google_Service_MyBusiness_MybusinessEmpty");
+    return $this->call('delete', array($params), "GoogleFSP_Service_MyBusiness_MybusinessEmpty");
   }
 
   /**
@@ -1650,13 +1650,13 @@ class Google_Service_MyBusiness_AccountsLocations_Resource extends Google_Servic
    * @param string $name Resource name of the location to verify.
    * @param Google_FetchVerificationOptionsRequest $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_FetchVerificationOptionsResponse
+   * @return GoogleFSP_Service_MyBusiness_FetchVerificationOptionsResponse
    */
-  public function fetchVerificationOptions($name, Google_Service_MyBusiness_FetchVerificationOptionsRequest $postBody, $optParams = array())
+  public function fetchVerificationOptions($name, GoogleFSP_Service_MyBusiness_FetchVerificationOptionsRequest $postBody, $optParams = array())
   {
     $params = array('name' => $name, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('fetchVerificationOptions', array($params), "Google_Service_MyBusiness_FetchVerificationOptionsResponse");
+    return $this->call('fetchVerificationOptions', array($params), "GoogleFSP_Service_MyBusiness_FetchVerificationOptionsResponse");
   }
 
   /**
@@ -1667,13 +1667,13 @@ class Google_Service_MyBusiness_AccountsLocations_Resource extends Google_Servic
    * @param string $name The resource name of the location to find matches for.
    * @param Google_FindMatchingLocationsRequest $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_FindMatchingLocationsResponse
+   * @return GoogleFSP_Service_MyBusiness_FindMatchingLocationsResponse
    */
-  public function findMatches($name, Google_Service_MyBusiness_FindMatchingLocationsRequest $postBody, $optParams = array())
+  public function findMatches($name, GoogleFSP_Service_MyBusiness_FindMatchingLocationsRequest $postBody, $optParams = array())
   {
     $params = array('name' => $name, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('findMatches', array($params), "Google_Service_MyBusiness_FindMatchingLocationsResponse");
+    return $this->call('findMatches', array($params), "GoogleFSP_Service_MyBusiness_FindMatchingLocationsResponse");
   }
 
   /**
@@ -1682,13 +1682,13 @@ class Google_Service_MyBusiness_AccountsLocations_Resource extends Google_Servic
    *
    * @param string $name The name of the location to fetch.
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_Location
+   * @return GoogleFSP_Service_MyBusiness_Location
    */
   public function get($name, $optParams = array())
   {
     $params = array('name' => $name);
     $params = array_merge($params, $optParams);
-    return $this->call('get', array($params), "Google_Service_MyBusiness_Location");
+    return $this->call('get', array($params), "GoogleFSP_Service_MyBusiness_Location");
   }
 
   /**
@@ -1703,13 +1703,13 @@ class Google_Service_MyBusiness_AccountsLocations_Resource extends Google_Servic
    * mask is specified, then it returns the full FoodMenu (same as "*"). Repeated
    * field items can not be individually specified. For example: "name" and
    * "menus" are valid masks, while "menus.sections" is invalid.
-   * @return Google_Service_MyBusiness_FoodMenus
+   * @return GoogleFSP_Service_MyBusiness_FoodMenus
    */
   public function getFoodMenus($name, $optParams = array())
   {
     $params = array('name' => $name);
     $params = array_merge($params, $optParams);
-    return $this->call('getFoodMenus', array($params), "Google_Service_MyBusiness_FoodMenus");
+    return $this->call('getFoodMenus', array($params), "GoogleFSP_Service_MyBusiness_FoodMenus");
   }
 
   /**
@@ -1718,13 +1718,13 @@ class Google_Service_MyBusiness_AccountsLocations_Resource extends Google_Servic
    *
    * @param string $name The name of the location to fetch.
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_GoogleUpdatedLocation
+   * @return GoogleFSP_Service_MyBusiness_GoogleUpdatedLocation
    */
   public function getGoogleUpdated($name, $optParams = array())
   {
     $params = array('name' => $name);
     $params = array_merge($params, $optParams);
-    return $this->call('getGoogleUpdated', array($params), "Google_Service_MyBusiness_GoogleUpdatedLocation");
+    return $this->call('getGoogleUpdated', array($params), "GoogleFSP_Service_MyBusiness_GoogleUpdatedLocation");
   }
 
   /**
@@ -1733,13 +1733,13 @@ class Google_Service_MyBusiness_AccountsLocations_Resource extends Google_Servic
    * @param string $name Required. Google identifier for this location in the
    * form: `accounts/{account_id}/locations/{location_id}/servicelist`
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_ServiceList
+   * @return GoogleFSP_Service_MyBusiness_ServiceList
    */
   public function getServiceList($name, $optParams = array())
   {
     $params = array('name' => $name);
     $params = array_merge($params, $optParams);
-    return $this->call('getServiceList', array($params), "Google_Service_MyBusiness_ServiceList");
+    return $this->call('getServiceList', array($params), "GoogleFSP_Service_MyBusiness_ServiceList");
   }
 
   /**
@@ -1774,13 +1774,13 @@ class Google_Service_MyBusiness_AccountsLocations_Resource extends Google_Servic
    * ascending. To specify descending order, a suffix " desc" should be added.
    * Valid fields to order_by are location_name and store_code. For example:
    * "location_name, store_code desc" or "location_name" or "store_code desc"
-   * @return Google_Service_MyBusiness_ListLocationsResponse
+   * @return GoogleFSP_Service_MyBusiness_ListLocationsResponse
    */
   public function listAccountsLocations($parent, $optParams = array())
   {
     $params = array('parent' => $parent);
     $params = array_merge($params, $optParams);
-    return $this->call('list', array($params), "Google_Service_MyBusiness_ListLocationsResponse");
+    return $this->call('list', array($params), "GoogleFSP_Service_MyBusiness_ListLocationsResponse");
   }
 
   /**
@@ -1803,13 +1803,13 @@ class Google_Service_MyBusiness_AccountsLocations_Resource extends Google_Servic
    * the mask and not in the location, it will be removed. An empty mask will
    * update all attributes. Whenever this field is set, the update_mask should
    * include attributes as one of the fields to update.
-   * @return Google_Service_MyBusiness_Location
+   * @return GoogleFSP_Service_MyBusiness_Location
    */
-  public function patch($name, Google_Service_MyBusiness_Location $postBody, $optParams = array())
+  public function patch($name, GoogleFSP_Service_MyBusiness_Location $postBody, $optParams = array())
   {
     $params = array('name' => $name, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('patch', array($params), "Google_Service_MyBusiness_Location");
+    return $this->call('patch', array($params), "GoogleFSP_Service_MyBusiness_Location");
   }
 
   /**
@@ -1820,13 +1820,13 @@ class Google_Service_MyBusiness_AccountsLocations_Resource extends Google_Servic
    * @param string $name The account resource name.
    * @param Google_ReportLocationInsightsRequest $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_ReportLocationInsightsResponse
+   * @return GoogleFSP_Service_MyBusiness_ReportLocationInsightsResponse
    */
-  public function reportInsights($name, Google_Service_MyBusiness_ReportLocationInsightsRequest $postBody, $optParams = array())
+  public function reportInsights($name, GoogleFSP_Service_MyBusiness_ReportLocationInsightsRequest $postBody, $optParams = array())
   {
     $params = array('name' => $name, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('reportInsights', array($params), "Google_Service_MyBusiness_ReportLocationInsightsResponse");
+    return $this->call('reportInsights', array($params), "GoogleFSP_Service_MyBusiness_ReportLocationInsightsResponse");
   }
 
   /**
@@ -1839,13 +1839,13 @@ class Google_Service_MyBusiness_AccountsLocations_Resource extends Google_Servic
    * @param string $name The name of the location to transfer.
    * @param Google_TransferLocationRequest $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_Location
+   * @return GoogleFSP_Service_MyBusiness_Location
    */
-  public function transfer($name, Google_Service_MyBusiness_TransferLocationRequest $postBody, $optParams = array())
+  public function transfer($name, GoogleFSP_Service_MyBusiness_TransferLocationRequest $postBody, $optParams = array())
   {
     $params = array('name' => $name, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('transfer', array($params), "Google_Service_MyBusiness_Location");
+    return $this->call('transfer', array($params), "GoogleFSP_Service_MyBusiness_Location");
   }
 
   /**
@@ -1863,13 +1863,13 @@ class Google_Service_MyBusiness_AccountsLocations_Resource extends Google_Servic
    * set to the values passed in, which may include unsetting empty fields in the
    * request. Repeated field items can not be individually updated. Note: "name"
    * of FoodMenus is the resource identifier which is not updatable.
-   * @return Google_Service_MyBusiness_FoodMenus
+   * @return GoogleFSP_Service_MyBusiness_FoodMenus
    */
-  public function updateFoodMenus($name, Google_Service_MyBusiness_FoodMenus $postBody, $optParams = array())
+  public function updateFoodMenus($name, GoogleFSP_Service_MyBusiness_FoodMenus $postBody, $optParams = array())
   {
     $params = array('name' => $name, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('updateFoodMenus', array($params), "Google_Service_MyBusiness_FoodMenus");
+    return $this->call('updateFoodMenus', array($params), "GoogleFSP_Service_MyBusiness_FoodMenus");
   }
 
   /**
@@ -1885,13 +1885,13 @@ class Google_Service_MyBusiness_AccountsLocations_Resource extends Google_Servic
    * mask is specified, then this is treated as a full update and all fields are
    * set to the values passed in, which may include unsetting empty fields in the
    * request. Repeated field items can not be individually updated.
-   * @return Google_Service_MyBusiness_ServiceList
+   * @return GoogleFSP_Service_MyBusiness_ServiceList
    */
-  public function updateServiceList($name, Google_Service_MyBusiness_ServiceList $postBody, $optParams = array())
+  public function updateServiceList($name, GoogleFSP_Service_MyBusiness_ServiceList $postBody, $optParams = array())
   {
     $params = array('name' => $name, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('updateServiceList', array($params), "Google_Service_MyBusiness_ServiceList");
+    return $this->call('updateServiceList', array($params), "GoogleFSP_Service_MyBusiness_ServiceList");
   }
 
   /**
@@ -1900,13 +1900,13 @@ class Google_Service_MyBusiness_AccountsLocations_Resource extends Google_Servic
    * @param string $name Resource name of the location to verify.
    * @param Google_VerifyLocationRequest $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_VerifyLocationResponse
+   * @return GoogleFSP_Service_MyBusiness_VerifyLocationResponse
    */
-  public function verify($name, Google_Service_MyBusiness_VerifyLocationRequest $postBody, $optParams = array())
+  public function verify($name, GoogleFSP_Service_MyBusiness_VerifyLocationRequest $postBody, $optParams = array())
   {
     $params = array('name' => $name, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('verify', array($params), "Google_Service_MyBusiness_VerifyLocationResponse");
+    return $this->call('verify', array($params), "GoogleFSP_Service_MyBusiness_VerifyLocationResponse");
   }
 }
 
@@ -1914,11 +1914,11 @@ class Google_Service_MyBusiness_AccountsLocations_Resource extends Google_Servic
  * The "admins" collection of methods.
  * Typical usage is:
  *  <code>
- *   $mybusinessService = new Google_Service_MyBusiness(...);
+ *   $mybusinessService = new GoogleFSP_Service_MyBusiness(...);
  *   $admins = $mybusinessService->admins;
  *  </code>
  */
-class Google_Service_MyBusiness_AccountsLocationsAdmins_Resource extends Google_Service_Resource
+class GoogleFSP_Service_MyBusiness_AccountsLocationsAdmins_Resource extends Google_Service_Resource
 {
 
   /**
@@ -1931,13 +1931,13 @@ class Google_Service_MyBusiness_AccountsLocationsAdmins_Resource extends Google_
    * for.
    * @param Google_Admin $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_Admin
+   * @return GoogleFSP_Service_MyBusiness_Admin
    */
-  public function create($parent, Google_Service_MyBusiness_Admin $postBody, $optParams = array())
+  public function create($parent, GoogleFSP_Service_MyBusiness_Admin $postBody, $optParams = array())
   {
     $params = array('parent' => $parent, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('create', array($params), "Google_Service_MyBusiness_Admin");
+    return $this->call('create', array($params), "GoogleFSP_Service_MyBusiness_Admin");
   }
 
   /**
@@ -1947,13 +1947,13 @@ class Google_Service_MyBusiness_AccountsLocationsAdmins_Resource extends Google_
    * @param string $name The resource name of the admin to remove from the
    * location.
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_MybusinessEmpty
+   * @return GoogleFSP_Service_MyBusiness_MybusinessEmpty
    */
   public function delete($name, $optParams = array())
   {
     $params = array('name' => $name);
     $params = array_merge($params, $optParams);
-    return $this->call('delete', array($params), "Google_Service_MyBusiness_MybusinessEmpty");
+    return $this->call('delete', array($params), "GoogleFSP_Service_MyBusiness_MybusinessEmpty");
   }
 
   /**
@@ -1962,13 +1962,13 @@ class Google_Service_MyBusiness_AccountsLocationsAdmins_Resource extends Google_
    *
    * @param string $parent The name of the location to list admins of.
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_ListLocationAdminsResponse
+   * @return GoogleFSP_Service_MyBusiness_ListLocationAdminsResponse
    */
   public function listAccountsLocationsAdmins($parent, $optParams = array())
   {
     $params = array('parent' => $parent);
     $params = array_merge($params, $optParams);
-    return $this->call('list', array($params), "Google_Service_MyBusiness_ListLocationAdminsResponse");
+    return $this->call('list', array($params), "GoogleFSP_Service_MyBusiness_ListLocationAdminsResponse");
   }
 
   /**
@@ -1978,24 +1978,24 @@ class Google_Service_MyBusiness_AccountsLocationsAdmins_Resource extends Google_
    * @param string $name The resource name of the admin to update.
    * @param Google_Admin $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_Admin
+   * @return GoogleFSP_Service_MyBusiness_Admin
    */
-  public function patch($name, Google_Service_MyBusiness_Admin $postBody, $optParams = array())
+  public function patch($name, GoogleFSP_Service_MyBusiness_Admin $postBody, $optParams = array())
   {
     $params = array('name' => $name, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('patch', array($params), "Google_Service_MyBusiness_Admin");
+    return $this->call('patch', array($params), "GoogleFSP_Service_MyBusiness_Admin");
   }
 }
 /**
  * The "followers" collection of methods.
  * Typical usage is:
  *  <code>
- *   $mybusinessService = new Google_Service_MyBusiness(...);
+ *   $mybusinessService = new GoogleFSP_Service_MyBusiness(...);
  *   $followers = $mybusinessService->followers;
  *  </code>
  */
-class Google_Service_MyBusiness_AccountsLocationsFollowers_Resource extends Google_Service_Resource
+class GoogleFSP_Service_MyBusiness_AccountsLocationsFollowers_Resource extends Google_Service_Resource
 {
 
   /**
@@ -2006,24 +2006,24 @@ class Google_Service_MyBusiness_AccountsLocationsFollowers_Resource extends Goog
    * @param string $name The resource name of the location's followers metadata.
    * accounts/{account_id}/locations/{location_id}/followers/metadata
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_FollowersMetadata
+   * @return GoogleFSP_Service_MyBusiness_FollowersMetadata
    */
   public function getMetadata($name, $optParams = array())
   {
     $params = array('name' => $name);
     $params = array_merge($params, $optParams);
-    return $this->call('getMetadata', array($params), "Google_Service_MyBusiness_FollowersMetadata");
+    return $this->call('getMetadata', array($params), "GoogleFSP_Service_MyBusiness_FollowersMetadata");
   }
 }
 /**
  * The "localPosts" collection of methods.
  * Typical usage is:
  *  <code>
- *   $mybusinessService = new Google_Service_MyBusiness(...);
+ *   $mybusinessService = new GoogleFSP_Service_MyBusiness(...);
  *   $localPosts = $mybusinessService->localPosts;
  *  </code>
  */
-class Google_Service_MyBusiness_AccountsLocationsLocalPosts_Resource extends Google_Service_Resource
+class GoogleFSP_Service_MyBusiness_AccountsLocationsLocalPosts_Resource extends Google_Service_Resource
 {
 
   /**
@@ -2034,13 +2034,13 @@ class Google_Service_MyBusiness_AccountsLocationsLocalPosts_Resource extends Goo
    * post.
    * @param Google_LocalPost $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_LocalPost
+   * @return GoogleFSP_Service_MyBusiness_LocalPost
    */
-  public function create($parent, Google_Service_MyBusiness_LocalPost $postBody, $optParams = array())
+  public function create($parent, GoogleFSP_Service_MyBusiness_LocalPost $postBody, $optParams = array())
   {
     $params = array('parent' => $parent, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('create', array($params), "Google_Service_MyBusiness_LocalPost");
+    return $this->call('create', array($params), "GoogleFSP_Service_MyBusiness_LocalPost");
   }
 
   /**
@@ -2049,13 +2049,13 @@ class Google_Service_MyBusiness_AccountsLocationsLocalPosts_Resource extends Goo
    *
    * @param string $name The name of the local post to delete.
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_MybusinessEmpty
+   * @return GoogleFSP_Service_MyBusiness_MybusinessEmpty
    */
   public function delete($name, $optParams = array())
   {
     $params = array('name' => $name);
     $params = array_merge($params, $optParams);
-    return $this->call('delete', array($params), "Google_Service_MyBusiness_MybusinessEmpty");
+    return $this->call('delete', array($params), "GoogleFSP_Service_MyBusiness_MybusinessEmpty");
   }
 
   /**
@@ -2064,13 +2064,13 @@ class Google_Service_MyBusiness_AccountsLocationsLocalPosts_Resource extends Goo
    *
    * @param string $name The name of the local post to fetch.
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_LocalPost
+   * @return GoogleFSP_Service_MyBusiness_LocalPost
    */
   public function get($name, $optParams = array())
   {
     $params = array('name' => $name);
     $params = array_merge($params, $optParams);
-    return $this->call('get', array($params), "Google_Service_MyBusiness_LocalPost");
+    return $this->call('get', array($params), "GoogleFSP_Service_MyBusiness_LocalPost");
   }
 
   /**
@@ -2085,13 +2085,13 @@ class Google_Service_MyBusiness_AccountsLocationsLocalPosts_Resource extends Goo
    * 20. The minimum is 1, and maximum page size is 100.
    * @opt_param string pageToken If specified, returns the next page of local
    * posts.
-   * @return Google_Service_MyBusiness_ListLocalPostsResponse
+   * @return GoogleFSP_Service_MyBusiness_ListLocalPostsResponse
    */
   public function listAccountsLocationsLocalPosts($parent, $optParams = array())
   {
     $params = array('parent' => $parent);
     $params = array_merge($params, $optParams);
-    return $this->call('list', array($params), "Google_Service_MyBusiness_ListLocalPostsResponse");
+    return $this->call('list', array($params), "GoogleFSP_Service_MyBusiness_ListLocalPostsResponse");
   }
 
   /**
@@ -2104,13 +2104,13 @@ class Google_Service_MyBusiness_AccountsLocationsLocalPosts_Resource extends Goo
    *
    * @opt_param string updateMask The specific fields to update. You must specify
    * each field that is being updated in the mask.
-   * @return Google_Service_MyBusiness_LocalPost
+   * @return GoogleFSP_Service_MyBusiness_LocalPost
    */
-  public function patch($name, Google_Service_MyBusiness_LocalPost $postBody, $optParams = array())
+  public function patch($name, GoogleFSP_Service_MyBusiness_LocalPost $postBody, $optParams = array())
   {
     $params = array('name' => $name, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('patch', array($params), "Google_Service_MyBusiness_LocalPost");
+    return $this->call('patch', array($params), "GoogleFSP_Service_MyBusiness_LocalPost");
   }
 
   /**
@@ -2123,24 +2123,24 @@ class Google_Service_MyBusiness_AccountsLocationsLocalPosts_Resource extends Goo
    * insights.
    * @param Google_ReportLocalPostInsightsRequest $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_ReportLocalPostInsightsResponse
+   * @return GoogleFSP_Service_MyBusiness_ReportLocalPostInsightsResponse
    */
-  public function reportInsights($name, Google_Service_MyBusiness_ReportLocalPostInsightsRequest $postBody, $optParams = array())
+  public function reportInsights($name, GoogleFSP_Service_MyBusiness_ReportLocalPostInsightsRequest $postBody, $optParams = array())
   {
     $params = array('name' => $name, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('reportInsights', array($params), "Google_Service_MyBusiness_ReportLocalPostInsightsResponse");
+    return $this->call('reportInsights', array($params), "GoogleFSP_Service_MyBusiness_ReportLocalPostInsightsResponse");
   }
 }
 /**
  * The "media" collection of methods.
  * Typical usage is:
  *  <code>
- *   $mybusinessService = new Google_Service_MyBusiness(...);
+ *   $mybusinessService = new GoogleFSP_Service_MyBusiness(...);
  *   $media = $mybusinessService->media;
  *  </code>
  */
-class Google_Service_MyBusiness_AccountsLocationsMedia_Resource extends Google_Service_Resource
+class GoogleFSP_Service_MyBusiness_AccountsLocationsMedia_Resource extends Google_Service_Resource
 {
 
   /**
@@ -2150,13 +2150,13 @@ class Google_Service_MyBusiness_AccountsLocationsMedia_Resource extends Google_S
    * will be created.
    * @param Google_MediaItem $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_MediaItem
+   * @return GoogleFSP_Service_MyBusiness_MediaItem
    */
-  public function create($parent, Google_Service_MyBusiness_MediaItem $postBody, $optParams = array())
+  public function create($parent, GoogleFSP_Service_MyBusiness_MediaItem $postBody, $optParams = array())
   {
     $params = array('parent' => $parent, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('create', array($params), "Google_Service_MyBusiness_MediaItem");
+    return $this->call('create', array($params), "GoogleFSP_Service_MyBusiness_MediaItem");
   }
 
   /**
@@ -2164,13 +2164,13 @@ class Google_Service_MyBusiness_AccountsLocationsMedia_Resource extends Google_S
    *
    * @param string $name The name of the media item to be deleted.
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_MybusinessEmpty
+   * @return GoogleFSP_Service_MyBusiness_MybusinessEmpty
    */
   public function delete($name, $optParams = array())
   {
     $params = array('name' => $name);
     $params = array_merge($params, $optParams);
-    return $this->call('delete', array($params), "Google_Service_MyBusiness_MybusinessEmpty");
+    return $this->call('delete', array($params), "GoogleFSP_Service_MyBusiness_MybusinessEmpty");
   }
 
   /**
@@ -2178,13 +2178,13 @@ class Google_Service_MyBusiness_AccountsLocationsMedia_Resource extends Google_S
    *
    * @param string $name The name of the requested media item.
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_MediaItem
+   * @return GoogleFSP_Service_MyBusiness_MediaItem
    */
   public function get($name, $optParams = array())
   {
     $params = array('name' => $name);
     $params = array_merge($params, $optParams);
-    return $this->call('get', array($params), "Google_Service_MyBusiness_MediaItem");
+    return $this->call('get', array($params), "GoogleFSP_Service_MyBusiness_MediaItem");
   }
 
   /**
@@ -2201,13 +2201,13 @@ class Google_Service_MyBusiness_AccountsLocationsMedia_Resource extends Google_S
    * 2500.
    * @opt_param string pageToken If specified, returns the next page of media
    * items.
-   * @return Google_Service_MyBusiness_ListMediaItemsResponse
+   * @return GoogleFSP_Service_MyBusiness_ListMediaItemsResponse
    */
   public function listAccountsLocationsMedia($parent, $optParams = array())
   {
     $params = array('parent' => $parent);
     $params = array_merge($params, $optParams);
-    return $this->call('list', array($params), "Google_Service_MyBusiness_ListMediaItemsResponse");
+    return $this->call('list', array($params), "GoogleFSP_Service_MyBusiness_ListMediaItemsResponse");
   }
 
   /**
@@ -2222,13 +2222,13 @@ class Google_Service_MyBusiness_AccountsLocationsMedia_Resource extends Google_S
    * @opt_param string updateMask The specific fields to update. If no mask is
    * specified, then this is treated as a full update and all editable fields are
    * set to the values passed in.
-   * @return Google_Service_MyBusiness_MediaItem
+   * @return GoogleFSP_Service_MyBusiness_MediaItem
    */
-  public function patch($name, Google_Service_MyBusiness_MediaItem $postBody, $optParams = array())
+  public function patch($name, GoogleFSP_Service_MyBusiness_MediaItem $postBody, $optParams = array())
   {
     $params = array('name' => $name, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('patch', array($params), "Google_Service_MyBusiness_MediaItem");
+    return $this->call('patch', array($params), "GoogleFSP_Service_MyBusiness_MediaItem");
   }
 
   /**
@@ -2238,13 +2238,13 @@ class Google_Service_MyBusiness_AccountsLocationsMedia_Resource extends Google_S
    * be added to.
    * @param Google_StartUploadMediaItemDataRequest $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_MediaItemDataRef
+   * @return GoogleFSP_Service_MyBusiness_MediaItemDataRef
    */
-  public function startUpload($parent, Google_Service_MyBusiness_StartUploadMediaItemDataRequest $postBody, $optParams = array())
+  public function startUpload($parent, GoogleFSP_Service_MyBusiness_StartUploadMediaItemDataRequest $postBody, $optParams = array())
   {
     $params = array('parent' => $parent, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('startUpload', array($params), "Google_Service_MyBusiness_MediaItemDataRef");
+    return $this->call('startUpload', array($params), "GoogleFSP_Service_MyBusiness_MediaItemDataRef");
   }
 }
 
@@ -2252,11 +2252,11 @@ class Google_Service_MyBusiness_AccountsLocationsMedia_Resource extends Google_S
  * The "customers" collection of methods.
  * Typical usage is:
  *  <code>
- *   $mybusinessService = new Google_Service_MyBusiness(...);
+ *   $mybusinessService = new GoogleFSP_Service_MyBusiness(...);
  *   $customers = $mybusinessService->customers;
  *  </code>
  */
-class Google_Service_MyBusiness_AccountsLocationsMediaCustomers_Resource extends Google_Service_Resource
+class GoogleFSP_Service_MyBusiness_AccountsLocationsMediaCustomers_Resource extends Google_Service_Resource
 {
 
   /**
@@ -2264,13 +2264,13 @@ class Google_Service_MyBusiness_AccountsLocationsMediaCustomers_Resource extends
    *
    * @param string $name The resource name of the requested customer media item.
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_MediaItem
+   * @return GoogleFSP_Service_MyBusiness_MediaItem
    */
   public function get($name, $optParams = array())
   {
     $params = array('name' => $name);
     $params = array_merge($params, $optParams);
-    return $this->call('get', array($params), "Google_Service_MyBusiness_MediaItem");
+    return $this->call('get', array($params), "GoogleFSP_Service_MyBusiness_MediaItem");
   }
 
   /**
@@ -2285,24 +2285,24 @@ class Google_Service_MyBusiness_AccountsLocationsMediaCustomers_Resource extends
    * value is 100, the maximum supported page size is 200.
    * @opt_param string pageToken If specified, returns the next page of media
    * items.
-   * @return Google_Service_MyBusiness_ListCustomerMediaItemsResponse
+   * @return GoogleFSP_Service_MyBusiness_ListCustomerMediaItemsResponse
    */
   public function listAccountsLocationsMediaCustomers($parent, $optParams = array())
   {
     $params = array('parent' => $parent);
     $params = array_merge($params, $optParams);
-    return $this->call('list', array($params), "Google_Service_MyBusiness_ListCustomerMediaItemsResponse");
+    return $this->call('list', array($params), "GoogleFSP_Service_MyBusiness_ListCustomerMediaItemsResponse");
   }
 }
 /**
  * The "questions" collection of methods.
  * Typical usage is:
  *  <code>
- *   $mybusinessService = new Google_Service_MyBusiness(...);
+ *   $mybusinessService = new GoogleFSP_Service_MyBusiness(...);
  *   $questions = $mybusinessService->questions;
  *  </code>
  */
-class Google_Service_MyBusiness_AccountsLocationsQuestions_Resource extends Google_Service_Resource
+class GoogleFSP_Service_MyBusiness_AccountsLocationsQuestions_Resource extends Google_Service_Resource
 {
 
   /**
@@ -2311,13 +2311,13 @@ class Google_Service_MyBusiness_AccountsLocationsQuestions_Resource extends Goog
    * @param string $parent The name of the location to write a question for.
    * @param Google_Question $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_Question
+   * @return GoogleFSP_Service_MyBusiness_Question
    */
-  public function create($parent, Google_Service_MyBusiness_Question $postBody, $optParams = array())
+  public function create($parent, GoogleFSP_Service_MyBusiness_Question $postBody, $optParams = array())
   {
     $params = array('parent' => $parent, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('create', array($params), "Google_Service_MyBusiness_Question");
+    return $this->call('create', array($params), "GoogleFSP_Service_MyBusiness_Question");
   }
 
   /**
@@ -2325,13 +2325,13 @@ class Google_Service_MyBusiness_AccountsLocationsQuestions_Resource extends Goog
    *
    * @param string $name The name of the question to delete.
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_MybusinessEmpty
+   * @return GoogleFSP_Service_MyBusiness_MybusinessEmpty
    */
   public function delete($name, $optParams = array())
   {
     $params = array('name' => $name);
     $params = array_merge($params, $optParams);
-    return $this->call('delete', array($params), "Google_Service_MyBusiness_MybusinessEmpty");
+    return $this->call('delete', array($params), "GoogleFSP_Service_MyBusiness_MybusinessEmpty");
   }
 
   /**
@@ -2353,13 +2353,13 @@ class Google_Service_MyBusiness_AccountsLocationsQuestions_Resource extends Goog
    * include 'update_time desc' and 'upvote_count desc', which will return the
    * questions sorted descendingly by the requested field. The default sort order
    * is 'update_time desc'.
-   * @return Google_Service_MyBusiness_ListQuestionsResponse
+   * @return GoogleFSP_Service_MyBusiness_ListQuestionsResponse
    */
   public function listAccountsLocationsQuestions($parent, $optParams = array())
   {
     $params = array('parent' => $parent);
     $params = array_merge($params, $optParams);
-    return $this->call('list', array($params), "Google_Service_MyBusiness_ListQuestionsResponse");
+    return $this->call('list', array($params), "GoogleFSP_Service_MyBusiness_ListQuestionsResponse");
   }
 
   /**
@@ -2368,13 +2368,13 @@ class Google_Service_MyBusiness_AccountsLocationsQuestions_Resource extends Goog
    * @param string $name The name of the question to update.
    * @param Google_Question $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_Question
+   * @return GoogleFSP_Service_MyBusiness_Question
    */
-  public function patch($name, Google_Service_MyBusiness_Question $postBody, $optParams = array())
+  public function patch($name, GoogleFSP_Service_MyBusiness_Question $postBody, $optParams = array())
   {
     $params = array('name' => $name, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('patch', array($params), "Google_Service_MyBusiness_Question");
+    return $this->call('patch', array($params), "GoogleFSP_Service_MyBusiness_Question");
   }
 }
 
@@ -2382,11 +2382,11 @@ class Google_Service_MyBusiness_AccountsLocationsQuestions_Resource extends Goog
  * The "answers" collection of methods.
  * Typical usage is:
  *  <code>
- *   $mybusinessService = new Google_Service_MyBusiness(...);
+ *   $mybusinessService = new GoogleFSP_Service_MyBusiness(...);
  *   $answers = $mybusinessService->answers;
  *  </code>
  */
-class Google_Service_MyBusiness_AccountsLocationsQuestionsAnswers_Resource extends Google_Service_Resource
+class GoogleFSP_Service_MyBusiness_AccountsLocationsQuestionsAnswers_Resource extends Google_Service_Resource
 {
 
   /**
@@ -2395,13 +2395,13 @@ class Google_Service_MyBusiness_AccountsLocationsQuestionsAnswers_Resource exten
    *
    * @param string $parent The name of the question to delete an answer for.
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_MybusinessEmpty
+   * @return GoogleFSP_Service_MyBusiness_MybusinessEmpty
    */
   public function delete($parent, $optParams = array())
   {
     $params = array('parent' => $parent);
     $params = array_merge($params, $optParams);
-    return $this->call('delete', array($params), "Google_Service_MyBusiness_MybusinessEmpty");
+    return $this->call('delete', array($params), "GoogleFSP_Service_MyBusiness_MybusinessEmpty");
   }
 
   /**
@@ -2419,13 +2419,13 @@ class Google_Service_MyBusiness_AccountsLocationsQuestionsAnswers_Resource exten
    * include 'update_time desc' and 'upvote_count desc', which will return the
    * answers sorted descendingly by the requested field. The default sort order is
    * 'update_time desc'.
-   * @return Google_Service_MyBusiness_ListAnswersResponse
+   * @return GoogleFSP_Service_MyBusiness_ListAnswersResponse
    */
   public function listAccountsLocationsQuestionsAnswers($parent, $optParams = array())
   {
     $params = array('parent' => $parent);
     $params = array_merge($params, $optParams);
-    return $this->call('list', array($params), "Google_Service_MyBusiness_ListAnswersResponse");
+    return $this->call('list', array($params), "GoogleFSP_Service_MyBusiness_ListAnswersResponse");
   }
 
   /**
@@ -2436,24 +2436,24 @@ class Google_Service_MyBusiness_AccountsLocationsQuestionsAnswers_Resource exten
    * @param string $parent The name of the question to write an answer for.
    * @param Google_UpsertAnswerRequest $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_Answer
+   * @return GoogleFSP_Service_MyBusiness_Answer
    */
-  public function upsert($parent, Google_Service_MyBusiness_UpsertAnswerRequest $postBody, $optParams = array())
+  public function upsert($parent, GoogleFSP_Service_MyBusiness_UpsertAnswerRequest $postBody, $optParams = array())
   {
     $params = array('parent' => $parent, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('upsert', array($params), "Google_Service_MyBusiness_Answer");
+    return $this->call('upsert', array($params), "GoogleFSP_Service_MyBusiness_Answer");
   }
 }
 /**
  * The "reviews" collection of methods.
  * Typical usage is:
  *  <code>
- *   $mybusinessService = new Google_Service_MyBusiness(...);
+ *   $mybusinessService = new GoogleFSP_Service_MyBusiness(...);
  *   $reviews = $mybusinessService->reviews;
  *  </code>
  */
-class Google_Service_MyBusiness_AccountsLocationsReviews_Resource extends Google_Service_Resource
+class GoogleFSP_Service_MyBusiness_AccountsLocationsReviews_Resource extends Google_Service_Resource
 {
 
   /**
@@ -2462,13 +2462,13 @@ class Google_Service_MyBusiness_AccountsLocationsReviews_Resource extends Google
    *
    * @param string $name The name of the review reply to delete.
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_MybusinessEmpty
+   * @return GoogleFSP_Service_MyBusiness_MybusinessEmpty
    */
   public function deleteReply($name, $optParams = array())
   {
     $params = array('name' => $name);
     $params = array_merge($params, $optParams);
-    return $this->call('deleteReply', array($params), "Google_Service_MyBusiness_MybusinessEmpty");
+    return $this->call('deleteReply', array($params), "GoogleFSP_Service_MyBusiness_MybusinessEmpty");
   }
 
   /**
@@ -2478,13 +2478,13 @@ class Google_Service_MyBusiness_AccountsLocationsReviews_Resource extends Google
    *
    * @param string $name The name of the review to fetch.
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_Review
+   * @return GoogleFSP_Service_MyBusiness_Review
    */
   public function get($name, $optParams = array())
   {
     $params = array('name' => $name);
     $params = array_merge($params, $optParams);
-    return $this->call('get', array($params), "Google_Service_MyBusiness_Review");
+    return $this->call('get', array($params), "GoogleFSP_Service_MyBusiness_Review");
   }
 
   /**
@@ -2503,13 +2503,13 @@ class Google_Service_MyBusiness_AccountsLocationsReviews_Resource extends Google
    * unspecified, the order of reviews returned will default to `update_time
    * desc`. Valid orders to sort by are `rating`, `rating desc` and `update_time
    * desc`.
-   * @return Google_Service_MyBusiness_ListReviewsResponse
+   * @return GoogleFSP_Service_MyBusiness_ListReviewsResponse
    */
   public function listAccountsLocationsReviews($parent, $optParams = array())
   {
     $params = array('parent' => $parent);
     $params = array_merge($params, $optParams);
-    return $this->call('list', array($params), "Google_Service_MyBusiness_ListReviewsResponse");
+    return $this->call('list', array($params), "GoogleFSP_Service_MyBusiness_ListReviewsResponse");
   }
 
   /**
@@ -2520,24 +2520,24 @@ class Google_Service_MyBusiness_AccountsLocationsReviews_Resource extends Google
    * @param string $name The name of the review to respond to.
    * @param Google_ReviewReply $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_ReviewReply
+   * @return GoogleFSP_Service_MyBusiness_ReviewReply
    */
-  public function updateReply($name, Google_Service_MyBusiness_ReviewReply $postBody, $optParams = array())
+  public function updateReply($name, GoogleFSP_Service_MyBusiness_ReviewReply $postBody, $optParams = array())
   {
     $params = array('name' => $name, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('updateReply', array($params), "Google_Service_MyBusiness_ReviewReply");
+    return $this->call('updateReply', array($params), "GoogleFSP_Service_MyBusiness_ReviewReply");
   }
 }
 /**
  * The "verifications" collection of methods.
  * Typical usage is:
  *  <code>
- *   $mybusinessService = new Google_Service_MyBusiness(...);
+ *   $mybusinessService = new GoogleFSP_Service_MyBusiness(...);
  *   $verifications = $mybusinessService->verifications;
  *  </code>
  */
-class Google_Service_MyBusiness_AccountsLocationsVerifications_Resource extends Google_Service_Resource
+class GoogleFSP_Service_MyBusiness_AccountsLocationsVerifications_Resource extends Google_Service_Resource
 {
 
   /**
@@ -2548,13 +2548,13 @@ class Google_Service_MyBusiness_AccountsLocationsVerifications_Resource extends 
    * @param string $name Resource name of the verification to complete.
    * @param Google_CompleteVerificationRequest $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_CompleteVerificationResponse
+   * @return GoogleFSP_Service_MyBusiness_CompleteVerificationResponse
    */
-  public function complete($name, Google_Service_MyBusiness_CompleteVerificationRequest $postBody, $optParams = array())
+  public function complete($name, GoogleFSP_Service_MyBusiness_CompleteVerificationRequest $postBody, $optParams = array())
   {
     $params = array('name' => $name, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('complete', array($params), "Google_Service_MyBusiness_CompleteVerificationResponse");
+    return $this->call('complete', array($params), "GoogleFSP_Service_MyBusiness_CompleteVerificationResponse");
   }
 
   /**
@@ -2569,13 +2569,13 @@ class Google_Service_MyBusiness_AccountsLocationsVerifications_Resource extends 
    * set, return all.
    * @opt_param string pageToken If specified, returns the next page of
    * verifications.
-   * @return Google_Service_MyBusiness_ListVerificationsResponse
+   * @return GoogleFSP_Service_MyBusiness_ListVerificationsResponse
    */
   public function listAccountsLocationsVerifications($parent, $optParams = array())
   {
     $params = array('parent' => $parent);
     $params = array_merge($params, $optParams);
-    return $this->call('list', array($params), "Google_Service_MyBusiness_ListVerificationsResponse");
+    return $this->call('list', array($params), "GoogleFSP_Service_MyBusiness_ListVerificationsResponse");
   }
 }
 
@@ -2583,11 +2583,11 @@ class Google_Service_MyBusiness_AccountsLocationsVerifications_Resource extends 
  * The "attributes" collection of methods.
  * Typical usage is:
  *  <code>
- *   $mybusinessService = new Google_Service_MyBusiness(...);
+ *   $mybusinessService = new GoogleFSP_Service_MyBusiness(...);
  *   $attributes = $mybusinessService->attributes;
  *  </code>
  */
-class Google_Service_MyBusiness_Attributes_Resource extends Google_Service_Resource
+class GoogleFSP_Service_MyBusiness_Attributes_Resource extends Google_Service_Resource
 {
 
   /**
@@ -2611,13 +2611,13 @@ class Google_Service_MyBusiness_Attributes_Resource extends Google_Service_Resou
    * @opt_param string pageToken If specified, the next page of attribute metadata
    * is retrieved. The `pageToken` is returned when a call to `attributes.list`
    * returns more results than can fit into the requested page size.
-   * @return Google_Service_MyBusiness_ListAttributeMetadataResponse
+   * @return GoogleFSP_Service_MyBusiness_ListAttributeMetadataResponse
    */
   public function listAttributes($optParams = array())
   {
     $params = array();
     $params = array_merge($params, $optParams);
-    return $this->call('list', array($params), "Google_Service_MyBusiness_ListAttributeMetadataResponse");
+    return $this->call('list', array($params), "GoogleFSP_Service_MyBusiness_ListAttributeMetadataResponse");
   }
 }
 
@@ -2625,11 +2625,11 @@ class Google_Service_MyBusiness_Attributes_Resource extends Google_Service_Resou
  * The "categories" collection of methods.
  * Typical usage is:
  *  <code>
- *   $mybusinessService = new Google_Service_MyBusiness(...);
+ *   $mybusinessService = new GoogleFSP_Service_MyBusiness(...);
  *   $categories = $mybusinessService->categories;
  *  </code>
  */
-class Google_Service_MyBusiness_Categories_Resource extends Google_Service_Resource
+class GoogleFSP_Service_MyBusiness_Categories_Resource extends Google_Service_Resource
 {
 
   /**
@@ -2646,13 +2646,13 @@ class Google_Service_MyBusiness_Categories_Resource extends Google_Service_Resou
    * used to infer non-standard language.
    * @opt_param string view Required. Specifies which parts to the Category
    * resource should be returned in the response.
-   * @return Google_Service_MyBusiness_BatchGetBusinessCategoriesResponse
+   * @return GoogleFSP_Service_MyBusiness_BatchGetBusinessCategoriesResponse
    */
   public function batchGet($optParams = array())
   {
     $params = array();
     $params = array_merge($params, $optParams);
-    return $this->call('batchGet', array($params), "Google_Service_MyBusiness_BatchGetBusinessCategoriesResponse");
+    return $this->call('batchGet', array($params), "GoogleFSP_Service_MyBusiness_BatchGetBusinessCategoriesResponse");
   }
 
   /**
@@ -2673,13 +2673,13 @@ class Google_Service_MyBusiness_Categories_Resource extends Google_Service_Resou
    * fetched.
    * @opt_param string view Optional. Specifies which parts to the Category
    * resource should be returned in the response.
-   * @return Google_Service_MyBusiness_ListBusinessCategoriesResponse
+   * @return GoogleFSP_Service_MyBusiness_ListBusinessCategoriesResponse
    */
   public function listCategories($optParams = array())
   {
     $params = array();
     $params = array_merge($params, $optParams);
-    return $this->call('list', array($params), "Google_Service_MyBusiness_ListBusinessCategoriesResponse");
+    return $this->call('list', array($params), "GoogleFSP_Service_MyBusiness_ListBusinessCategoriesResponse");
   }
 }
 
@@ -2687,11 +2687,11 @@ class Google_Service_MyBusiness_Categories_Resource extends Google_Service_Resou
  * The "chains" collection of methods.
  * Typical usage is:
  *  <code>
- *   $mybusinessService = new Google_Service_MyBusiness(...);
+ *   $mybusinessService = new GoogleFSP_Service_MyBusiness(...);
  *   $chains = $mybusinessService->chains;
  *  </code>
  */
-class Google_Service_MyBusiness_Chains_Resource extends Google_Service_Resource
+class GoogleFSP_Service_MyBusiness_Chains_Resource extends Google_Service_Resource
 {
 
   /**
@@ -2701,13 +2701,13 @@ class Google_Service_MyBusiness_Chains_Resource extends Google_Service_Resource
    * @param string $name The chain's resource name, in the format
    * `chains/{chain_place_id}`.
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_Chain
+   * @return GoogleFSP_Service_MyBusiness_Chain
    */
   public function get($name, $optParams = array())
   {
     $params = array('name' => $name);
     $params = array_merge($params, $optParams);
-    return $this->call('get', array($params), "Google_Service_MyBusiness_Chain");
+    return $this->call('get', array($params), "GoogleFSP_Service_MyBusiness_Chain");
   }
 
   /**
@@ -2720,13 +2720,13 @@ class Google_Service_MyBusiness_Chains_Resource extends Google_Service_Resource
    * mart", "walmmmart", "沃尔玛"
    * @opt_param int resultCount The maximum number of matched chains to return
    * from this query. The default is 10. The maximum possible value is 500.
-   * @return Google_Service_MyBusiness_SearchChainsResponse
+   * @return GoogleFSP_Service_MyBusiness_SearchChainsResponse
    */
   public function search($optParams = array())
   {
     $params = array();
     $params = array_merge($params, $optParams);
-    return $this->call('search', array($params), "Google_Service_MyBusiness_SearchChainsResponse");
+    return $this->call('search', array($params), "GoogleFSP_Service_MyBusiness_SearchChainsResponse");
   }
 }
 
@@ -2734,11 +2734,11 @@ class Google_Service_MyBusiness_Chains_Resource extends Google_Service_Resource
  * The "googleLocations" collection of methods.
  * Typical usage is:
  *  <code>
- *   $mybusinessService = new Google_Service_MyBusiness(...);
+ *   $mybusinessService = new GoogleFSP_Service_MyBusiness(...);
  *   $googleLocations = $mybusinessService->googleLocations;
  *  </code>
  */
-class Google_Service_MyBusiness_GoogleLocations_Resource extends Google_Service_Resource
+class GoogleFSP_Service_MyBusiness_GoogleLocations_Resource extends Google_Service_Resource
 {
 
   /**
@@ -2748,13 +2748,13 @@ class Google_Service_MyBusiness_GoogleLocations_Resource extends Google_Service_
    * `googleLocations/{googleLocationId}`.
    * @param Google_ReportGoogleLocationRequest $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_MybusinessEmpty
+   * @return GoogleFSP_Service_MyBusiness_MybusinessEmpty
    */
-  public function report($name, Google_Service_MyBusiness_ReportGoogleLocationRequest $postBody, $optParams = array())
+  public function report($name, GoogleFSP_Service_MyBusiness_ReportGoogleLocationRequest $postBody, $optParams = array())
   {
     $params = array('name' => $name, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('report', array($params), "Google_Service_MyBusiness_MybusinessEmpty");
+    return $this->call('report', array($params), "GoogleFSP_Service_MyBusiness_MybusinessEmpty");
   }
 
   /**
@@ -2763,35 +2763,35 @@ class Google_Service_MyBusiness_GoogleLocations_Resource extends Google_Service_
    *
    * @param Google_SearchGoogleLocationsRequest $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_MyBusiness_SearchGoogleLocationsResponse
+   * @return GoogleFSP_Service_MyBusiness_SearchGoogleLocationsResponse
    */
-  public function search(Google_Service_MyBusiness_SearchGoogleLocationsRequest $postBody, $optParams = array())
+  public function search(GoogleFSP_Service_MyBusiness_SearchGoogleLocationsRequest $postBody, $optParams = array())
   {
     $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('search', array($params), "Google_Service_MyBusiness_SearchGoogleLocationsResponse");
+    return $this->call('search', array($params), "GoogleFSP_Service_MyBusiness_SearchGoogleLocationsResponse");
   }
 }
 
 
 
 
-class Google_Service_MyBusiness_AcceptInvitationRequest extends Google_Model
+class GoogleFSP_Service_MyBusiness_AcceptInvitationRequest extends Google_Model
 {
 }
 
-class Google_Service_MyBusiness_Account extends Google_Model
+class GoogleFSP_Service_MyBusiness_Account extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
   public $accountName;
   public $accountNumber;
   public $name;
-  protected $organizationInfoType = 'Google_Service_MyBusiness_OrganizationInfo';
+  protected $organizationInfoType = 'GoogleFSP_Service_MyBusiness_OrganizationInfo';
   protected $organizationInfoDataType = '';
   public $permissionLevel;
   public $role;
-  protected $stateType = 'Google_Service_MyBusiness_AccountState';
+  protected $stateType = 'GoogleFSP_Service_MyBusiness_AccountState';
   protected $stateDataType = '';
   public $type;
 
@@ -2820,7 +2820,7 @@ class Google_Service_MyBusiness_Account extends Google_Model
   {
     return $this->name;
   }
-  public function setOrganizationInfo(Google_Service_MyBusiness_OrganizationInfo $organizationInfo)
+  public function setOrganizationInfo(GoogleFSP_Service_MyBusiness_OrganizationInfo $organizationInfo)
   {
     $this->organizationInfo = $organizationInfo;
   }
@@ -2844,7 +2844,7 @@ class Google_Service_MyBusiness_Account extends Google_Model
   {
     return $this->role;
   }
-  public function setState(Google_Service_MyBusiness_AccountState $state)
+  public function setState(GoogleFSP_Service_MyBusiness_AccountState $state)
   {
     $this->state = $state;
   }
@@ -2862,7 +2862,7 @@ class Google_Service_MyBusiness_Account extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_AccountState extends Google_Model
+class GoogleFSP_Service_MyBusiness_AccountState extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -2879,7 +2879,7 @@ class Google_Service_MyBusiness_AccountState extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_AdWordsLocationExtensions extends Google_Model
+class GoogleFSP_Service_MyBusiness_AdWordsLocationExtensions extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -2896,7 +2896,7 @@ class Google_Service_MyBusiness_AdWordsLocationExtensions extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_AddressInput extends Google_Model
+class GoogleFSP_Service_MyBusiness_AddressInput extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -2913,16 +2913,16 @@ class Google_Service_MyBusiness_AddressInput extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_AddressVerificationData extends Google_Model
+class GoogleFSP_Service_MyBusiness_AddressVerificationData extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
-  protected $addressType = 'Google_Service_MyBusiness_PostalAddress';
+  protected $addressType = 'GoogleFSP_Service_MyBusiness_PostalAddress';
   protected $addressDataType = '';
   public $businessName;
 
 
-  public function setAddress(Google_Service_MyBusiness_PostalAddress $address)
+  public function setAddress(GoogleFSP_Service_MyBusiness_PostalAddress $address)
   {
     $this->address = $address;
   }
@@ -2940,7 +2940,7 @@ class Google_Service_MyBusiness_AddressVerificationData extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_Admin extends Google_Model
+class GoogleFSP_Service_MyBusiness_Admin extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -2984,11 +2984,11 @@ class Google_Service_MyBusiness_Admin extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_Answer extends Google_Model
+class GoogleFSP_Service_MyBusiness_Answer extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
-  protected $authorType = 'Google_Service_MyBusiness_Author';
+  protected $authorType = 'GoogleFSP_Service_MyBusiness_Author';
   protected $authorDataType = '';
   public $createTime;
   public $name;
@@ -2997,7 +2997,7 @@ class Google_Service_MyBusiness_Answer extends Google_Model
   public $upvoteCount;
 
 
-  public function setAuthor(Google_Service_MyBusiness_Author $author)
+  public function setAuthor(GoogleFSP_Service_MyBusiness_Author $author)
   {
     $this->author = $author;
   }
@@ -3047,7 +3047,7 @@ class Google_Service_MyBusiness_Answer extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_AssociateLocationRequest extends Google_Model
+class GoogleFSP_Service_MyBusiness_AssociateLocationRequest extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -3064,15 +3064,15 @@ class Google_Service_MyBusiness_AssociateLocationRequest extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_Attribute extends Google_Collection
+class GoogleFSP_Service_MyBusiness_Attribute extends Google_Collection
 {
   protected $collection_key = 'values';
   protected $internal_gapi_mappings = array(
   );
   public $attributeId;
-  protected $repeatedEnumValueType = 'Google_Service_MyBusiness_RepeatedEnumAttributeValue';
+  protected $repeatedEnumValueType = 'GoogleFSP_Service_MyBusiness_RepeatedEnumAttributeValue';
   protected $repeatedEnumValueDataType = '';
-  protected $urlValuesType = 'Google_Service_MyBusiness_UrlAttributeValue';
+  protected $urlValuesType = 'GoogleFSP_Service_MyBusiness_UrlAttributeValue';
   protected $urlValuesDataType = 'array';
   public $valueType;
   public $values;
@@ -3086,7 +3086,7 @@ class Google_Service_MyBusiness_Attribute extends Google_Collection
   {
     return $this->attributeId;
   }
-  public function setRepeatedEnumValue(Google_Service_MyBusiness_RepeatedEnumAttributeValue $repeatedEnumValue)
+  public function setRepeatedEnumValue(GoogleFSP_Service_MyBusiness_RepeatedEnumAttributeValue $repeatedEnumValue)
   {
     $this->repeatedEnumValue = $repeatedEnumValue;
   }
@@ -3120,7 +3120,7 @@ class Google_Service_MyBusiness_Attribute extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_AttributeMetadata extends Google_Collection
+class GoogleFSP_Service_MyBusiness_AttributeMetadata extends Google_Collection
 {
   protected $collection_key = 'valueMetadata';
   protected $internal_gapi_mappings = array(
@@ -3130,7 +3130,7 @@ class Google_Service_MyBusiness_AttributeMetadata extends Google_Collection
   public $groupDisplayName;
   public $isDeprecated;
   public $isRepeatable;
-  protected $valueMetadataType = 'Google_Service_MyBusiness_AttributeValueMetadata';
+  protected $valueMetadataType = 'GoogleFSP_Service_MyBusiness_AttributeValueMetadata';
   protected $valueMetadataDataType = 'array';
   public $valueType;
 
@@ -3193,7 +3193,7 @@ class Google_Service_MyBusiness_AttributeMetadata extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_AttributeValueMetadata extends Google_Model
+class GoogleFSP_Service_MyBusiness_AttributeValueMetadata extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -3219,7 +3219,7 @@ class Google_Service_MyBusiness_AttributeValueMetadata extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_Attribution extends Google_Model
+class GoogleFSP_Service_MyBusiness_Attribution extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -3263,7 +3263,7 @@ class Google_Service_MyBusiness_Attribution extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_Author extends Google_Model
+class GoogleFSP_Service_MyBusiness_Author extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -3298,14 +3298,14 @@ class Google_Service_MyBusiness_Author extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_BasicMetricsRequest extends Google_Collection
+class GoogleFSP_Service_MyBusiness_BasicMetricsRequest extends Google_Collection
 {
   protected $collection_key = 'metricRequests';
   protected $internal_gapi_mappings = array(
   );
-  protected $metricRequestsType = 'Google_Service_MyBusiness_MetricRequest';
+  protected $metricRequestsType = 'GoogleFSP_Service_MyBusiness_MetricRequest';
   protected $metricRequestsDataType = 'array';
-  protected $timeRangeType = 'Google_Service_MyBusiness_TimeRange';
+  protected $timeRangeType = 'GoogleFSP_Service_MyBusiness_TimeRange';
   protected $timeRangeDataType = '';
 
 
@@ -3317,7 +3317,7 @@ class Google_Service_MyBusiness_BasicMetricsRequest extends Google_Collection
   {
     return $this->metricRequests;
   }
-  public function setTimeRange(Google_Service_MyBusiness_TimeRange $timeRange)
+  public function setTimeRange(GoogleFSP_Service_MyBusiness_TimeRange $timeRange)
   {
     $this->timeRange = $timeRange;
   }
@@ -3327,12 +3327,12 @@ class Google_Service_MyBusiness_BasicMetricsRequest extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_BatchGetBusinessCategoriesResponse extends Google_Collection
+class GoogleFSP_Service_MyBusiness_BatchGetBusinessCategoriesResponse extends Google_Collection
 {
   protected $collection_key = 'categories';
   protected $internal_gapi_mappings = array(
   );
-  protected $categoriesType = 'Google_Service_MyBusiness_Category';
+  protected $categoriesType = 'GoogleFSP_Service_MyBusiness_Category';
   protected $categoriesDataType = 'array';
 
 
@@ -3346,7 +3346,7 @@ class Google_Service_MyBusiness_BatchGetBusinessCategoriesResponse extends Googl
   }
 }
 
-class Google_Service_MyBusiness_BatchGetLocationsRequest extends Google_Collection
+class GoogleFSP_Service_MyBusiness_BatchGetLocationsRequest extends Google_Collection
 {
   protected $collection_key = 'locationNames';
   protected $internal_gapi_mappings = array(
@@ -3364,12 +3364,12 @@ class Google_Service_MyBusiness_BatchGetLocationsRequest extends Google_Collecti
   }
 }
 
-class Google_Service_MyBusiness_BatchGetLocationsResponse extends Google_Collection
+class GoogleFSP_Service_MyBusiness_BatchGetLocationsResponse extends Google_Collection
 {
   protected $collection_key = 'locations';
   protected $internal_gapi_mappings = array(
   );
-  protected $locationsType = 'Google_Service_MyBusiness_Location';
+  protected $locationsType = 'GoogleFSP_Service_MyBusiness_Location';
   protected $locationsDataType = 'array';
 
 
@@ -3383,7 +3383,7 @@ class Google_Service_MyBusiness_BatchGetLocationsResponse extends Google_Collect
   }
 }
 
-class Google_Service_MyBusiness_BatchGetReviewsRequest extends Google_Collection
+class GoogleFSP_Service_MyBusiness_BatchGetReviewsRequest extends Google_Collection
 {
   protected $collection_key = 'locationNames';
   protected $internal_gapi_mappings = array(
@@ -3437,12 +3437,12 @@ class Google_Service_MyBusiness_BatchGetReviewsRequest extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_BatchGetReviewsResponse extends Google_Collection
+class GoogleFSP_Service_MyBusiness_BatchGetReviewsResponse extends Google_Collection
 {
   protected $collection_key = 'locationReviews';
   protected $internal_gapi_mappings = array(
   );
-  protected $locationReviewsType = 'Google_Service_MyBusiness_LocationReview';
+  protected $locationReviewsType = 'GoogleFSP_Service_MyBusiness_LocationReview';
   protected $locationReviewsDataType = 'array';
   public $nextPageToken;
 
@@ -3465,12 +3465,12 @@ class Google_Service_MyBusiness_BatchGetReviewsResponse extends Google_Collectio
   }
 }
 
-class Google_Service_MyBusiness_BusinessHours extends Google_Collection
+class GoogleFSP_Service_MyBusiness_BusinessHours extends Google_Collection
 {
   protected $collection_key = 'periods';
   protected $internal_gapi_mappings = array(
   );
-  protected $periodsType = 'Google_Service_MyBusiness_TimePeriod';
+  protected $periodsType = 'GoogleFSP_Service_MyBusiness_TimePeriod';
   protected $periodsDataType = 'array';
 
 
@@ -3484,7 +3484,7 @@ class Google_Service_MyBusiness_BusinessHours extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_CallToAction extends Google_Model
+class GoogleFSP_Service_MyBusiness_CallToAction extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -3510,7 +3510,7 @@ class Google_Service_MyBusiness_CallToAction extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_CaloriesFact extends Google_Model
+class GoogleFSP_Service_MyBusiness_CaloriesFact extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -3545,14 +3545,14 @@ class Google_Service_MyBusiness_CaloriesFact extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_Category extends Google_Collection
+class GoogleFSP_Service_MyBusiness_Category extends Google_Collection
 {
   protected $collection_key = 'serviceTypes';
   protected $internal_gapi_mappings = array(
   );
   public $categoryId;
   public $displayName;
-  protected $serviceTypesType = 'Google_Service_MyBusiness_ServiceType';
+  protected $serviceTypesType = 'GoogleFSP_Service_MyBusiness_ServiceType';
   protected $serviceTypesDataType = 'array';
 
 
@@ -3582,16 +3582,16 @@ class Google_Service_MyBusiness_Category extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_Chain extends Google_Collection
+class GoogleFSP_Service_MyBusiness_Chain extends Google_Collection
 {
   protected $collection_key = 'websites';
   protected $internal_gapi_mappings = array(
   );
-  protected $chainNamesType = 'Google_Service_MyBusiness_ChainName';
+  protected $chainNamesType = 'GoogleFSP_Service_MyBusiness_ChainName';
   protected $chainNamesDataType = 'array';
   public $locationCount;
   public $name;
-  protected $websitesType = 'Google_Service_MyBusiness_ChainUrl';
+  protected $websitesType = 'GoogleFSP_Service_MyBusiness_ChainUrl';
   protected $websitesDataType = 'array';
 
 
@@ -3629,7 +3629,7 @@ class Google_Service_MyBusiness_Chain extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_ChainName extends Google_Model
+class GoogleFSP_Service_MyBusiness_ChainName extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -3655,7 +3655,7 @@ class Google_Service_MyBusiness_ChainName extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_ChainUrl extends Google_Model
+class GoogleFSP_Service_MyBusiness_ChainUrl extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -3672,11 +3672,11 @@ class Google_Service_MyBusiness_ChainUrl extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_ClearLocationAssociationRequest extends Google_Model
+class GoogleFSP_Service_MyBusiness_ClearLocationAssociationRequest extends Google_Model
 {
 }
 
-class Google_Service_MyBusiness_CompleteVerificationRequest extends Google_Model
+class GoogleFSP_Service_MyBusiness_CompleteVerificationRequest extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -3693,15 +3693,15 @@ class Google_Service_MyBusiness_CompleteVerificationRequest extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_CompleteVerificationResponse extends Google_Model
+class GoogleFSP_Service_MyBusiness_CompleteVerificationResponse extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
-  protected $verificationType = 'Google_Service_MyBusiness_Verification';
+  protected $verificationType = 'GoogleFSP_Service_MyBusiness_Verification';
   protected $verificationDataType = '';
 
 
-  public function setVerification(Google_Service_MyBusiness_Verification $verification)
+  public function setVerification(GoogleFSP_Service_MyBusiness_Verification $verification)
   {
     $this->verification = $verification;
   }
@@ -3711,7 +3711,7 @@ class Google_Service_MyBusiness_CompleteVerificationResponse extends Google_Mode
   }
 }
 
-class Google_Service_MyBusiness_Date extends Google_Model
+class GoogleFSP_Service_MyBusiness_Date extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -3746,16 +3746,16 @@ class Google_Service_MyBusiness_Date extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_DeclineInvitationRequest extends Google_Model
+class GoogleFSP_Service_MyBusiness_DeclineInvitationRequest extends Google_Model
 {
 }
 
-class Google_Service_MyBusiness_DimensionalMetricValue extends Google_Model
+class GoogleFSP_Service_MyBusiness_DimensionalMetricValue extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
   public $metricOption;
-  protected $timeDimensionType = 'Google_Service_MyBusiness_TimeDimension';
+  protected $timeDimensionType = 'GoogleFSP_Service_MyBusiness_TimeDimension';
   protected $timeDimensionDataType = '';
   public $value;
 
@@ -3768,7 +3768,7 @@ class Google_Service_MyBusiness_DimensionalMetricValue extends Google_Model
   {
     return $this->metricOption;
   }
-  public function setTimeDimension(Google_Service_MyBusiness_TimeDimension $timeDimension)
+  public function setTimeDimension(GoogleFSP_Service_MyBusiness_TimeDimension $timeDimension)
   {
     $this->timeDimension = $timeDimension;
   }
@@ -3786,7 +3786,7 @@ class Google_Service_MyBusiness_DimensionalMetricValue extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_Dimensions extends Google_Model
+class GoogleFSP_Service_MyBusiness_Dimensions extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -3812,7 +3812,7 @@ class Google_Service_MyBusiness_Dimensions extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_DrivingDirectionMetricsRequest extends Google_Model
+class GoogleFSP_Service_MyBusiness_DrivingDirectionMetricsRequest extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -3838,7 +3838,7 @@ class Google_Service_MyBusiness_DrivingDirectionMetricsRequest extends Google_Mo
   }
 }
 
-class Google_Service_MyBusiness_Duplicate extends Google_Model
+class GoogleFSP_Service_MyBusiness_Duplicate extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -3873,7 +3873,7 @@ class Google_Service_MyBusiness_Duplicate extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_EmailInput extends Google_Model
+class GoogleFSP_Service_MyBusiness_EmailInput extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -3890,7 +3890,7 @@ class Google_Service_MyBusiness_EmailInput extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_EmailVerificationData extends Google_Model
+class GoogleFSP_Service_MyBusiness_EmailVerificationData extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -3925,16 +3925,16 @@ class Google_Service_MyBusiness_EmailVerificationData extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_FetchVerificationOptionsRequest extends Google_Model
+class GoogleFSP_Service_MyBusiness_FetchVerificationOptionsRequest extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
-  protected $contextType = 'Google_Service_MyBusiness_ServiceBusinessContext';
+  protected $contextType = 'GoogleFSP_Service_MyBusiness_ServiceBusinessContext';
   protected $contextDataType = '';
   public $languageCode;
 
 
-  public function setContext(Google_Service_MyBusiness_ServiceBusinessContext $context)
+  public function setContext(GoogleFSP_Service_MyBusiness_ServiceBusinessContext $context)
   {
     $this->context = $context;
   }
@@ -3952,12 +3952,12 @@ class Google_Service_MyBusiness_FetchVerificationOptionsRequest extends Google_M
   }
 }
 
-class Google_Service_MyBusiness_FetchVerificationOptionsResponse extends Google_Collection
+class GoogleFSP_Service_MyBusiness_FetchVerificationOptionsResponse extends Google_Collection
 {
   protected $collection_key = 'options';
   protected $internal_gapi_mappings = array(
   );
-  protected $optionsType = 'Google_Service_MyBusiness_VerificationOption';
+  protected $optionsType = 'GoogleFSP_Service_MyBusiness_VerificationOption';
   protected $optionsDataType = 'array';
 
 
@@ -3971,7 +3971,7 @@ class Google_Service_MyBusiness_FetchVerificationOptionsResponse extends Google_
   }
 }
 
-class Google_Service_MyBusiness_FindMatchingLocationsRequest extends Google_Model
+class GoogleFSP_Service_MyBusiness_FindMatchingLocationsRequest extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -4006,13 +4006,13 @@ class Google_Service_MyBusiness_FindMatchingLocationsRequest extends Google_Mode
   }
 }
 
-class Google_Service_MyBusiness_FindMatchingLocationsResponse extends Google_Collection
+class GoogleFSP_Service_MyBusiness_FindMatchingLocationsResponse extends Google_Collection
 {
   protected $collection_key = 'matchedLocations';
   protected $internal_gapi_mappings = array(
   );
   public $matchTime;
-  protected $matchedLocationsType = 'Google_Service_MyBusiness_MatchedLocation';
+  protected $matchedLocationsType = 'GoogleFSP_Service_MyBusiness_MatchedLocation';
   protected $matchedLocationsDataType = 'array';
 
 
@@ -4034,7 +4034,7 @@ class Google_Service_MyBusiness_FindMatchingLocationsResponse extends Google_Col
   }
 }
 
-class Google_Service_MyBusiness_FollowersMetadata extends Google_Model
+class GoogleFSP_Service_MyBusiness_FollowersMetadata extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -4060,15 +4060,15 @@ class Google_Service_MyBusiness_FollowersMetadata extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_FoodMenu extends Google_Collection
+class GoogleFSP_Service_MyBusiness_FoodMenu extends Google_Collection
 {
   protected $collection_key = 'sections';
   protected $internal_gapi_mappings = array(
   );
   public $cuisines;
-  protected $labelsType = 'Google_Service_MyBusiness_MenuLabel';
+  protected $labelsType = 'GoogleFSP_Service_MyBusiness_MenuLabel';
   protected $labelsDataType = 'array';
-  protected $sectionsType = 'Google_Service_MyBusiness_FoodMenuSection';
+  protected $sectionsType = 'GoogleFSP_Service_MyBusiness_FoodMenuSection';
   protected $sectionsDataType = 'array';
   public $sourceUrl;
 
@@ -4107,20 +4107,20 @@ class Google_Service_MyBusiness_FoodMenu extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_FoodMenuItem extends Google_Collection
+class GoogleFSP_Service_MyBusiness_FoodMenuItem extends Google_Collection
 {
   protected $collection_key = 'options';
   protected $internal_gapi_mappings = array(
   );
-  protected $attributesType = 'Google_Service_MyBusiness_FoodMenuItemAttributes';
+  protected $attributesType = 'GoogleFSP_Service_MyBusiness_FoodMenuItemAttributes';
   protected $attributesDataType = '';
-  protected $labelsType = 'Google_Service_MyBusiness_MenuLabel';
+  protected $labelsType = 'GoogleFSP_Service_MyBusiness_MenuLabel';
   protected $labelsDataType = 'array';
-  protected $optionsType = 'Google_Service_MyBusiness_FoodMenuItemOption';
+  protected $optionsType = 'GoogleFSP_Service_MyBusiness_FoodMenuItemOption';
   protected $optionsDataType = 'array';
 
 
-  public function setAttributes(Google_Service_MyBusiness_FoodMenuItemAttributes $attributes)
+  public function setAttributes(GoogleFSP_Service_MyBusiness_FoodMenuItemAttributes $attributes)
   {
     $this->attributes = $attributes;
   }
@@ -4146,22 +4146,22 @@ class Google_Service_MyBusiness_FoodMenuItem extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_FoodMenuItemAttributes extends Google_Collection
+class GoogleFSP_Service_MyBusiness_FoodMenuItemAttributes extends Google_Collection
 {
   protected $collection_key = 'preparationMethods';
   protected $internal_gapi_mappings = array(
   );
   public $allergen;
   public $dietaryRestriction;
-  protected $ingredientsType = 'Google_Service_MyBusiness_Ingredient';
+  protected $ingredientsType = 'GoogleFSP_Service_MyBusiness_Ingredient';
   protected $ingredientsDataType = 'array';
   public $mediaKeys;
-  protected $nutritionFactsType = 'Google_Service_MyBusiness_NutritionFacts';
+  protected $nutritionFactsType = 'GoogleFSP_Service_MyBusiness_NutritionFacts';
   protected $nutritionFactsDataType = '';
-  protected $portionSizeType = 'Google_Service_MyBusiness_PortionSize';
+  protected $portionSizeType = 'GoogleFSP_Service_MyBusiness_PortionSize';
   protected $portionSizeDataType = '';
   public $preparationMethods;
-  protected $priceType = 'Google_Service_MyBusiness_Money';
+  protected $priceType = 'GoogleFSP_Service_MyBusiness_Money';
   protected $priceDataType = '';
   public $servesNumPeople;
   public $spiciness;
@@ -4199,7 +4199,7 @@ class Google_Service_MyBusiness_FoodMenuItemAttributes extends Google_Collection
   {
     return $this->mediaKeys;
   }
-  public function setNutritionFacts(Google_Service_MyBusiness_NutritionFacts $nutritionFacts)
+  public function setNutritionFacts(GoogleFSP_Service_MyBusiness_NutritionFacts $nutritionFacts)
   {
     $this->nutritionFacts = $nutritionFacts;
   }
@@ -4207,7 +4207,7 @@ class Google_Service_MyBusiness_FoodMenuItemAttributes extends Google_Collection
   {
     return $this->nutritionFacts;
   }
-  public function setPortionSize(Google_Service_MyBusiness_PortionSize $portionSize)
+  public function setPortionSize(GoogleFSP_Service_MyBusiness_PortionSize $portionSize)
   {
     $this->portionSize = $portionSize;
   }
@@ -4223,7 +4223,7 @@ class Google_Service_MyBusiness_FoodMenuItemAttributes extends Google_Collection
   {
     return $this->preparationMethods;
   }
-  public function setPrice(Google_Service_MyBusiness_Money $price)
+  public function setPrice(GoogleFSP_Service_MyBusiness_Money $price)
   {
     $this->price = $price;
   }
@@ -4249,18 +4249,18 @@ class Google_Service_MyBusiness_FoodMenuItemAttributes extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_FoodMenuItemOption extends Google_Collection
+class GoogleFSP_Service_MyBusiness_FoodMenuItemOption extends Google_Collection
 {
   protected $collection_key = 'labels';
   protected $internal_gapi_mappings = array(
   );
-  protected $attributesType = 'Google_Service_MyBusiness_FoodMenuItemAttributes';
+  protected $attributesType = 'GoogleFSP_Service_MyBusiness_FoodMenuItemAttributes';
   protected $attributesDataType = '';
-  protected $labelsType = 'Google_Service_MyBusiness_MenuLabel';
+  protected $labelsType = 'GoogleFSP_Service_MyBusiness_MenuLabel';
   protected $labelsDataType = 'array';
 
 
-  public function setAttributes(Google_Service_MyBusiness_FoodMenuItemAttributes $attributes)
+  public function setAttributes(GoogleFSP_Service_MyBusiness_FoodMenuItemAttributes $attributes)
   {
     $this->attributes = $attributes;
   }
@@ -4278,14 +4278,14 @@ class Google_Service_MyBusiness_FoodMenuItemOption extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_FoodMenuSection extends Google_Collection
+class GoogleFSP_Service_MyBusiness_FoodMenuSection extends Google_Collection
 {
   protected $collection_key = 'labels';
   protected $internal_gapi_mappings = array(
   );
-  protected $itemsType = 'Google_Service_MyBusiness_FoodMenuItem';
+  protected $itemsType = 'GoogleFSP_Service_MyBusiness_FoodMenuItem';
   protected $itemsDataType = 'array';
-  protected $labelsType = 'Google_Service_MyBusiness_MenuLabel';
+  protected $labelsType = 'GoogleFSP_Service_MyBusiness_MenuLabel';
   protected $labelsDataType = 'array';
 
 
@@ -4307,12 +4307,12 @@ class Google_Service_MyBusiness_FoodMenuSection extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_FoodMenus extends Google_Collection
+class GoogleFSP_Service_MyBusiness_FoodMenus extends Google_Collection
 {
   protected $collection_key = 'menus';
   protected $internal_gapi_mappings = array(
   );
-  protected $menusType = 'Google_Service_MyBusiness_FoodMenu';
+  protected $menusType = 'GoogleFSP_Service_MyBusiness_FoodMenu';
   protected $menusDataType = 'array';
   public $name;
 
@@ -4335,12 +4335,12 @@ class Google_Service_MyBusiness_FoodMenus extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_FreeFormServiceItem extends Google_Model
+class GoogleFSP_Service_MyBusiness_FreeFormServiceItem extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
   public $categoryId;
-  protected $labelType = 'Google_Service_MyBusiness_Label';
+  protected $labelType = 'GoogleFSP_Service_MyBusiness_Label';
   protected $labelDataType = '';
 
 
@@ -4352,7 +4352,7 @@ class Google_Service_MyBusiness_FreeFormServiceItem extends Google_Model
   {
     return $this->categoryId;
   }
-  public function setLabel(Google_Service_MyBusiness_Label $label)
+  public function setLabel(GoogleFSP_Service_MyBusiness_Label $label)
   {
     $this->label = $label;
   }
@@ -4362,21 +4362,21 @@ class Google_Service_MyBusiness_FreeFormServiceItem extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_GenerateAccountNumberRequest extends Google_Model
+class GoogleFSP_Service_MyBusiness_GenerateAccountNumberRequest extends Google_Model
 {
 }
 
-class Google_Service_MyBusiness_GoogleLocation extends Google_Model
+class GoogleFSP_Service_MyBusiness_GoogleLocation extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
-  protected $locationType = 'Google_Service_MyBusiness_Location';
+  protected $locationType = 'GoogleFSP_Service_MyBusiness_Location';
   protected $locationDataType = '';
   public $name;
   public $requestAdminRightsUrl;
 
 
-  public function setLocation(Google_Service_MyBusiness_Location $location)
+  public function setLocation(GoogleFSP_Service_MyBusiness_Location $location)
   {
     $this->location = $location;
   }
@@ -4402,12 +4402,12 @@ class Google_Service_MyBusiness_GoogleLocation extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_GoogleUpdatedLocation extends Google_Model
+class GoogleFSP_Service_MyBusiness_GoogleUpdatedLocation extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
   public $diffMask;
-  protected $locationType = 'Google_Service_MyBusiness_Location';
+  protected $locationType = 'GoogleFSP_Service_MyBusiness_Location';
   protected $locationDataType = '';
 
 
@@ -4419,7 +4419,7 @@ class Google_Service_MyBusiness_GoogleUpdatedLocation extends Google_Model
   {
     return $this->diffMask;
   }
-  public function setLocation(Google_Service_MyBusiness_Location $location)
+  public function setLocation(GoogleFSP_Service_MyBusiness_Location $location)
   {
     $this->location = $location;
   }
@@ -4429,12 +4429,12 @@ class Google_Service_MyBusiness_GoogleUpdatedLocation extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_Ingredient extends Google_Collection
+class GoogleFSP_Service_MyBusiness_Ingredient extends Google_Collection
 {
   protected $collection_key = 'labels';
   protected $internal_gapi_mappings = array(
   );
-  protected $labelsType = 'Google_Service_MyBusiness_MenuLabel';
+  protected $labelsType = 'GoogleFSP_Service_MyBusiness_MenuLabel';
   protected $labelsDataType = 'array';
 
 
@@ -4448,15 +4448,15 @@ class Google_Service_MyBusiness_Ingredient extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_Invitation extends Google_Model
+class GoogleFSP_Service_MyBusiness_Invitation extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
   public $name;
   public $role;
-  protected $targetAccountType = 'Google_Service_MyBusiness_Account';
+  protected $targetAccountType = 'GoogleFSP_Service_MyBusiness_Account';
   protected $targetAccountDataType = '';
-  protected $targetLocationType = 'Google_Service_MyBusiness_TargetLocation';
+  protected $targetLocationType = 'GoogleFSP_Service_MyBusiness_TargetLocation';
   protected $targetLocationDataType = '';
 
 
@@ -4476,7 +4476,7 @@ class Google_Service_MyBusiness_Invitation extends Google_Model
   {
     return $this->role;
   }
-  public function setTargetAccount(Google_Service_MyBusiness_Account $targetAccount)
+  public function setTargetAccount(GoogleFSP_Service_MyBusiness_Account $targetAccount)
   {
     $this->targetAccount = $targetAccount;
   }
@@ -4484,7 +4484,7 @@ class Google_Service_MyBusiness_Invitation extends Google_Model
   {
     return $this->targetAccount;
   }
-  public function setTargetLocation(Google_Service_MyBusiness_TargetLocation $targetLocation)
+  public function setTargetLocation(GoogleFSP_Service_MyBusiness_TargetLocation $targetLocation)
   {
     $this->targetLocation = $targetLocation;
   }
@@ -4494,15 +4494,15 @@ class Google_Service_MyBusiness_Invitation extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_Item extends Google_Collection
+class GoogleFSP_Service_MyBusiness_Item extends Google_Collection
 {
   protected $collection_key = 'labels';
   protected $internal_gapi_mappings = array(
   );
   public $itemId;
-  protected $labelsType = 'Google_Service_MyBusiness_Label';
+  protected $labelsType = 'GoogleFSP_Service_MyBusiness_Label';
   protected $labelsDataType = 'array';
-  protected $priceType = 'Google_Service_MyBusiness_Money';
+  protected $priceType = 'GoogleFSP_Service_MyBusiness_Money';
   protected $priceDataType = '';
 
 
@@ -4522,7 +4522,7 @@ class Google_Service_MyBusiness_Item extends Google_Collection
   {
     return $this->labels;
   }
-  public function setPrice(Google_Service_MyBusiness_Money $price)
+  public function setPrice(GoogleFSP_Service_MyBusiness_Money $price)
   {
     $this->price = $price;
   }
@@ -4532,7 +4532,7 @@ class Google_Service_MyBusiness_Item extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_Label extends Google_Model
+class GoogleFSP_Service_MyBusiness_Label extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -4567,7 +4567,7 @@ class Google_Service_MyBusiness_Label extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_LatLng extends Google_Model
+class GoogleFSP_Service_MyBusiness_LatLng extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -4593,12 +4593,12 @@ class Google_Service_MyBusiness_LatLng extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_ListAccountAdminsResponse extends Google_Collection
+class GoogleFSP_Service_MyBusiness_ListAccountAdminsResponse extends Google_Collection
 {
   protected $collection_key = 'admins';
   protected $internal_gapi_mappings = array(
   );
-  protected $adminsType = 'Google_Service_MyBusiness_Admin';
+  protected $adminsType = 'GoogleFSP_Service_MyBusiness_Admin';
   protected $adminsDataType = 'array';
 
 
@@ -4612,12 +4612,12 @@ class Google_Service_MyBusiness_ListAccountAdminsResponse extends Google_Collect
   }
 }
 
-class Google_Service_MyBusiness_ListAccountsResponse extends Google_Collection
+class GoogleFSP_Service_MyBusiness_ListAccountsResponse extends Google_Collection
 {
   protected $collection_key = 'accounts';
   protected $internal_gapi_mappings = array(
   );
-  protected $accountsType = 'Google_Service_MyBusiness_Account';
+  protected $accountsType = 'GoogleFSP_Service_MyBusiness_Account';
   protected $accountsDataType = 'array';
   public $nextPageToken;
 
@@ -4640,12 +4640,12 @@ class Google_Service_MyBusiness_ListAccountsResponse extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_ListAnswersResponse extends Google_Collection
+class GoogleFSP_Service_MyBusiness_ListAnswersResponse extends Google_Collection
 {
   protected $collection_key = 'answers';
   protected $internal_gapi_mappings = array(
   );
-  protected $answersType = 'Google_Service_MyBusiness_Answer';
+  protected $answersType = 'GoogleFSP_Service_MyBusiness_Answer';
   protected $answersDataType = 'array';
   public $nextPageToken;
   public $totalSize;
@@ -4677,12 +4677,12 @@ class Google_Service_MyBusiness_ListAnswersResponse extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_ListAttributeMetadataResponse extends Google_Collection
+class GoogleFSP_Service_MyBusiness_ListAttributeMetadataResponse extends Google_Collection
 {
   protected $collection_key = 'attributes';
   protected $internal_gapi_mappings = array(
   );
-  protected $attributesType = 'Google_Service_MyBusiness_AttributeMetadata';
+  protected $attributesType = 'GoogleFSP_Service_MyBusiness_AttributeMetadata';
   protected $attributesDataType = 'array';
   public $nextPageToken;
 
@@ -4705,12 +4705,12 @@ class Google_Service_MyBusiness_ListAttributeMetadataResponse extends Google_Col
   }
 }
 
-class Google_Service_MyBusiness_ListBusinessCategoriesResponse extends Google_Collection
+class GoogleFSP_Service_MyBusiness_ListBusinessCategoriesResponse extends Google_Collection
 {
   protected $collection_key = 'categories';
   protected $internal_gapi_mappings = array(
   );
-  protected $categoriesType = 'Google_Service_MyBusiness_Category';
+  protected $categoriesType = 'GoogleFSP_Service_MyBusiness_Category';
   protected $categoriesDataType = 'array';
   public $nextPageToken;
   public $totalCategoryCount;
@@ -4742,12 +4742,12 @@ class Google_Service_MyBusiness_ListBusinessCategoriesResponse extends Google_Co
   }
 }
 
-class Google_Service_MyBusiness_ListCustomerMediaItemsResponse extends Google_Collection
+class GoogleFSP_Service_MyBusiness_ListCustomerMediaItemsResponse extends Google_Collection
 {
   protected $collection_key = 'mediaItems';
   protected $internal_gapi_mappings = array(
   );
-  protected $mediaItemsType = 'Google_Service_MyBusiness_MediaItem';
+  protected $mediaItemsType = 'GoogleFSP_Service_MyBusiness_MediaItem';
   protected $mediaItemsDataType = 'array';
   public $nextPageToken;
   public $totalMediaItemCount;
@@ -4779,12 +4779,12 @@ class Google_Service_MyBusiness_ListCustomerMediaItemsResponse extends Google_Co
   }
 }
 
-class Google_Service_MyBusiness_ListInvitationsResponse extends Google_Collection
+class GoogleFSP_Service_MyBusiness_ListInvitationsResponse extends Google_Collection
 {
   protected $collection_key = 'invitations';
   protected $internal_gapi_mappings = array(
   );
-  protected $invitationsType = 'Google_Service_MyBusiness_Invitation';
+  protected $invitationsType = 'GoogleFSP_Service_MyBusiness_Invitation';
   protected $invitationsDataType = 'array';
 
 
@@ -4798,12 +4798,12 @@ class Google_Service_MyBusiness_ListInvitationsResponse extends Google_Collectio
   }
 }
 
-class Google_Service_MyBusiness_ListLocalPostsResponse extends Google_Collection
+class GoogleFSP_Service_MyBusiness_ListLocalPostsResponse extends Google_Collection
 {
   protected $collection_key = 'localPosts';
   protected $internal_gapi_mappings = array(
   );
-  protected $localPostsType = 'Google_Service_MyBusiness_LocalPost';
+  protected $localPostsType = 'GoogleFSP_Service_MyBusiness_LocalPost';
   protected $localPostsDataType = 'array';
   public $nextPageToken;
 
@@ -4826,12 +4826,12 @@ class Google_Service_MyBusiness_ListLocalPostsResponse extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_ListLocationAdminsResponse extends Google_Collection
+class GoogleFSP_Service_MyBusiness_ListLocationAdminsResponse extends Google_Collection
 {
   protected $collection_key = 'admins';
   protected $internal_gapi_mappings = array(
   );
-  protected $adminsType = 'Google_Service_MyBusiness_Admin';
+  protected $adminsType = 'GoogleFSP_Service_MyBusiness_Admin';
   protected $adminsDataType = 'array';
 
 
@@ -4845,12 +4845,12 @@ class Google_Service_MyBusiness_ListLocationAdminsResponse extends Google_Collec
   }
 }
 
-class Google_Service_MyBusiness_ListLocationsResponse extends Google_Collection
+class GoogleFSP_Service_MyBusiness_ListLocationsResponse extends Google_Collection
 {
   protected $collection_key = 'locations';
   protected $internal_gapi_mappings = array(
   );
-  protected $locationsType = 'Google_Service_MyBusiness_Location';
+  protected $locationsType = 'GoogleFSP_Service_MyBusiness_Location';
   protected $locationsDataType = 'array';
   public $nextPageToken;
   public $totalSize;
@@ -4882,12 +4882,12 @@ class Google_Service_MyBusiness_ListLocationsResponse extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_ListMediaItemsResponse extends Google_Collection
+class GoogleFSP_Service_MyBusiness_ListMediaItemsResponse extends Google_Collection
 {
   protected $collection_key = 'mediaItems';
   protected $internal_gapi_mappings = array(
   );
-  protected $mediaItemsType = 'Google_Service_MyBusiness_MediaItem';
+  protected $mediaItemsType = 'GoogleFSP_Service_MyBusiness_MediaItem';
   protected $mediaItemsDataType = 'array';
   public $nextPageToken;
   public $totalMediaItemCount;
@@ -4919,13 +4919,13 @@ class Google_Service_MyBusiness_ListMediaItemsResponse extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_ListQuestionsResponse extends Google_Collection
+class GoogleFSP_Service_MyBusiness_ListQuestionsResponse extends Google_Collection
 {
   protected $collection_key = 'questions';
   protected $internal_gapi_mappings = array(
   );
   public $nextPageToken;
-  protected $questionsType = 'Google_Service_MyBusiness_Question';
+  protected $questionsType = 'GoogleFSP_Service_MyBusiness_Question';
   protected $questionsDataType = 'array';
   public $totalSize;
 
@@ -4956,12 +4956,12 @@ class Google_Service_MyBusiness_ListQuestionsResponse extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_ListRecommendedGoogleLocationsResponse extends Google_Collection
+class GoogleFSP_Service_MyBusiness_ListRecommendedGoogleLocationsResponse extends Google_Collection
 {
   protected $collection_key = 'googleLocations';
   protected $internal_gapi_mappings = array(
   );
-  protected $googleLocationsType = 'Google_Service_MyBusiness_GoogleLocation';
+  protected $googleLocationsType = 'GoogleFSP_Service_MyBusiness_GoogleLocation';
   protected $googleLocationsDataType = 'array';
   public $nextPageToken;
   public $totalSize;
@@ -4993,14 +4993,14 @@ class Google_Service_MyBusiness_ListRecommendedGoogleLocationsResponse extends G
   }
 }
 
-class Google_Service_MyBusiness_ListReviewsResponse extends Google_Collection
+class GoogleFSP_Service_MyBusiness_ListReviewsResponse extends Google_Collection
 {
   protected $collection_key = 'reviews';
   protected $internal_gapi_mappings = array(
   );
   public $averageRating;
   public $nextPageToken;
-  protected $reviewsType = 'Google_Service_MyBusiness_Review';
+  protected $reviewsType = 'GoogleFSP_Service_MyBusiness_Review';
   protected $reviewsDataType = 'array';
   public $totalReviewCount;
 
@@ -5039,13 +5039,13 @@ class Google_Service_MyBusiness_ListReviewsResponse extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_ListVerificationsResponse extends Google_Collection
+class GoogleFSP_Service_MyBusiness_ListVerificationsResponse extends Google_Collection
 {
   protected $collection_key = 'verifications';
   protected $internal_gapi_mappings = array(
   );
   public $nextPageToken;
-  protected $verificationsType = 'Google_Service_MyBusiness_Verification';
+  protected $verificationsType = 'GoogleFSP_Service_MyBusiness_Verification';
   protected $verificationsDataType = 'array';
 
 
@@ -5067,22 +5067,22 @@ class Google_Service_MyBusiness_ListVerificationsResponse extends Google_Collect
   }
 }
 
-class Google_Service_MyBusiness_LocalPost extends Google_Collection
+class GoogleFSP_Service_MyBusiness_LocalPost extends Google_Collection
 {
   protected $collection_key = 'media';
   protected $internal_gapi_mappings = array(
   );
   public $alertType;
-  protected $callToActionType = 'Google_Service_MyBusiness_CallToAction';
+  protected $callToActionType = 'GoogleFSP_Service_MyBusiness_CallToAction';
   protected $callToActionDataType = '';
   public $createTime;
-  protected $eventType = 'Google_Service_MyBusiness_LocalPostEvent';
+  protected $eventType = 'GoogleFSP_Service_MyBusiness_LocalPostEvent';
   protected $eventDataType = '';
   public $languageCode;
-  protected $mediaType = 'Google_Service_MyBusiness_MediaItem';
+  protected $mediaType = 'GoogleFSP_Service_MyBusiness_MediaItem';
   protected $mediaDataType = 'array';
   public $name;
-  protected $offerType = 'Google_Service_MyBusiness_LocalPostOffer';
+  protected $offerType = 'GoogleFSP_Service_MyBusiness_LocalPostOffer';
   protected $offerDataType = '';
   public $searchUrl;
   public $state;
@@ -5099,7 +5099,7 @@ class Google_Service_MyBusiness_LocalPost extends Google_Collection
   {
     return $this->alertType;
   }
-  public function setCallToAction(Google_Service_MyBusiness_CallToAction $callToAction)
+  public function setCallToAction(GoogleFSP_Service_MyBusiness_CallToAction $callToAction)
   {
     $this->callToAction = $callToAction;
   }
@@ -5115,7 +5115,7 @@ class Google_Service_MyBusiness_LocalPost extends Google_Collection
   {
     return $this->createTime;
   }
-  public function setEvent(Google_Service_MyBusiness_LocalPostEvent $event)
+  public function setEvent(GoogleFSP_Service_MyBusiness_LocalPostEvent $event)
   {
     $this->event = $event;
   }
@@ -5147,7 +5147,7 @@ class Google_Service_MyBusiness_LocalPost extends Google_Collection
   {
     return $this->name;
   }
-  public function setOffer(Google_Service_MyBusiness_LocalPostOffer $offer)
+  public function setOffer(GoogleFSP_Service_MyBusiness_LocalPostOffer $offer)
   {
     $this->offer = $offer;
   }
@@ -5197,16 +5197,16 @@ class Google_Service_MyBusiness_LocalPost extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_LocalPostEvent extends Google_Model
+class GoogleFSP_Service_MyBusiness_LocalPostEvent extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
-  protected $scheduleType = 'Google_Service_MyBusiness_TimeInterval';
+  protected $scheduleType = 'GoogleFSP_Service_MyBusiness_TimeInterval';
   protected $scheduleDataType = '';
   public $title;
 
 
-  public function setSchedule(Google_Service_MyBusiness_TimeInterval $schedule)
+  public function setSchedule(GoogleFSP_Service_MyBusiness_TimeInterval $schedule)
   {
     $this->schedule = $schedule;
   }
@@ -5224,13 +5224,13 @@ class Google_Service_MyBusiness_LocalPostEvent extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_LocalPostMetrics extends Google_Collection
+class GoogleFSP_Service_MyBusiness_LocalPostMetrics extends Google_Collection
 {
   protected $collection_key = 'metricValues';
   protected $internal_gapi_mappings = array(
   );
   public $localPostName;
-  protected $metricValuesType = 'Google_Service_MyBusiness_MetricValue';
+  protected $metricValuesType = 'GoogleFSP_Service_MyBusiness_MetricValue';
   protected $metricValuesDataType = 'array';
 
 
@@ -5252,7 +5252,7 @@ class Google_Service_MyBusiness_LocalPostMetrics extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_LocalPostOffer extends Google_Model
+class GoogleFSP_Service_MyBusiness_LocalPostOffer extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -5287,54 +5287,54 @@ class Google_Service_MyBusiness_LocalPostOffer extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_Location extends Google_Collection
+class GoogleFSP_Service_MyBusiness_Location extends Google_Collection
 {
   protected $collection_key = 'priceLists';
   protected $internal_gapi_mappings = array(
   );
-  protected $adWordsLocationExtensionsType = 'Google_Service_MyBusiness_AdWordsLocationExtensions';
+  protected $adWordsLocationExtensionsType = 'GoogleFSP_Service_MyBusiness_AdWordsLocationExtensions';
   protected $adWordsLocationExtensionsDataType = '';
-  protected $additionalCategoriesType = 'Google_Service_MyBusiness_Category';
+  protected $additionalCategoriesType = 'GoogleFSP_Service_MyBusiness_Category';
   protected $additionalCategoriesDataType = 'array';
   public $additionalPhones;
-  protected $addressType = 'Google_Service_MyBusiness_PostalAddress';
+  protected $addressType = 'GoogleFSP_Service_MyBusiness_PostalAddress';
   protected $addressDataType = '';
-  protected $attributesType = 'Google_Service_MyBusiness_Attribute';
+  protected $attributesType = 'GoogleFSP_Service_MyBusiness_Attribute';
   protected $attributesDataType = 'array';
   public $labels;
   public $languageCode;
-  protected $latlngType = 'Google_Service_MyBusiness_LatLng';
+  protected $latlngType = 'GoogleFSP_Service_MyBusiness_LatLng';
   protected $latlngDataType = '';
-  protected $locationKeyType = 'Google_Service_MyBusiness_LocationKey';
+  protected $locationKeyType = 'GoogleFSP_Service_MyBusiness_LocationKey';
   protected $locationKeyDataType = '';
   public $locationName;
-  protected $locationStateType = 'Google_Service_MyBusiness_LocationState';
+  protected $locationStateType = 'GoogleFSP_Service_MyBusiness_LocationState';
   protected $locationStateDataType = '';
-  protected $metadataType = 'Google_Service_MyBusiness_Metadata';
+  protected $metadataType = 'GoogleFSP_Service_MyBusiness_Metadata';
   protected $metadataDataType = '';
   public $name;
-  protected $openInfoType = 'Google_Service_MyBusiness_OpenInfo';
+  protected $openInfoType = 'GoogleFSP_Service_MyBusiness_OpenInfo';
   protected $openInfoDataType = '';
-  protected $priceListsType = 'Google_Service_MyBusiness_PriceList';
+  protected $priceListsType = 'GoogleFSP_Service_MyBusiness_PriceList';
   protected $priceListsDataType = 'array';
-  protected $primaryCategoryType = 'Google_Service_MyBusiness_Category';
+  protected $primaryCategoryType = 'GoogleFSP_Service_MyBusiness_Category';
   protected $primaryCategoryDataType = '';
   public $primaryPhone;
-  protected $profileType = 'Google_Service_MyBusiness_Profile';
+  protected $profileType = 'GoogleFSP_Service_MyBusiness_Profile';
   protected $profileDataType = '';
-  protected $regularHoursType = 'Google_Service_MyBusiness_BusinessHours';
+  protected $regularHoursType = 'GoogleFSP_Service_MyBusiness_BusinessHours';
   protected $regularHoursDataType = '';
-  protected $relationshipDataType = 'Google_Service_MyBusiness_RelationshipData';
+  protected $relationshipDataType = 'GoogleFSP_Service_MyBusiness_RelationshipData';
   protected $relationshipDataDataType = '';
-  protected $serviceAreaType = 'Google_Service_MyBusiness_ServiceAreaBusiness';
+  protected $serviceAreaType = 'GoogleFSP_Service_MyBusiness_ServiceAreaBusiness';
   protected $serviceAreaDataType = '';
-  protected $specialHoursType = 'Google_Service_MyBusiness_SpecialHours';
+  protected $specialHoursType = 'GoogleFSP_Service_MyBusiness_SpecialHours';
   protected $specialHoursDataType = '';
   public $storeCode;
   public $websiteUrl;
 
 
-  public function setAdWordsLocationExtensions(Google_Service_MyBusiness_AdWordsLocationExtensions $adWordsLocationExtensions)
+  public function setAdWordsLocationExtensions(GoogleFSP_Service_MyBusiness_AdWordsLocationExtensions $adWordsLocationExtensions)
   {
     $this->adWordsLocationExtensions = $adWordsLocationExtensions;
   }
@@ -5358,7 +5358,7 @@ class Google_Service_MyBusiness_Location extends Google_Collection
   {
     return $this->additionalPhones;
   }
-  public function setAddress(Google_Service_MyBusiness_PostalAddress $address)
+  public function setAddress(GoogleFSP_Service_MyBusiness_PostalAddress $address)
   {
     $this->address = $address;
   }
@@ -5390,7 +5390,7 @@ class Google_Service_MyBusiness_Location extends Google_Collection
   {
     return $this->languageCode;
   }
-  public function setLatlng(Google_Service_MyBusiness_LatLng $latlng)
+  public function setLatlng(GoogleFSP_Service_MyBusiness_LatLng $latlng)
   {
     $this->latlng = $latlng;
   }
@@ -5398,7 +5398,7 @@ class Google_Service_MyBusiness_Location extends Google_Collection
   {
     return $this->latlng;
   }
-  public function setLocationKey(Google_Service_MyBusiness_LocationKey $locationKey)
+  public function setLocationKey(GoogleFSP_Service_MyBusiness_LocationKey $locationKey)
   {
     $this->locationKey = $locationKey;
   }
@@ -5414,7 +5414,7 @@ class Google_Service_MyBusiness_Location extends Google_Collection
   {
     return $this->locationName;
   }
-  public function setLocationState(Google_Service_MyBusiness_LocationState $locationState)
+  public function setLocationState(GoogleFSP_Service_MyBusiness_LocationState $locationState)
   {
     $this->locationState = $locationState;
   }
@@ -5422,7 +5422,7 @@ class Google_Service_MyBusiness_Location extends Google_Collection
   {
     return $this->locationState;
   }
-  public function setMetadata(Google_Service_MyBusiness_Metadata $metadata)
+  public function setMetadata(GoogleFSP_Service_MyBusiness_Metadata $metadata)
   {
     $this->metadata = $metadata;
   }
@@ -5438,7 +5438,7 @@ class Google_Service_MyBusiness_Location extends Google_Collection
   {
     return $this->name;
   }
-  public function setOpenInfo(Google_Service_MyBusiness_OpenInfo $openInfo)
+  public function setOpenInfo(GoogleFSP_Service_MyBusiness_OpenInfo $openInfo)
   {
     $this->openInfo = $openInfo;
   }
@@ -5454,7 +5454,7 @@ class Google_Service_MyBusiness_Location extends Google_Collection
   {
     return $this->priceLists;
   }
-  public function setPrimaryCategory(Google_Service_MyBusiness_Category $primaryCategory)
+  public function setPrimaryCategory(GoogleFSP_Service_MyBusiness_Category $primaryCategory)
   {
     $this->primaryCategory = $primaryCategory;
   }
@@ -5470,7 +5470,7 @@ class Google_Service_MyBusiness_Location extends Google_Collection
   {
     return $this->primaryPhone;
   }
-  public function setProfile(Google_Service_MyBusiness_Profile $profile)
+  public function setProfile(GoogleFSP_Service_MyBusiness_Profile $profile)
   {
     $this->profile = $profile;
   }
@@ -5478,7 +5478,7 @@ class Google_Service_MyBusiness_Location extends Google_Collection
   {
     return $this->profile;
   }
-  public function setRegularHours(Google_Service_MyBusiness_BusinessHours $regularHours)
+  public function setRegularHours(GoogleFSP_Service_MyBusiness_BusinessHours $regularHours)
   {
     $this->regularHours = $regularHours;
   }
@@ -5486,7 +5486,7 @@ class Google_Service_MyBusiness_Location extends Google_Collection
   {
     return $this->regularHours;
   }
-  public function setRelationshipData(Google_Service_MyBusiness_RelationshipData $relationshipData)
+  public function setRelationshipData(GoogleFSP_Service_MyBusiness_RelationshipData $relationshipData)
   {
     $this->relationshipData = $relationshipData;
   }
@@ -5494,7 +5494,7 @@ class Google_Service_MyBusiness_Location extends Google_Collection
   {
     return $this->relationshipData;
   }
-  public function setServiceArea(Google_Service_MyBusiness_ServiceAreaBusiness $serviceArea)
+  public function setServiceArea(GoogleFSP_Service_MyBusiness_ServiceAreaBusiness $serviceArea)
   {
     $this->serviceArea = $serviceArea;
   }
@@ -5502,7 +5502,7 @@ class Google_Service_MyBusiness_Location extends Google_Collection
   {
     return $this->serviceArea;
   }
-  public function setSpecialHours(Google_Service_MyBusiness_SpecialHours $specialHours)
+  public function setSpecialHours(GoogleFSP_Service_MyBusiness_SpecialHours $specialHours)
   {
     $this->specialHours = $specialHours;
   }
@@ -5528,7 +5528,7 @@ class Google_Service_MyBusiness_Location extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_LocationAssociation extends Google_Model
+class GoogleFSP_Service_MyBusiness_LocationAssociation extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -5554,14 +5554,14 @@ class Google_Service_MyBusiness_LocationAssociation extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_LocationDrivingDirectionMetrics extends Google_Collection
+class GoogleFSP_Service_MyBusiness_LocationDrivingDirectionMetrics extends Google_Collection
 {
   protected $collection_key = 'topDirectionSources';
   protected $internal_gapi_mappings = array(
   );
   public $locationName;
   public $timeZone;
-  protected $topDirectionSourcesType = 'Google_Service_MyBusiness_TopDirectionSources';
+  protected $topDirectionSourcesType = 'GoogleFSP_Service_MyBusiness_TopDirectionSources';
   protected $topDirectionSourcesDataType = 'array';
 
 
@@ -5591,7 +5591,7 @@ class Google_Service_MyBusiness_LocationDrivingDirectionMetrics extends Google_C
   }
 }
 
-class Google_Service_MyBusiness_LocationKey extends Google_Model
+class GoogleFSP_Service_MyBusiness_LocationKey extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -5635,13 +5635,13 @@ class Google_Service_MyBusiness_LocationKey extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_LocationMetrics extends Google_Collection
+class GoogleFSP_Service_MyBusiness_LocationMetrics extends Google_Collection
 {
   protected $collection_key = 'metricValues';
   protected $internal_gapi_mappings = array(
   );
   public $locationName;
-  protected $metricValuesType = 'Google_Service_MyBusiness_MetricValue';
+  protected $metricValuesType = 'GoogleFSP_Service_MyBusiness_MetricValue';
   protected $metricValuesDataType = 'array';
   public $timeZone;
 
@@ -5672,12 +5672,12 @@ class Google_Service_MyBusiness_LocationMetrics extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_LocationReview extends Google_Model
+class GoogleFSP_Service_MyBusiness_LocationReview extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
   public $name;
-  protected $reviewType = 'Google_Service_MyBusiness_Review';
+  protected $reviewType = 'GoogleFSP_Service_MyBusiness_Review';
   protected $reviewDataType = '';
 
 
@@ -5689,7 +5689,7 @@ class Google_Service_MyBusiness_LocationReview extends Google_Model
   {
     return $this->name;
   }
-  public function setReview(Google_Service_MyBusiness_Review $review)
+  public function setReview(GoogleFSP_Service_MyBusiness_Review $review)
   {
     $this->review = $review;
   }
@@ -5699,7 +5699,7 @@ class Google_Service_MyBusiness_LocationReview extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_LocationState extends Google_Model
+class GoogleFSP_Service_MyBusiness_LocationState extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -5851,12 +5851,12 @@ class Google_Service_MyBusiness_LocationState extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_MatchedLocation extends Google_Model
+class GoogleFSP_Service_MyBusiness_MatchedLocation extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
   public $isExactMatch;
-  protected $locationType = 'Google_Service_MyBusiness_Location';
+  protected $locationType = 'GoogleFSP_Service_MyBusiness_Location';
   protected $locationDataType = '';
 
 
@@ -5868,7 +5868,7 @@ class Google_Service_MyBusiness_MatchedLocation extends Google_Model
   {
     return $this->isExactMatch;
   }
-  public function setLocation(Google_Service_MyBusiness_Location $location)
+  public function setLocation(GoogleFSP_Service_MyBusiness_Location $location)
   {
     $this->location = $location;
   }
@@ -5878,7 +5878,7 @@ class Google_Service_MyBusiness_MatchedLocation extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_MediaInsights extends Google_Model
+class GoogleFSP_Service_MyBusiness_MediaInsights extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -5895,22 +5895,22 @@ class Google_Service_MyBusiness_MediaInsights extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_MediaItem extends Google_Model
+class GoogleFSP_Service_MyBusiness_MediaItem extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
-  protected $attributionType = 'Google_Service_MyBusiness_Attribution';
+  protected $attributionType = 'GoogleFSP_Service_MyBusiness_Attribution';
   protected $attributionDataType = '';
   public $createTime;
-  protected $dataRefType = 'Google_Service_MyBusiness_MediaItemDataRef';
+  protected $dataRefType = 'GoogleFSP_Service_MyBusiness_MediaItemDataRef';
   protected $dataRefDataType = '';
   public $description;
-  protected $dimensionsType = 'Google_Service_MyBusiness_Dimensions';
+  protected $dimensionsType = 'GoogleFSP_Service_MyBusiness_Dimensions';
   protected $dimensionsDataType = '';
   public $googleUrl;
-  protected $insightsType = 'Google_Service_MyBusiness_MediaInsights';
+  protected $insightsType = 'GoogleFSP_Service_MyBusiness_MediaInsights';
   protected $insightsDataType = '';
-  protected $locationAssociationType = 'Google_Service_MyBusiness_LocationAssociation';
+  protected $locationAssociationType = 'GoogleFSP_Service_MyBusiness_LocationAssociation';
   protected $locationAssociationDataType = '';
   public $mediaFormat;
   public $name;
@@ -5918,7 +5918,7 @@ class Google_Service_MyBusiness_MediaItem extends Google_Model
   public $thumbnailUrl;
 
 
-  public function setAttribution(Google_Service_MyBusiness_Attribution $attribution)
+  public function setAttribution(GoogleFSP_Service_MyBusiness_Attribution $attribution)
   {
     $this->attribution = $attribution;
   }
@@ -5934,7 +5934,7 @@ class Google_Service_MyBusiness_MediaItem extends Google_Model
   {
     return $this->createTime;
   }
-  public function setDataRef(Google_Service_MyBusiness_MediaItemDataRef $dataRef)
+  public function setDataRef(GoogleFSP_Service_MyBusiness_MediaItemDataRef $dataRef)
   {
     $this->dataRef = $dataRef;
   }
@@ -5950,7 +5950,7 @@ class Google_Service_MyBusiness_MediaItem extends Google_Model
   {
     return $this->description;
   }
-  public function setDimensions(Google_Service_MyBusiness_Dimensions $dimensions)
+  public function setDimensions(GoogleFSP_Service_MyBusiness_Dimensions $dimensions)
   {
     $this->dimensions = $dimensions;
   }
@@ -5966,7 +5966,7 @@ class Google_Service_MyBusiness_MediaItem extends Google_Model
   {
     return $this->googleUrl;
   }
-  public function setInsights(Google_Service_MyBusiness_MediaInsights $insights)
+  public function setInsights(GoogleFSP_Service_MyBusiness_MediaInsights $insights)
   {
     $this->insights = $insights;
   }
@@ -5974,7 +5974,7 @@ class Google_Service_MyBusiness_MediaItem extends Google_Model
   {
     return $this->insights;
   }
-  public function setLocationAssociation(Google_Service_MyBusiness_LocationAssociation $locationAssociation)
+  public function setLocationAssociation(GoogleFSP_Service_MyBusiness_LocationAssociation $locationAssociation)
   {
     $this->locationAssociation = $locationAssociation;
   }
@@ -6016,7 +6016,7 @@ class Google_Service_MyBusiness_MediaItem extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_MediaItemDataRef extends Google_Model
+class GoogleFSP_Service_MyBusiness_MediaItemDataRef extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -6033,7 +6033,7 @@ class Google_Service_MyBusiness_MediaItemDataRef extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_MenuLabel extends Google_Model
+class GoogleFSP_Service_MyBusiness_MenuLabel extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -6068,17 +6068,17 @@ class Google_Service_MyBusiness_MenuLabel extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_Metadata extends Google_Model
+class GoogleFSP_Service_MyBusiness_Metadata extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
-  protected $duplicateType = 'Google_Service_MyBusiness_Duplicate';
+  protected $duplicateType = 'GoogleFSP_Service_MyBusiness_Duplicate';
   protected $duplicateDataType = '';
   public $mapsUrl;
   public $newReviewUrl;
 
 
-  public function setDuplicate(Google_Service_MyBusiness_Duplicate $duplicate)
+  public function setDuplicate(GoogleFSP_Service_MyBusiness_Duplicate $duplicate)
   {
     $this->duplicate = $duplicate;
   }
@@ -6104,7 +6104,7 @@ class Google_Service_MyBusiness_Metadata extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_MetricRequest extends Google_Collection
+class GoogleFSP_Service_MyBusiness_MetricRequest extends Google_Collection
 {
   protected $collection_key = 'options';
   protected $internal_gapi_mappings = array(
@@ -6131,15 +6131,15 @@ class Google_Service_MyBusiness_MetricRequest extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_MetricValue extends Google_Collection
+class GoogleFSP_Service_MyBusiness_MetricValue extends Google_Collection
 {
   protected $collection_key = 'dimensionalValues';
   protected $internal_gapi_mappings = array(
   );
-  protected $dimensionalValuesType = 'Google_Service_MyBusiness_DimensionalMetricValue';
+  protected $dimensionalValuesType = 'GoogleFSP_Service_MyBusiness_DimensionalMetricValue';
   protected $dimensionalValuesDataType = 'array';
   public $metric;
-  protected $totalValueType = 'Google_Service_MyBusiness_DimensionalMetricValue';
+  protected $totalValueType = 'GoogleFSP_Service_MyBusiness_DimensionalMetricValue';
   protected $totalValueDataType = '';
 
 
@@ -6159,7 +6159,7 @@ class Google_Service_MyBusiness_MetricValue extends Google_Collection
   {
     return $this->metric;
   }
-  public function setTotalValue(Google_Service_MyBusiness_DimensionalMetricValue $totalValue)
+  public function setTotalValue(GoogleFSP_Service_MyBusiness_DimensionalMetricValue $totalValue)
   {
     $this->totalValue = $totalValue;
   }
@@ -6169,7 +6169,7 @@ class Google_Service_MyBusiness_MetricValue extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_Money extends Google_Model
+class GoogleFSP_Service_MyBusiness_Money extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -6204,11 +6204,11 @@ class Google_Service_MyBusiness_Money extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_MybusinessEmpty extends Google_Model
+class GoogleFSP_Service_MyBusiness_MybusinessEmpty extends Google_Model
 {
 }
 
-class Google_Service_MyBusiness_Notifications extends Google_Collection
+class GoogleFSP_Service_MyBusiness_Notifications extends Google_Collection
 {
   protected $collection_key = 'notificationTypes';
   protected $internal_gapi_mappings = array(
@@ -6244,7 +6244,7 @@ class Google_Service_MyBusiness_Notifications extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_NutritionFact extends Google_Model
+class GoogleFSP_Service_MyBusiness_NutritionFact extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -6279,25 +6279,25 @@ class Google_Service_MyBusiness_NutritionFact extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_NutritionFacts extends Google_Model
+class GoogleFSP_Service_MyBusiness_NutritionFacts extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
-  protected $caloriesType = 'Google_Service_MyBusiness_CaloriesFact';
+  protected $caloriesType = 'GoogleFSP_Service_MyBusiness_CaloriesFact';
   protected $caloriesDataType = '';
-  protected $cholesterolType = 'Google_Service_MyBusiness_NutritionFact';
+  protected $cholesterolType = 'GoogleFSP_Service_MyBusiness_NutritionFact';
   protected $cholesterolDataType = '';
-  protected $proteinType = 'Google_Service_MyBusiness_NutritionFact';
+  protected $proteinType = 'GoogleFSP_Service_MyBusiness_NutritionFact';
   protected $proteinDataType = '';
-  protected $sodiumType = 'Google_Service_MyBusiness_NutritionFact';
+  protected $sodiumType = 'GoogleFSP_Service_MyBusiness_NutritionFact';
   protected $sodiumDataType = '';
-  protected $totalCarbohydrateType = 'Google_Service_MyBusiness_NutritionFact';
+  protected $totalCarbohydrateType = 'GoogleFSP_Service_MyBusiness_NutritionFact';
   protected $totalCarbohydrateDataType = '';
-  protected $totalFatType = 'Google_Service_MyBusiness_NutritionFact';
+  protected $totalFatType = 'GoogleFSP_Service_MyBusiness_NutritionFact';
   protected $totalFatDataType = '';
 
 
-  public function setCalories(Google_Service_MyBusiness_CaloriesFact $calories)
+  public function setCalories(GoogleFSP_Service_MyBusiness_CaloriesFact $calories)
   {
     $this->calories = $calories;
   }
@@ -6305,7 +6305,7 @@ class Google_Service_MyBusiness_NutritionFacts extends Google_Model
   {
     return $this->calories;
   }
-  public function setCholesterol(Google_Service_MyBusiness_NutritionFact $cholesterol)
+  public function setCholesterol(GoogleFSP_Service_MyBusiness_NutritionFact $cholesterol)
   {
     $this->cholesterol = $cholesterol;
   }
@@ -6313,7 +6313,7 @@ class Google_Service_MyBusiness_NutritionFacts extends Google_Model
   {
     return $this->cholesterol;
   }
-  public function setProtein(Google_Service_MyBusiness_NutritionFact $protein)
+  public function setProtein(GoogleFSP_Service_MyBusiness_NutritionFact $protein)
   {
     $this->protein = $protein;
   }
@@ -6321,7 +6321,7 @@ class Google_Service_MyBusiness_NutritionFacts extends Google_Model
   {
     return $this->protein;
   }
-  public function setSodium(Google_Service_MyBusiness_NutritionFact $sodium)
+  public function setSodium(GoogleFSP_Service_MyBusiness_NutritionFact $sodium)
   {
     $this->sodium = $sodium;
   }
@@ -6329,7 +6329,7 @@ class Google_Service_MyBusiness_NutritionFacts extends Google_Model
   {
     return $this->sodium;
   }
-  public function setTotalCarbohydrate(Google_Service_MyBusiness_NutritionFact $totalCarbohydrate)
+  public function setTotalCarbohydrate(GoogleFSP_Service_MyBusiness_NutritionFact $totalCarbohydrate)
   {
     $this->totalCarbohydrate = $totalCarbohydrate;
   }
@@ -6337,7 +6337,7 @@ class Google_Service_MyBusiness_NutritionFacts extends Google_Model
   {
     return $this->totalCarbohydrate;
   }
-  public function setTotalFat(Google_Service_MyBusiness_NutritionFact $totalFat)
+  public function setTotalFat(GoogleFSP_Service_MyBusiness_NutritionFact $totalFat)
   {
     $this->totalFat = $totalFat;
   }
@@ -6347,12 +6347,12 @@ class Google_Service_MyBusiness_NutritionFacts extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_OpenInfo extends Google_Model
+class GoogleFSP_Service_MyBusiness_OpenInfo extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
   public $canReopen;
-  protected $openingDateType = 'Google_Service_MyBusiness_Date';
+  protected $openingDateType = 'GoogleFSP_Service_MyBusiness_Date';
   protected $openingDateDataType = '';
   public $status;
 
@@ -6365,7 +6365,7 @@ class Google_Service_MyBusiness_OpenInfo extends Google_Model
   {
     return $this->canReopen;
   }
-  public function setOpeningDate(Google_Service_MyBusiness_Date $openingDate)
+  public function setOpeningDate(GoogleFSP_Service_MyBusiness_Date $openingDate)
   {
     $this->openingDate = $openingDate;
   }
@@ -6383,12 +6383,12 @@ class Google_Service_MyBusiness_OpenInfo extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_OrganizationInfo extends Google_Model
+class GoogleFSP_Service_MyBusiness_OrganizationInfo extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
   public $phoneNumber;
-  protected $postalAddressType = 'Google_Service_MyBusiness_PostalAddress';
+  protected $postalAddressType = 'GoogleFSP_Service_MyBusiness_PostalAddress';
   protected $postalAddressDataType = '';
   public $registeredDomain;
 
@@ -6401,7 +6401,7 @@ class Google_Service_MyBusiness_OrganizationInfo extends Google_Model
   {
     return $this->phoneNumber;
   }
-  public function setPostalAddress(Google_Service_MyBusiness_PostalAddress $postalAddress)
+  public function setPostalAddress(GoogleFSP_Service_MyBusiness_PostalAddress $postalAddress)
   {
     $this->postalAddress = $postalAddress;
   }
@@ -6419,7 +6419,7 @@ class Google_Service_MyBusiness_OrganizationInfo extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_PhoneInput extends Google_Model
+class GoogleFSP_Service_MyBusiness_PhoneInput extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -6436,7 +6436,7 @@ class Google_Service_MyBusiness_PhoneInput extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_PhoneVerificationData extends Google_Model
+class GoogleFSP_Service_MyBusiness_PhoneVerificationData extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -6453,7 +6453,7 @@ class Google_Service_MyBusiness_PhoneVerificationData extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_PlaceInfo extends Google_Model
+class GoogleFSP_Service_MyBusiness_PlaceInfo extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -6479,12 +6479,12 @@ class Google_Service_MyBusiness_PlaceInfo extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_Places extends Google_Collection
+class GoogleFSP_Service_MyBusiness_Places extends Google_Collection
 {
   protected $collection_key = 'placeInfos';
   protected $internal_gapi_mappings = array(
   );
-  protected $placeInfosType = 'Google_Service_MyBusiness_PlaceInfo';
+  protected $placeInfosType = 'GoogleFSP_Service_MyBusiness_PlaceInfo';
   protected $placeInfosDataType = 'array';
 
 
@@ -6498,16 +6498,16 @@ class Google_Service_MyBusiness_Places extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_PointRadius extends Google_Model
+class GoogleFSP_Service_MyBusiness_PointRadius extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
-  protected $latlngType = 'Google_Service_MyBusiness_LatLng';
+  protected $latlngType = 'GoogleFSP_Service_MyBusiness_LatLng';
   protected $latlngDataType = '';
   public $radiusKm;
 
 
-  public function setLatlng(Google_Service_MyBusiness_LatLng $latlng)
+  public function setLatlng(GoogleFSP_Service_MyBusiness_LatLng $latlng)
   {
     $this->latlng = $latlng;
   }
@@ -6525,13 +6525,13 @@ class Google_Service_MyBusiness_PointRadius extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_PortionSize extends Google_Collection
+class GoogleFSP_Service_MyBusiness_PortionSize extends Google_Collection
 {
   protected $collection_key = 'unit';
   protected $internal_gapi_mappings = array(
   );
   public $quantity;
-  protected $unitType = 'Google_Service_MyBusiness_MenuLabel';
+  protected $unitType = 'GoogleFSP_Service_MyBusiness_MenuLabel';
   protected $unitDataType = 'array';
 
 
@@ -6553,7 +6553,7 @@ class Google_Service_MyBusiness_PortionSize extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_PostalAddress extends Google_Collection
+class GoogleFSP_Service_MyBusiness_PostalAddress extends Google_Collection
 {
   protected $collection_key = 'recipients';
   protected $internal_gapi_mappings = array(
@@ -6661,15 +6661,15 @@ class Google_Service_MyBusiness_PostalAddress extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_PriceList extends Google_Collection
+class GoogleFSP_Service_MyBusiness_PriceList extends Google_Collection
 {
   protected $collection_key = 'sections';
   protected $internal_gapi_mappings = array(
   );
-  protected $labelsType = 'Google_Service_MyBusiness_Label';
+  protected $labelsType = 'GoogleFSP_Service_MyBusiness_Label';
   protected $labelsDataType = 'array';
   public $priceListId;
-  protected $sectionsType = 'Google_Service_MyBusiness_Section';
+  protected $sectionsType = 'GoogleFSP_Service_MyBusiness_Section';
   protected $sectionsDataType = 'array';
   public $sourceUrl;
 
@@ -6708,7 +6708,7 @@ class Google_Service_MyBusiness_PriceList extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_Profile extends Google_Model
+class GoogleFSP_Service_MyBusiness_Profile extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -6725,24 +6725,24 @@ class Google_Service_MyBusiness_Profile extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_Question extends Google_Collection
+class GoogleFSP_Service_MyBusiness_Question extends Google_Collection
 {
   protected $collection_key = 'topAnswers';
   protected $internal_gapi_mappings = array(
   );
-  protected $authorType = 'Google_Service_MyBusiness_Author';
+  protected $authorType = 'GoogleFSP_Service_MyBusiness_Author';
   protected $authorDataType = '';
   public $createTime;
   public $name;
   public $text;
-  protected $topAnswersType = 'Google_Service_MyBusiness_Answer';
+  protected $topAnswersType = 'GoogleFSP_Service_MyBusiness_Answer';
   protected $topAnswersDataType = 'array';
   public $totalAnswerCount;
   public $updateTime;
   public $upvoteCount;
 
 
-  public function setAuthor(Google_Service_MyBusiness_Author $author)
+  public function setAuthor(GoogleFSP_Service_MyBusiness_Author $author)
   {
     $this->author = $author;
   }
@@ -6808,13 +6808,13 @@ class Google_Service_MyBusiness_Question extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_RegionCount extends Google_Model
+class GoogleFSP_Service_MyBusiness_RegionCount extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
   public $count;
   public $label;
-  protected $latlngType = 'Google_Service_MyBusiness_LatLng';
+  protected $latlngType = 'GoogleFSP_Service_MyBusiness_LatLng';
   protected $latlngDataType = '';
 
 
@@ -6834,7 +6834,7 @@ class Google_Service_MyBusiness_RegionCount extends Google_Model
   {
     return $this->label;
   }
-  public function setLatlng(Google_Service_MyBusiness_LatLng $latlng)
+  public function setLatlng(GoogleFSP_Service_MyBusiness_LatLng $latlng)
   {
     $this->latlng = $latlng;
   }
@@ -6844,7 +6844,7 @@ class Google_Service_MyBusiness_RegionCount extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_RelationshipData extends Google_Model
+class GoogleFSP_Service_MyBusiness_RelationshipData extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -6861,7 +6861,7 @@ class Google_Service_MyBusiness_RelationshipData extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_RepeatedEnumAttributeValue extends Google_Collection
+class GoogleFSP_Service_MyBusiness_RepeatedEnumAttributeValue extends Google_Collection
 {
   protected $collection_key = 'unsetValues';
   protected $internal_gapi_mappings = array(
@@ -6888,7 +6888,7 @@ class Google_Service_MyBusiness_RepeatedEnumAttributeValue extends Google_Collec
   }
 }
 
-class Google_Service_MyBusiness_ReportGoogleLocationRequest extends Google_Model
+class GoogleFSP_Service_MyBusiness_ReportGoogleLocationRequest extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -6941,17 +6941,17 @@ class Google_Service_MyBusiness_ReportGoogleLocationRequest extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_ReportLocalPostInsightsRequest extends Google_Collection
+class GoogleFSP_Service_MyBusiness_ReportLocalPostInsightsRequest extends Google_Collection
 {
   protected $collection_key = 'localPostNames';
   protected $internal_gapi_mappings = array(
   );
-  protected $basicRequestType = 'Google_Service_MyBusiness_BasicMetricsRequest';
+  protected $basicRequestType = 'GoogleFSP_Service_MyBusiness_BasicMetricsRequest';
   protected $basicRequestDataType = '';
   public $localPostNames;
 
 
-  public function setBasicRequest(Google_Service_MyBusiness_BasicMetricsRequest $basicRequest)
+  public function setBasicRequest(GoogleFSP_Service_MyBusiness_BasicMetricsRequest $basicRequest)
   {
     $this->basicRequest = $basicRequest;
   }
@@ -6969,12 +6969,12 @@ class Google_Service_MyBusiness_ReportLocalPostInsightsRequest extends Google_Co
   }
 }
 
-class Google_Service_MyBusiness_ReportLocalPostInsightsResponse extends Google_Collection
+class GoogleFSP_Service_MyBusiness_ReportLocalPostInsightsResponse extends Google_Collection
 {
   protected $collection_key = 'localPostMetrics';
   protected $internal_gapi_mappings = array(
   );
-  protected $localPostMetricsType = 'Google_Service_MyBusiness_LocalPostMetrics';
+  protected $localPostMetricsType = 'GoogleFSP_Service_MyBusiness_LocalPostMetrics';
   protected $localPostMetricsDataType = 'array';
   public $name;
   public $timeZone;
@@ -7006,19 +7006,19 @@ class Google_Service_MyBusiness_ReportLocalPostInsightsResponse extends Google_C
   }
 }
 
-class Google_Service_MyBusiness_ReportLocationInsightsRequest extends Google_Collection
+class GoogleFSP_Service_MyBusiness_ReportLocationInsightsRequest extends Google_Collection
 {
   protected $collection_key = 'locationNames';
   protected $internal_gapi_mappings = array(
   );
-  protected $basicRequestType = 'Google_Service_MyBusiness_BasicMetricsRequest';
+  protected $basicRequestType = 'GoogleFSP_Service_MyBusiness_BasicMetricsRequest';
   protected $basicRequestDataType = '';
-  protected $drivingDirectionsRequestType = 'Google_Service_MyBusiness_DrivingDirectionMetricsRequest';
+  protected $drivingDirectionsRequestType = 'GoogleFSP_Service_MyBusiness_DrivingDirectionMetricsRequest';
   protected $drivingDirectionsRequestDataType = '';
   public $locationNames;
 
 
-  public function setBasicRequest(Google_Service_MyBusiness_BasicMetricsRequest $basicRequest)
+  public function setBasicRequest(GoogleFSP_Service_MyBusiness_BasicMetricsRequest $basicRequest)
   {
     $this->basicRequest = $basicRequest;
   }
@@ -7026,7 +7026,7 @@ class Google_Service_MyBusiness_ReportLocationInsightsRequest extends Google_Col
   {
     return $this->basicRequest;
   }
-  public function setDrivingDirectionsRequest(Google_Service_MyBusiness_DrivingDirectionMetricsRequest $drivingDirectionsRequest)
+  public function setDrivingDirectionsRequest(GoogleFSP_Service_MyBusiness_DrivingDirectionMetricsRequest $drivingDirectionsRequest)
   {
     $this->drivingDirectionsRequest = $drivingDirectionsRequest;
   }
@@ -7044,14 +7044,14 @@ class Google_Service_MyBusiness_ReportLocationInsightsRequest extends Google_Col
   }
 }
 
-class Google_Service_MyBusiness_ReportLocationInsightsResponse extends Google_Collection
+class GoogleFSP_Service_MyBusiness_ReportLocationInsightsResponse extends Google_Collection
 {
   protected $collection_key = 'locationMetrics';
   protected $internal_gapi_mappings = array(
   );
-  protected $locationDrivingDirectionMetricsType = 'Google_Service_MyBusiness_LocationDrivingDirectionMetrics';
+  protected $locationDrivingDirectionMetricsType = 'GoogleFSP_Service_MyBusiness_LocationDrivingDirectionMetrics';
   protected $locationDrivingDirectionMetricsDataType = 'array';
-  protected $locationMetricsType = 'Google_Service_MyBusiness_LocationMetrics';
+  protected $locationMetricsType = 'GoogleFSP_Service_MyBusiness_LocationMetrics';
   protected $locationMetricsDataType = 'array';
 
 
@@ -7073,7 +7073,7 @@ class Google_Service_MyBusiness_ReportLocationInsightsResponse extends Google_Co
   }
 }
 
-class Google_Service_MyBusiness_Review extends Google_Model
+class GoogleFSP_Service_MyBusiness_Review extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -7081,9 +7081,9 @@ class Google_Service_MyBusiness_Review extends Google_Model
   public $createTime;
   public $name;
   public $reviewId;
-  protected $reviewReplyType = 'Google_Service_MyBusiness_ReviewReply';
+  protected $reviewReplyType = 'GoogleFSP_Service_MyBusiness_ReviewReply';
   protected $reviewReplyDataType = '';
-  protected $reviewerType = 'Google_Service_MyBusiness_Reviewer';
+  protected $reviewerType = 'GoogleFSP_Service_MyBusiness_Reviewer';
   protected $reviewerDataType = '';
   public $starRating;
   public $updateTime;
@@ -7121,7 +7121,7 @@ class Google_Service_MyBusiness_Review extends Google_Model
   {
     return $this->reviewId;
   }
-  public function setReviewReply(Google_Service_MyBusiness_ReviewReply $reviewReply)
+  public function setReviewReply(GoogleFSP_Service_MyBusiness_ReviewReply $reviewReply)
   {
     $this->reviewReply = $reviewReply;
   }
@@ -7129,7 +7129,7 @@ class Google_Service_MyBusiness_Review extends Google_Model
   {
     return $this->reviewReply;
   }
-  public function setReviewer(Google_Service_MyBusiness_Reviewer $reviewer)
+  public function setReviewer(GoogleFSP_Service_MyBusiness_Reviewer $reviewer)
   {
     $this->reviewer = $reviewer;
   }
@@ -7155,7 +7155,7 @@ class Google_Service_MyBusiness_Review extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_ReviewReply extends Google_Model
+class GoogleFSP_Service_MyBusiness_ReviewReply extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -7181,7 +7181,7 @@ class Google_Service_MyBusiness_ReviewReply extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_Reviewer extends Google_Model
+class GoogleFSP_Service_MyBusiness_Reviewer extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -7216,12 +7216,12 @@ class Google_Service_MyBusiness_Reviewer extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_SearchChainsResponse extends Google_Collection
+class GoogleFSP_Service_MyBusiness_SearchChainsResponse extends Google_Collection
 {
   protected $collection_key = 'chains';
   protected $internal_gapi_mappings = array(
   );
-  protected $chainsType = 'Google_Service_MyBusiness_Chain';
+  protected $chainsType = 'GoogleFSP_Service_MyBusiness_Chain';
   protected $chainsDataType = 'array';
 
 
@@ -7235,17 +7235,17 @@ class Google_Service_MyBusiness_SearchChainsResponse extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_SearchGoogleLocationsRequest extends Google_Model
+class GoogleFSP_Service_MyBusiness_SearchGoogleLocationsRequest extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
-  protected $locationType = 'Google_Service_MyBusiness_Location';
+  protected $locationType = 'GoogleFSP_Service_MyBusiness_Location';
   protected $locationDataType = '';
   public $query;
   public $resultCount;
 
 
-  public function setLocation(Google_Service_MyBusiness_Location $location)
+  public function setLocation(GoogleFSP_Service_MyBusiness_Location $location)
   {
     $this->location = $location;
   }
@@ -7271,12 +7271,12 @@ class Google_Service_MyBusiness_SearchGoogleLocationsRequest extends Google_Mode
   }
 }
 
-class Google_Service_MyBusiness_SearchGoogleLocationsResponse extends Google_Collection
+class GoogleFSP_Service_MyBusiness_SearchGoogleLocationsResponse extends Google_Collection
 {
   protected $collection_key = 'googleLocations';
   protected $internal_gapi_mappings = array(
   );
-  protected $googleLocationsType = 'Google_Service_MyBusiness_GoogleLocation';
+  protected $googleLocationsType = 'GoogleFSP_Service_MyBusiness_GoogleLocation';
   protected $googleLocationsDataType = 'array';
 
 
@@ -7290,14 +7290,14 @@ class Google_Service_MyBusiness_SearchGoogleLocationsResponse extends Google_Col
   }
 }
 
-class Google_Service_MyBusiness_Section extends Google_Collection
+class GoogleFSP_Service_MyBusiness_Section extends Google_Collection
 {
   protected $collection_key = 'labels';
   protected $internal_gapi_mappings = array(
   );
-  protected $itemsType = 'Google_Service_MyBusiness_Item';
+  protected $itemsType = 'GoogleFSP_Service_MyBusiness_Item';
   protected $itemsDataType = 'array';
-  protected $labelsType = 'Google_Service_MyBusiness_Label';
+  protected $labelsType = 'GoogleFSP_Service_MyBusiness_Label';
   protected $labelsDataType = 'array';
   public $sectionId;
   public $sectionType;
@@ -7337,14 +7337,14 @@ class Google_Service_MyBusiness_Section extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_ServiceAreaBusiness extends Google_Model
+class GoogleFSP_Service_MyBusiness_ServiceAreaBusiness extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
   public $businessType;
-  protected $placesType = 'Google_Service_MyBusiness_Places';
+  protected $placesType = 'GoogleFSP_Service_MyBusiness_Places';
   protected $placesDataType = '';
-  protected $radiusType = 'Google_Service_MyBusiness_PointRadius';
+  protected $radiusType = 'GoogleFSP_Service_MyBusiness_PointRadius';
   protected $radiusDataType = '';
 
 
@@ -7356,7 +7356,7 @@ class Google_Service_MyBusiness_ServiceAreaBusiness extends Google_Model
   {
     return $this->businessType;
   }
-  public function setPlaces(Google_Service_MyBusiness_Places $places)
+  public function setPlaces(GoogleFSP_Service_MyBusiness_Places $places)
   {
     $this->places = $places;
   }
@@ -7364,7 +7364,7 @@ class Google_Service_MyBusiness_ServiceAreaBusiness extends Google_Model
   {
     return $this->places;
   }
-  public function setRadius(Google_Service_MyBusiness_PointRadius $radius)
+  public function setRadius(GoogleFSP_Service_MyBusiness_PointRadius $radius)
   {
     $this->radius = $radius;
   }
@@ -7374,15 +7374,15 @@ class Google_Service_MyBusiness_ServiceAreaBusiness extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_ServiceBusinessContext extends Google_Model
+class GoogleFSP_Service_MyBusiness_ServiceBusinessContext extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
-  protected $addressType = 'Google_Service_MyBusiness_PostalAddress';
+  protected $addressType = 'GoogleFSP_Service_MyBusiness_PostalAddress';
   protected $addressDataType = '';
 
 
-  public function setAddress(Google_Service_MyBusiness_PostalAddress $address)
+  public function setAddress(GoogleFSP_Service_MyBusiness_PostalAddress $address)
   {
     $this->address = $address;
   }
@@ -7392,20 +7392,20 @@ class Google_Service_MyBusiness_ServiceBusinessContext extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_ServiceItem extends Google_Model
+class GoogleFSP_Service_MyBusiness_ServiceItem extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
-  protected $freeFormServiceItemType = 'Google_Service_MyBusiness_FreeFormServiceItem';
+  protected $freeFormServiceItemType = 'GoogleFSP_Service_MyBusiness_FreeFormServiceItem';
   protected $freeFormServiceItemDataType = '';
   public $isOffered;
-  protected $priceType = 'Google_Service_MyBusiness_Money';
+  protected $priceType = 'GoogleFSP_Service_MyBusiness_Money';
   protected $priceDataType = '';
-  protected $structuredServiceItemType = 'Google_Service_MyBusiness_StructuredServiceItem';
+  protected $structuredServiceItemType = 'GoogleFSP_Service_MyBusiness_StructuredServiceItem';
   protected $structuredServiceItemDataType = '';
 
 
-  public function setFreeFormServiceItem(Google_Service_MyBusiness_FreeFormServiceItem $freeFormServiceItem)
+  public function setFreeFormServiceItem(GoogleFSP_Service_MyBusiness_FreeFormServiceItem $freeFormServiceItem)
   {
     $this->freeFormServiceItem = $freeFormServiceItem;
   }
@@ -7421,7 +7421,7 @@ class Google_Service_MyBusiness_ServiceItem extends Google_Model
   {
     return $this->isOffered;
   }
-  public function setPrice(Google_Service_MyBusiness_Money $price)
+  public function setPrice(GoogleFSP_Service_MyBusiness_Money $price)
   {
     $this->price = $price;
   }
@@ -7429,7 +7429,7 @@ class Google_Service_MyBusiness_ServiceItem extends Google_Model
   {
     return $this->price;
   }
-  public function setStructuredServiceItem(Google_Service_MyBusiness_StructuredServiceItem $structuredServiceItem)
+  public function setStructuredServiceItem(GoogleFSP_Service_MyBusiness_StructuredServiceItem $structuredServiceItem)
   {
     $this->structuredServiceItem = $structuredServiceItem;
   }
@@ -7439,13 +7439,13 @@ class Google_Service_MyBusiness_ServiceItem extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_ServiceList extends Google_Collection
+class GoogleFSP_Service_MyBusiness_ServiceList extends Google_Collection
 {
   protected $collection_key = 'serviceItems';
   protected $internal_gapi_mappings = array(
   );
   public $name;
-  protected $serviceItemsType = 'Google_Service_MyBusiness_ServiceItem';
+  protected $serviceItemsType = 'GoogleFSP_Service_MyBusiness_ServiceItem';
   protected $serviceItemsDataType = 'array';
 
 
@@ -7467,7 +7467,7 @@ class Google_Service_MyBusiness_ServiceList extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_ServiceType extends Google_Model
+class GoogleFSP_Service_MyBusiness_ServiceType extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -7493,16 +7493,16 @@ class Google_Service_MyBusiness_ServiceType extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_SpecialHourPeriod extends Google_Model
+class GoogleFSP_Service_MyBusiness_SpecialHourPeriod extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
   public $closeTime;
-  protected $endDateType = 'Google_Service_MyBusiness_Date';
+  protected $endDateType = 'GoogleFSP_Service_MyBusiness_Date';
   protected $endDateDataType = '';
   public $isClosed;
   public $openTime;
-  protected $startDateType = 'Google_Service_MyBusiness_Date';
+  protected $startDateType = 'GoogleFSP_Service_MyBusiness_Date';
   protected $startDateDataType = '';
 
 
@@ -7514,7 +7514,7 @@ class Google_Service_MyBusiness_SpecialHourPeriod extends Google_Model
   {
     return $this->closeTime;
   }
-  public function setEndDate(Google_Service_MyBusiness_Date $endDate)
+  public function setEndDate(GoogleFSP_Service_MyBusiness_Date $endDate)
   {
     $this->endDate = $endDate;
   }
@@ -7538,7 +7538,7 @@ class Google_Service_MyBusiness_SpecialHourPeriod extends Google_Model
   {
     return $this->openTime;
   }
-  public function setStartDate(Google_Service_MyBusiness_Date $startDate)
+  public function setStartDate(GoogleFSP_Service_MyBusiness_Date $startDate)
   {
     $this->startDate = $startDate;
   }
@@ -7548,12 +7548,12 @@ class Google_Service_MyBusiness_SpecialHourPeriod extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_SpecialHours extends Google_Collection
+class GoogleFSP_Service_MyBusiness_SpecialHours extends Google_Collection
 {
   protected $collection_key = 'specialHourPeriods';
   protected $internal_gapi_mappings = array(
   );
-  protected $specialHourPeriodsType = 'Google_Service_MyBusiness_SpecialHourPeriod';
+  protected $specialHourPeriodsType = 'GoogleFSP_Service_MyBusiness_SpecialHourPeriod';
   protected $specialHourPeriodsDataType = 'array';
 
 
@@ -7567,11 +7567,11 @@ class Google_Service_MyBusiness_SpecialHours extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_StartUploadMediaItemDataRequest extends Google_Model
+class GoogleFSP_Service_MyBusiness_StartUploadMediaItemDataRequest extends Google_Model
 {
 }
 
-class Google_Service_MyBusiness_StructuredServiceItem extends Google_Model
+class GoogleFSP_Service_MyBusiness_StructuredServiceItem extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -7597,7 +7597,7 @@ class Google_Service_MyBusiness_StructuredServiceItem extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_TargetLocation extends Google_Model
+class GoogleFSP_Service_MyBusiness_TargetLocation extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -7623,14 +7623,14 @@ class Google_Service_MyBusiness_TargetLocation extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_TimeDimension extends Google_Model
+class GoogleFSP_Service_MyBusiness_TimeDimension extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
   public $dayOfWeek;
-  protected $timeOfDayType = 'Google_Service_MyBusiness_TimeOfDay';
+  protected $timeOfDayType = 'GoogleFSP_Service_MyBusiness_TimeOfDay';
   protected $timeOfDayDataType = '';
-  protected $timeRangeType = 'Google_Service_MyBusiness_TimeRange';
+  protected $timeRangeType = 'GoogleFSP_Service_MyBusiness_TimeRange';
   protected $timeRangeDataType = '';
 
 
@@ -7642,7 +7642,7 @@ class Google_Service_MyBusiness_TimeDimension extends Google_Model
   {
     return $this->dayOfWeek;
   }
-  public function setTimeOfDay(Google_Service_MyBusiness_TimeOfDay $timeOfDay)
+  public function setTimeOfDay(GoogleFSP_Service_MyBusiness_TimeOfDay $timeOfDay)
   {
     $this->timeOfDay = $timeOfDay;
   }
@@ -7650,7 +7650,7 @@ class Google_Service_MyBusiness_TimeDimension extends Google_Model
   {
     return $this->timeOfDay;
   }
-  public function setTimeRange(Google_Service_MyBusiness_TimeRange $timeRange)
+  public function setTimeRange(GoogleFSP_Service_MyBusiness_TimeRange $timeRange)
   {
     $this->timeRange = $timeRange;
   }
@@ -7660,21 +7660,21 @@ class Google_Service_MyBusiness_TimeDimension extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_TimeInterval extends Google_Model
+class GoogleFSP_Service_MyBusiness_TimeInterval extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
-  protected $endDateType = 'Google_Service_MyBusiness_Date';
+  protected $endDateType = 'GoogleFSP_Service_MyBusiness_Date';
   protected $endDateDataType = '';
-  protected $endTimeType = 'Google_Service_MyBusiness_TimeOfDay';
+  protected $endTimeType = 'GoogleFSP_Service_MyBusiness_TimeOfDay';
   protected $endTimeDataType = '';
-  protected $startDateType = 'Google_Service_MyBusiness_Date';
+  protected $startDateType = 'GoogleFSP_Service_MyBusiness_Date';
   protected $startDateDataType = '';
-  protected $startTimeType = 'Google_Service_MyBusiness_TimeOfDay';
+  protected $startTimeType = 'GoogleFSP_Service_MyBusiness_TimeOfDay';
   protected $startTimeDataType = '';
 
 
-  public function setEndDate(Google_Service_MyBusiness_Date $endDate)
+  public function setEndDate(GoogleFSP_Service_MyBusiness_Date $endDate)
   {
     $this->endDate = $endDate;
   }
@@ -7682,7 +7682,7 @@ class Google_Service_MyBusiness_TimeInterval extends Google_Model
   {
     return $this->endDate;
   }
-  public function setEndTime(Google_Service_MyBusiness_TimeOfDay $endTime)
+  public function setEndTime(GoogleFSP_Service_MyBusiness_TimeOfDay $endTime)
   {
     $this->endTime = $endTime;
   }
@@ -7690,7 +7690,7 @@ class Google_Service_MyBusiness_TimeInterval extends Google_Model
   {
     return $this->endTime;
   }
-  public function setStartDate(Google_Service_MyBusiness_Date $startDate)
+  public function setStartDate(GoogleFSP_Service_MyBusiness_Date $startDate)
   {
     $this->startDate = $startDate;
   }
@@ -7698,7 +7698,7 @@ class Google_Service_MyBusiness_TimeInterval extends Google_Model
   {
     return $this->startDate;
   }
-  public function setStartTime(Google_Service_MyBusiness_TimeOfDay $startTime)
+  public function setStartTime(GoogleFSP_Service_MyBusiness_TimeOfDay $startTime)
   {
     $this->startTime = $startTime;
   }
@@ -7708,7 +7708,7 @@ class Google_Service_MyBusiness_TimeInterval extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_TimeOfDay extends Google_Model
+class GoogleFSP_Service_MyBusiness_TimeOfDay extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -7752,7 +7752,7 @@ class Google_Service_MyBusiness_TimeOfDay extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_TimePeriod extends Google_Model
+class GoogleFSP_Service_MyBusiness_TimePeriod extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -7796,7 +7796,7 @@ class Google_Service_MyBusiness_TimePeriod extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_TimeRange extends Google_Model
+class GoogleFSP_Service_MyBusiness_TimeRange extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -7822,13 +7822,13 @@ class Google_Service_MyBusiness_TimeRange extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_TopDirectionSources extends Google_Collection
+class GoogleFSP_Service_MyBusiness_TopDirectionSources extends Google_Collection
 {
   protected $collection_key = 'regionCounts';
   protected $internal_gapi_mappings = array(
   );
   public $dayCount;
-  protected $regionCountsType = 'Google_Service_MyBusiness_RegionCount';
+  protected $regionCountsType = 'GoogleFSP_Service_MyBusiness_RegionCount';
   protected $regionCountsDataType = 'array';
 
 
@@ -7850,7 +7850,7 @@ class Google_Service_MyBusiness_TopDirectionSources extends Google_Collection
   }
 }
 
-class Google_Service_MyBusiness_TransferLocationRequest extends Google_Model
+class GoogleFSP_Service_MyBusiness_TransferLocationRequest extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -7867,15 +7867,15 @@ class Google_Service_MyBusiness_TransferLocationRequest extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_UpsertAnswerRequest extends Google_Model
+class GoogleFSP_Service_MyBusiness_UpsertAnswerRequest extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
-  protected $answerType = 'Google_Service_MyBusiness_Answer';
+  protected $answerType = 'GoogleFSP_Service_MyBusiness_Answer';
   protected $answerDataType = '';
 
 
-  public function setAnswer(Google_Service_MyBusiness_Answer $answer)
+  public function setAnswer(GoogleFSP_Service_MyBusiness_Answer $answer)
   {
     $this->answer = $answer;
   }
@@ -7885,7 +7885,7 @@ class Google_Service_MyBusiness_UpsertAnswerRequest extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_UrlAttributeValue extends Google_Model
+class GoogleFSP_Service_MyBusiness_UrlAttributeValue extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -7902,7 +7902,7 @@ class Google_Service_MyBusiness_UrlAttributeValue extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_Verification extends Google_Model
+class GoogleFSP_Service_MyBusiness_Verification extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
@@ -7946,20 +7946,20 @@ class Google_Service_MyBusiness_Verification extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_VerificationOption extends Google_Model
+class GoogleFSP_Service_MyBusiness_VerificationOption extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
-  protected $addressDataType = 'Google_Service_MyBusiness_AddressVerificationData';
+  protected $addressDataType = 'GoogleFSP_Service_MyBusiness_AddressVerificationData';
   protected $addressDataDataType = '';
-  protected $emailDataType = 'Google_Service_MyBusiness_EmailVerificationData';
+  protected $emailDataType = 'GoogleFSP_Service_MyBusiness_EmailVerificationData';
   protected $emailDataDataType = '';
-  protected $phoneDataType = 'Google_Service_MyBusiness_PhoneVerificationData';
+  protected $phoneDataType = 'GoogleFSP_Service_MyBusiness_PhoneVerificationData';
   protected $phoneDataDataType = '';
   public $verificationMethod;
 
 
-  public function setAddressData(Google_Service_MyBusiness_AddressVerificationData $addressData)
+  public function setAddressData(GoogleFSP_Service_MyBusiness_AddressVerificationData $addressData)
   {
     $this->addressData = $addressData;
   }
@@ -7967,7 +7967,7 @@ class Google_Service_MyBusiness_VerificationOption extends Google_Model
   {
     return $this->addressData;
   }
-  public function setEmailData(Google_Service_MyBusiness_EmailVerificationData $emailData)
+  public function setEmailData(GoogleFSP_Service_MyBusiness_EmailVerificationData $emailData)
   {
     $this->emailData = $emailData;
   }
@@ -7975,7 +7975,7 @@ class Google_Service_MyBusiness_VerificationOption extends Google_Model
   {
     return $this->emailData;
   }
-  public function setPhoneData(Google_Service_MyBusiness_PhoneVerificationData $phoneData)
+  public function setPhoneData(GoogleFSP_Service_MyBusiness_PhoneVerificationData $phoneData)
   {
     $this->phoneData = $phoneData;
   }
@@ -7993,23 +7993,23 @@ class Google_Service_MyBusiness_VerificationOption extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_VerifyLocationRequest extends Google_Model
+class GoogleFSP_Service_MyBusiness_VerifyLocationRequest extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
-  protected $addressInputType = 'Google_Service_MyBusiness_AddressInput';
+  protected $addressInputType = 'GoogleFSP_Service_MyBusiness_AddressInput';
   protected $addressInputDataType = '';
-  protected $contextType = 'Google_Service_MyBusiness_ServiceBusinessContext';
+  protected $contextType = 'GoogleFSP_Service_MyBusiness_ServiceBusinessContext';
   protected $contextDataType = '';
-  protected $emailInputType = 'Google_Service_MyBusiness_EmailInput';
+  protected $emailInputType = 'GoogleFSP_Service_MyBusiness_EmailInput';
   protected $emailInputDataType = '';
   public $languageCode;
   public $method;
-  protected $phoneInputType = 'Google_Service_MyBusiness_PhoneInput';
+  protected $phoneInputType = 'GoogleFSP_Service_MyBusiness_PhoneInput';
   protected $phoneInputDataType = '';
 
 
-  public function setAddressInput(Google_Service_MyBusiness_AddressInput $addressInput)
+  public function setAddressInput(GoogleFSP_Service_MyBusiness_AddressInput $addressInput)
   {
     $this->addressInput = $addressInput;
   }
@@ -8017,7 +8017,7 @@ class Google_Service_MyBusiness_VerifyLocationRequest extends Google_Model
   {
     return $this->addressInput;
   }
-  public function setContext(Google_Service_MyBusiness_ServiceBusinessContext $context)
+  public function setContext(GoogleFSP_Service_MyBusiness_ServiceBusinessContext $context)
   {
     $this->context = $context;
   }
@@ -8025,7 +8025,7 @@ class Google_Service_MyBusiness_VerifyLocationRequest extends Google_Model
   {
     return $this->context;
   }
-  public function setEmailInput(Google_Service_MyBusiness_EmailInput $emailInput)
+  public function setEmailInput(GoogleFSP_Service_MyBusiness_EmailInput $emailInput)
   {
     $this->emailInput = $emailInput;
   }
@@ -8049,7 +8049,7 @@ class Google_Service_MyBusiness_VerifyLocationRequest extends Google_Model
   {
     return $this->method;
   }
-  public function setPhoneInput(Google_Service_MyBusiness_PhoneInput $phoneInput)
+  public function setPhoneInput(GoogleFSP_Service_MyBusiness_PhoneInput $phoneInput)
   {
     $this->phoneInput = $phoneInput;
   }
@@ -8059,15 +8059,15 @@ class Google_Service_MyBusiness_VerifyLocationRequest extends Google_Model
   }
 }
 
-class Google_Service_MyBusiness_VerifyLocationResponse extends Google_Model
+class GoogleFSP_Service_MyBusiness_VerifyLocationResponse extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
-  protected $verificationType = 'Google_Service_MyBusiness_Verification';
+  protected $verificationType = 'GoogleFSP_Service_MyBusiness_Verification';
   protected $verificationDataType = '';
 
 
-  public function setVerification(Google_Service_MyBusiness_Verification $verification)
+  public function setVerification(GoogleFSP_Service_MyBusiness_Verification $verification)
   {
     $this->verification = $verification;
   }

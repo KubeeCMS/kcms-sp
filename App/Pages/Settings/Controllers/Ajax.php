@@ -102,11 +102,13 @@ trait Ajax
 		$fs_post_interval_type                  = Request::post( 'fs_post_interval_type', 0, 'string', [ 'on' ] ) === 'on' ? 1 : 0;
 		$fs_replace_whitespaces_with_underscore = Request::post( 'fs_replace_whitespaces_with_underscore', 0, 'string', [ 'on' ] ) === 'on' ? 1 : 0;
 		$fs_multiple_newlines_to_single         = Request::post( 'fs_multiple_newlines_to_single', 0, 'string', [ 'on' ] ) === 'on' ? 1 : 0;
+		$fs_uppercase_hashtags                  = Request::post( 'fs_uppercase_hashtags', 0, 'string', [ 'on' ] ) === 'on' ? 1 : 0;
 		$fs_replace_wp_shortcodes               = Request::post( 'fs_replace_wp_shortcodes', 'off', 'string', [
 			'off',
 			'on',
 			'del'
 		] );
+		$fs_hashtag_taxonomies                  = Request::post( 'fs_hashtag_taxonomies', [], 'array' );
 
 		Helper::setOption( 'auto_share_new_posts', (string) $fs_auto_share_new_posts );
 		Helper::setOption( 'share_on_background', (string) $fs_share_on_background );
@@ -117,6 +119,8 @@ trait Ajax
 		Helper::setOption( 'replace_whitespaces_with_underscore', (string) $fs_replace_whitespaces_with_underscore );
 		Helper::setOption( 'multiple_newlines_to_single', (string) $fs_multiple_newlines_to_single );
 		Helper::setOption( 'replace_wp_shortcodes', (string) $fs_replace_wp_shortcodes );
+		Helper::setOption( 'uppercase_hashtags', (string) $fs_uppercase_hashtags );
+		Helper::setOption( 'hashtag_taxonomies', implode( '|', $fs_hashtag_taxonomies ) );
 
 		Helper::response( TRUE, [ 'msg' => fsp__( 'Saved successfully!' ) ] );
 	}
@@ -163,8 +167,6 @@ trait Ajax
 			'4'
 		] );
 
-
-
 		$fs_post_text_message_fb_h                  = Request::post( 'fs_post_text_message_fb_h', '', 'string' );
 		$fs_facebook_story_background               = Request::post( 'fs_facebook_story_background', '', 'string' );
 		$fs_facebook_story_title_background         = Request::post( 'fs_facebook_story_title_background', '', 'string' );
@@ -179,7 +181,7 @@ trait Ajax
 			'off'
 		] );
 
-		$fs_facebook_story_custom_font      = $_FILES[ 'fs_facebook_story_custom_font' ];
+		$fs_facebook_story_custom_font = $_FILES[ 'fs_facebook_story_custom_font' ];
 
 		if ( ! empty( $fs_facebook_story_custom_font[ 'name' ] ) )
 		{
@@ -212,7 +214,7 @@ trait Ajax
 					return $arr;
 				} );
 
-				wp_upload_bits( 'FS-Poster-fb-font.ttf' , NULL, file_get_contents( $fs_facebook_story_custom_font[ 'tmp_name' ] )  );
+				wp_upload_bits( 'FS-Poster-fb-font.ttf', NULL, file_get_contents( $fs_facebook_story_custom_font[ 'tmp_name' ] ) );
 
 				$_filter = FALSE;
 
@@ -253,7 +255,7 @@ trait Ajax
 
 		$fs_post_text_message_plurk = (string) Request::post( 'fs_post_text_message_plurk', '', 'string' );
 		$fs_plurk_auto_cut_plurks   = (string) Request::post( 'fs_plurk_auto_cut_plurks', 0, 'string', [ 'on' ] ) === 'on' ? 1 : 0;
-		$fs_plurk_posting_type      = (string) Request::post( 'fs_plurk_posting_type', '1', 'num', [
+		$fs_plurk_posting_type      = (string) Request::post( 'fs_plurk_posting_type', '2', 'num', [
 			'1',
 			'2',
 			'3',
@@ -288,8 +290,6 @@ trait Ajax
 		];
 		$fs_plurk_qualifier = (string) Request::post( 'fs_plurk_qualifier', ':', 'str', $qualifier_r );
 
-
-
 		Helper::setOption( 'post_text_message_plurk', $fs_post_text_message_plurk );
 		Helper::setOption( 'fs_plurk_auto_cut_plurks', $fs_plurk_auto_cut_plurks );
 		Helper::setOption( 'plurk_posting_type', $fs_plurk_posting_type );
@@ -313,9 +313,6 @@ trait Ajax
 			'bottom'
 		] );
 
-
-
-
 		if ( $fs_instagram_story_hashtag && empty( $fs_instagram_story_hashtag_name ) )
 		{
 			Helper::response( FALSE, fsp__( 'Plase type the hashtag' ) );
@@ -336,9 +333,9 @@ trait Ajax
 			'off'
 		] );
 
-		$fs_instagram_story_custom_font      = $_FILES[ 'fs_instagram_story_custom_font' ];
+		$fs_instagram_story_custom_font = $_FILES[ 'fs_instagram_story_custom_font' ];
 
-		if ( ! empty(  $fs_instagram_story_custom_font[ 'name' ] ) )
+		if ( ! empty( $fs_instagram_story_custom_font[ 'name' ] ) )
 		{
 			if ( pathinfo( $fs_instagram_story_custom_font[ 'name' ], PATHINFO_EXTENSION ) === 'ttf' )
 			{
@@ -369,7 +366,7 @@ trait Ajax
 					return $arr;
 				} );
 
-				wp_upload_bits( 'FS-Poster-ig-font.ttf' , NULL, file_get_contents( $fs_instagram_story_custom_font[ 'tmp_name' ] ) );
+				wp_upload_bits( 'FS-Poster-ig-font.ttf', NULL, file_get_contents( $fs_instagram_story_custom_font[ 'tmp_name' ] ) );
 
 				$_filter = FALSE;
 
@@ -413,7 +410,7 @@ trait Ajax
 		$fs_vk_load_members_communities = Request::post( 'fs_vk_load_members_communities', 0, 'string', [ 'on' ] ) === 'on' ? 1 : 0;
 		$fs_vk_upload_image             = Request::post( 'fs_vk_upload_image', 0, 'string', [ 'on' ] ) === 'on' ? 1 : 0;
 		$fs_vk_max_communities_limit    = Request::post( 'fs_vk_max_communities_limit', '50', 'num' );
-		$fs_vk_posting_type            = (string) Request::post( 'fs_vk_posting_type', '1', 'num', [
+		$fs_vk_posting_type             = (string) Request::post( 'fs_vk_posting_type', '1', 'num', [
 			'1',
 			'2',
 			'3',
@@ -450,12 +447,9 @@ trait Ajax
 			'4'
 		] );
 
-
-
 		Helper::setOption( 'post_text_message_twitter', $fs_post_text_message_twitter );
 		Helper::setOption( 'twitter_auto_cut_tweets', $fs_twitter_auto_cut_tweets );
 		Helper::setOption( 'twitter_posting_type', $fs_twitter_posting_type );
-
 
 		Helper::response( TRUE, [ 'msg' => fsp__( 'Saved successfully!' ) ] );
 	}
@@ -473,12 +467,9 @@ trait Ajax
 			'4'
 		] );
 
-
-
 		Helper::setOption( 'linkedin_autocut_text', $fs_linkedin_autocut_text );
 		Helper::setOption( 'post_text_message_linkedin', $fs_post_text_message_linkedin );
 		Helper::setOption( 'linkedin_posting_type', $fs_linkedin_posting_type );
-
 
 		Helper::response( TRUE, [ 'msg' => fsp__( 'Saved successfully!' ) ] );
 	}
@@ -521,8 +512,6 @@ trait Ajax
 			'3',
 			'4'
 		] );
-
-
 
 		Helper::setOption( 'gmb_autocut', $fs_gmb_autocut );
 		Helper::setOption( 'post_text_message_google_b', $fs_post_text_message_google_b );
@@ -586,8 +575,6 @@ trait Ajax
 		$fs_post_text_message_reddit = Request::post( 'fs_post_text_message_reddit', '', 'string' );
 		$fs_reddit_posting_type      = Request::post( 'fs_reddit_posting_type', '1', 'num', [ '1', '2', '3' ] );
 
-
-
 		Helper::setOption( 'reddit_autocut_title', $fs_reddit_autocut_text );
 		Helper::setOption( 'post_text_message_reddit', $fs_post_text_message_reddit );
 		Helper::setOption( 'reddit_posting_type', $fs_reddit_posting_type );
@@ -601,8 +588,6 @@ trait Ajax
 
 		$fs_post_text_message_ok = (string) Request::post( 'fs_post_text_message_ok', '', 'string' );
 		$fs_ok_posting_type      = (string) Request::post( 'fs_ok_posting_type', '1', 'num', [ '1', '2', '3', '4' ] );
-
-
 
 		Helper::setOption( 'post_text_message_ok', $fs_post_text_message_ok );
 		Helper::setOption( 'ok_posting_type', $fs_ok_posting_type );
@@ -623,12 +608,9 @@ trait Ajax
 			'4'
 		] );
 
-
 		Helper::setOption( 'telegram_autocut_text', $fs_telegram_autocut_text );
 		Helper::setOption( 'post_text_message_telegram', $fs_post_text_message_telegram );
 		Helper::setOption( 'telegram_type_of_sharing', $fs_telegram_type_of_sharing );
-
-
 
 		Helper::response( TRUE, [ 'msg' => fsp__( 'Saved successfully!' ) ] );
 	}
@@ -685,6 +667,7 @@ trait Ajax
 
 		$fs_export_multisite         = Request::post( 'fs_export_multisite', 0, 'string', [ 'on' ] ) === 'on' ? 1 : 0;
 		$fs_export_accounts          = Request::post( 'fs_export_accounts', 1, 'string', [ 'on' ] ) === 'on' ? 1 : 0;
+		$fs_export_account_groups    = Request::post( 'fs_export_account_groups', 1, 'string', [ 'on' ] ) === 'on' ? 1 : 0;
 		$fs_export_failed_accounts   = Request::post( 'fs_export_failed_accounts', 0, 'string', [ 'on' ] ) === 'on' ? 1 : 0;
 		$fs_export_accounts_statuses = Request::post( 'fs_export_accounts_statuses', 1, 'string', [ 'on' ] ) === 'on' ? 1 : 0;
 		$fs_export_apps              = Request::post( 'fs_export_apps', 1, 'string', [ 'on' ] ) === 'on' ? 1 : 0;
@@ -694,6 +677,7 @@ trait Ajax
 
 		Helper::setOption( 'export_multisite', (string) $fs_export_multisite );
 		Helper::setOption( 'export_accounts', (string) $fs_export_accounts );
+		Helper::setOption( 'export_account_groups', (string) $fs_export_account_groups );
 		Helper::setOption( 'export_failed_accounts', (string) $fs_export_failed_accounts );
 		Helper::setOption( 'export_accounts_statuses', (string) $fs_export_accounts_statuses );
 		Helper::setOption( 'export_apps', (string) $fs_export_apps );
@@ -713,13 +697,26 @@ trait Ajax
 		{
 			$settings[ 'accounts' ] = DB::DB()->get_results( 'SELECT * FROM `' . DB::table( 'accounts' ) . '` WHERE 1 = 1 ' . $export_multisite . ' ' . ( $fs_export_failed_accounts ? '' : 'AND ( `status` IS NULL OR `status` != "error" )' ), ARRAY_A );
 
-			$account_ids                         = array_map( function ( $acc ) {
+			$account_ids = array_map( function ( $acc ) {
 				return $acc[ 'id' ];
 			}, $settings[ 'accounts' ] );
 			$settings[ 'account_access_tokens' ] = count( $account_ids ) > 0 ? DB::DB()->get_results( 'SELECT * FROM `' . DB::table( 'account_access_tokens' ) . '` WHERE `account_id` IN (' . implode( ',', $account_ids ) . ')', ARRAY_A ) : [];
 			$settings[ 'account_nodes' ]         = count( $account_ids ) > 0 ? DB::DB()->get_results( 'SELECT * FROM `' . DB::table( 'account_nodes' ) . '` WHERE `account_id` IN (' . implode( ',', $account_ids ) . ')', ARRAY_A ) : [];
 
-			if ( $fs_export_accounts_statuses )
+            if ( $fs_export_account_groups )
+            {
+                $settings[ 'account_groups' ]      = count( $account_ids ) > 0 ? DB::DB()->get_results( 'SELECT * FROM `' . DB::table( 'account_groups' ) . '` WHERE 1=1 '  . $export_multisite , ARRAY_A ) : [];
+
+                $account_group_ids = array_map( function ( $acg ) {
+                    return $acg[ 'id' ];
+                }, $settings[ 'account_groups' ] );
+
+                $acg_id_in = empty($account_group_ids) ? '' : ' AND group_id IN (' . implode(',', $account_group_ids) . ')';
+
+                $settings[ 'account_groups_data' ] = count( $account_ids ) > 0 ? DB::DB()->get_results( 'SELECT * FROM `' . DB::table( 'account_groups_data' ) . '` WHERE 1=1 ' . $acg_id_in, ARRAY_A ) : [];
+            }
+
+            if ( $fs_export_accounts_statuses )
 			{
 				$settings[ 'account_status' ] = count( $account_ids ) > 0 ? DB::DB()->get_results( 'SELECT * FROM `' . DB::table( 'account_status' ) . '` WHERE `account_id` IN (' . implode( ',', $account_ids ) . ')', ARRAY_A ) : [];
 
@@ -784,6 +781,8 @@ trait Ajax
 				'feeds',
 				'schedules',
 				'grouped_accounts',
+                'account_groups',
+                'account_groups_data'
 			];
 
 			DB::DB()->query( 'SET FOREIGN_KEY_CHECKS = 0;' );

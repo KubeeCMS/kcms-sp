@@ -36,7 +36,9 @@
 		} );
 
 		$( '#fspSubredditSelector' ).select2( {
-			'placeholder': 'Search subreddit... ( type minimum 1 char. for search )',
+			containerCssClass: 'fsp-select2-container',
+			dropdownCssClass: 'fsp-select2-dropdown',
+			placeholder: 'Search subreddit... ( type minimum 1 char. for search )',
 			ajax: {
 				url: ajaxurl,
 				type: 'POST',

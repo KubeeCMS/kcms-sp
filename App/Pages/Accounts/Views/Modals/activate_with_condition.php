@@ -47,7 +47,7 @@ defined( 'MODAL' ) or exit;
 	</div>
 	<?php if ( ( current_user_can( 'administrator' ) || defined( 'FS_POSTER_IS_DEMO' ) ) ) { ?>
 		<div class="fsp-form-checkbox-group">
-			<input id="fspActivateConditionallyForAll" type="checkbox" class="fsp-form-checkbox">
+			<input id="fspActivateConditionallyForAll" type="checkbox" class="fsp-form-checkbox" <?php echo ( $fsp_params[ 'for_all' ] == 1 ? 'checked' : '' ); ?>>
 			<label for="fspActivateConditionallyForAll">
 				<?php echo fsp__( 'Activate for all users' ); ?>
 			</label>

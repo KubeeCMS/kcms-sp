@@ -2,24 +2,41 @@
 
 ( function ( $ ) {
 	$( '.fsp-modal-footer > #fspModalAddButton' ).on( 'click', function () {
-		let _this = $( this );
-		let appID = $( '#fspModalAppSelector' ).val().trim();
+		let selectedMethod = String( $( '.fsp-modal-option.fsp-is-selected' ).data( 'step' ) );
 		let proxy = $( '#fspProxy' ).val().trim();
 
-		if ( ! ( appID > 0 ) )
+		if ( selectedMethod === '1' ) // app method
 		{
-			FSPoster.toast( fsp__( 'Please, select an application!' ), 'warning' );
+			let openURL;
 
-			return;
+			if ( ! $( '#fspUseCustomApp' ).is( ':checked' ) )
+			{
+				openURL = `${ fspConfig.standartAppURL }&proxy=${ proxy }&encode=true`;
+			}
+			else
+			{
+				let appID = $( '#fspModalAppSelector' ).val().trim();
+
+				if ( ! ( appID > 0 ) )
+				{
+					FSPoster.toast( fsp__( 'Please, select an application!' ), 'warning' );
+
+					return;
+				}
+
+				openURL = `${ fspConfig.siteURL }/?tumblr_app_redirect=${ appID }&proxy=${ proxy }`;
+			}
+
+			window.open( openURL, 'fs-app', 'width=750, height=550' );
 		}
-
-		let openURL = `${ fspConfig.siteURL }/?tumblr_app_redirect=${ appID }&proxy=${ proxy }`;
-
-		if ( $( '#fspModalAppSelector > option:selected' ).data( 'is-standart' ).toString() === '1' )
+		else if ( selectedMethod === '2' ) // cookie method
 		{
-			openURL = `${ fspConfig.standartAppURL }&proxy=${ proxy }&encode=true`;
-		}
+			let email = $( '#fspModalStep_2 #tumblrEmail' ).val().trim();
+			let password = $( '#fspModalStep_2 #tumblrPass' ).val().trim();
 
-		window.open( openURL, 'fs-app', 'width=750, height=550' );
+			FSPoster.ajax( 'add_tumblr_account', { email, password, proxy }, function () {
+				accountAdded();
+			} );
+		}
 	} );
 } )( jQuery );

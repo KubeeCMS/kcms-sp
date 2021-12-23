@@ -57,13 +57,13 @@ defined( 'ABSPATH' ) or exit;
 		<div class="fsp-settings-label-text"><?php echo fsp__( 'Post content' ); ?>
 			<i class="fas fa-angle-up fsp-settings-collapse-state fsp-is-rotated"></i>
 		</div>
-		<div class="fsp-settings-label-subtext"><?php echo fsp__( 'You can customize the text of the shared post as you like by using the current keywords.' ); ?></div>
+		<div class="fsp-settings-label-subtext"><?php echo fsp__( 'You can customize the text of the shared post as you like by using the available keywords. You can add the keywords to the custom message section easily by clicking on the keyword.' ); ?></div>
 	</div>
 	<div class="fsp-settings-collapse">
 		<div class="fsp-settings-col">
 			<div class="fsp-settings-col-title"><?php echo fsp__( 'Text' ); ?></div>
 			<div class="fsp-custom-post" data-preview="fspCustomPostPreview2">
-				<textarea name="fs_post_text_message_blogger" class="fsp-form-textarea"><?php echo esc_html( Helper::getOption( 'post_text_message_blogger', "{content_full}" ) ); ?></textarea>
+				<textarea name="fs_post_text_message_blogger" class="fsp-form-textarea"><?php echo esc_html( Helper::getOption( 'post_text_message_blogger', "<img src='{featured_image_url}'>\n\n{content_full} \n\n<a href='{link}'>{link}</a>" ) ); ?></textarea>
 				<div class="fsp-custom-post-buttons">
 					<button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{id}">
 						{ID}
@@ -105,6 +105,10 @@ defined( 'ABSPATH' ) or exit;
 						{EXCERPT}
 						<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Post excerpt' ); ?>"></i>
 					</button>
+                    <button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{product_description}">
+                        {PRODUCT_DESCRIPTION}
+                        <i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Product short description' ); ?>"></i>
+                    </button>
 					<button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{categories}">
 						{CATEGORIES}
 						<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Post Categories' ); ?>"></i>

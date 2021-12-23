@@ -132,12 +132,12 @@ defined( 'MODAL' ) or exit;
 			</div>
 		</div>
 		<div id="fspAddSchedule_2" class="fspAddSchedule-step <?php echo ( ! ( isset ( $fsp_params[ 'is_direct_share_tab' ] ) && $fsp_params[ 'is_direct_share_tab' ] === TRUE ) ) ? '' : 'fsp-hide'; ?>">
-			<div class="fsp-form-group <?php echo isset( $fsp_params[ 'post_ids_count' ] ) && $fsp_params[ 'post_ids_count' ] > 0 ? 'fsp-hide' : ''; ?>">
+			<div id="fspScheduleDateRangeRow" class="fsp-form-group <?php echo isset( $fsp_params[ 'post_ids_count' ] ) && $fsp_params[ 'post_ids_count' ] > 0 ? 'fsp-hide' : ''; ?>">
 				<label><?php echo fsp__( 'By the published time of the posts' ); ?>&emsp;<i class="far fa-question-circle fsp-tooltip" data-title="<?php echo fsp__( 'Select posts that are published in a specific time.' ); ?>"></i>
 				</label>
 				<div class="fsp-form-group">
 					<select id="fsp_filter_posts_date_range" class="fsp-form-select">
-						<option value="all_date_range"><?php echo fsp__( 'All times' ); ?></option>
+						<option value="all_date_range" <?php echo $fsp_params[ 'is_all_times' ] ? 'selected' : ''; ?>><?php echo fsp__( 'All times' ); ?></option>
 						<option value="today"><?php echo fsp__( 'Today' ); ?></option>
 						<option value="last_7_days"><?php echo fsp__( 'The last week' ); ?></option>
 						<option value="last_15_days"><?php echo fsp__( 'The last 15 days' ); ?></option>
@@ -145,10 +145,10 @@ defined( 'MODAL' ) or exit;
 						<option value="last_90_days"><?php echo fsp__( 'The last 3 months' ); ?></option>
 						<option value="last_180_days"><?php echo fsp__( 'The last 6 months' ); ?></option>
 						<option value="last_365_days"><?php echo fsp__( 'The last year' ); ?></option>
-						<option value="custom_date_range" selected><?php echo fsp__( 'Custom date range' ); ?></option>
+						<option value="custom_date_range" <?php echo ! $fsp_params[ 'is_all_times' ] ? 'selected' : ''; ?>><?php echo fsp__( 'Custom date range' ); ?></option>
 					</select>
 				</div>
-				<div id="fsp_filter_posts_custom_date_range_row" class="fsp-modal-row">
+				<div id="fsp_filter_posts_custom_date_range_row" class="fsp-modal-row <?php echo $fsp_params[ 'is_all_times' ] ? 'fsp-hide' : ''; ?>">
 					<div class="fsp-modal-col">
 						<input type="date" autocomplete="off" class="fsp-form-input" id="fsp_filter_posts_date_range_from" placeholder="<?php echo fsp__( 'From' ); ?>" value="<?php echo( isset( $fsp_params[ 'info' ][ 'filter_posts_date_range_from' ] ) ? $fsp_params[ 'info' ][ 'filter_posts_date_range_from' ] : '' ); ?>">
 						<input type="date" autocomplete="off" class="fsp-form-input" id="fsp_filter_posts_date_range_to" placeholder="<?php echo fsp__( 'To' ); ?>" value="<?php echo( isset( $fsp_params[ 'info' ][ 'filter_posts_date_range_to' ] ) ? $fsp_params[ 'info' ][ 'filter_posts_date_range_to' ] : '' ); ?>">
@@ -156,7 +156,7 @@ defined( 'MODAL' ) or exit;
 					<div class="fsp-modal-col"></div>
 				</div>
 			</div>
-			<div class="fsp-form-group <?php echo isset( $fsp_params[ 'post_ids_count' ] ) && $fsp_params[ 'post_ids_count' ] > 0 ? 'fsp-hide' : ''; ?>">
+			<div id="fspSchedulePostTypeFilterRow" class="fsp-form-group <?php echo isset( $fsp_params[ 'post_ids_count' ] ) && $fsp_params[ 'post_ids_count' ] > 0 ? 'fsp-hide' : ''; ?>">
 				<label><?php echo fsp__( 'By post type' ); ?>&emsp;<i class="far fa-question-circle fsp-tooltip" data-title="<?php echo fsp__( 'You can select new post types in [ FS Poster > Settings > Share post types ].' ); ?>"></i>
 				</label>
 				<select class="fsp-form-select schedule_input_post_type_filter">
@@ -174,7 +174,7 @@ defined( 'MODAL' ) or exit;
 					<?php echo fsp__( 'Don\'t post products that are out of stock' ) ?>
 				</label>
 			</div>
-			<div class="fsp-form-group <?php echo isset( $fsp_params[ 'post_ids_count' ] ) && $fsp_params[ 'post_ids_count' ] > 0 ? ' fsp-hide' : ''; ?>">
+			<div id="fspScheduleCategoryFilterRow" class="fsp-form-group <?php echo isset( $fsp_params[ 'post_ids_count' ] ) && $fsp_params[ 'post_ids_count' ] > 0 ? ' fsp-hide' : ''; ?>">
 				<label><?php echo fsp__( 'By the post category and tag' ); ?></label>
 				<select class="fsp-form-input schedule_input_category_filter select2-init">
 					<?php
@@ -371,6 +371,7 @@ defined( 'MODAL' ) or exit;
 					<?php foreach ( $fsp_params[ 'sn_list' ] as $sn ) { ?>
 						<div data-driver="<?php echo $sn; ?>">
 							<div class="fsp-custom-post">
+                                <div class="fsp-custom-message-label"><?php echo fsp__('Customize post message'); ?></div>
 								<textarea data-sn-id="<?php echo $sn; ?>" name="fs_post_text_message_<?php echo $sn; ?>" class="fsp-form-textarea" rows="4" maxlength="3000"><?php echo esc_html( $fsp_params[ 'customMessages' ][ $sn ] ); ?></textarea>
 								<div class="fsp-custom-post-buttons">
 									<button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{id}">
@@ -405,6 +406,10 @@ defined( 'MODAL' ) or exit;
 										{PRODUCT_SALE_PRICE}
 										<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'WooCommerce - product sale price' ); ?>"></i>
 									</button>
+									<button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{terms}">
+										{TERMS}
+										<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Post Terms' ); ?>"></i>
+									</button>
 									<button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{content_full}">
 										{CONTENT_FULL}
 										<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Post full content' ); ?>"></i>
@@ -417,6 +422,10 @@ defined( 'MODAL' ) or exit;
 										{EXCERPT}
 										<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Post excerpt' ); ?>"></i>
 									</button>
+                                    <button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{product_description}">
+                                        {PRODUCT_DESCRIPTION}
+                                        <i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Product short description' ); ?>"></i>
+                                    </button>
 									<button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{categories}">
 										{CATEGORIES}
 										<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Post Categories' ); ?>"></i>
@@ -440,6 +449,7 @@ defined( 'MODAL' ) or exit;
 							</div>
 							<?php if ( $sn === 'instagram' || $sn === 'fb' ) { ?>
 								<div class="fsp-custom-post">
+                                    <div class="fsp-custom-message-label"><?php echo fsp__('Customize story message'); ?></div>
 									<textarea data-sn-id="<?php echo $sn . '_h' ?>" name="fs_post_text_message_<?php echo $sn . '_h' ?>" class="fsp-form-textarea" rows="4" maxlength="3000"><?php echo esc_html( $fsp_params[ 'customMessages' ][ 'instagram_h' ] ); ?></textarea>
 									<div class="fsp-custom-post-buttons">
 										<button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{id}">
@@ -474,6 +484,10 @@ defined( 'MODAL' ) or exit;
 											{PRODUCT_SALE_PRICE}
 											<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'WooCommerce - product sale price' ); ?>"></i>
 										</button>
+										<button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{terms}">
+											{TERMS}
+											<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Post Terms' ); ?>"></i>
+										</button>
 										<button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{content_full}">
 											{CONTENT_FULL}
 											<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Post full content' ); ?>"></i>
@@ -486,7 +500,11 @@ defined( 'MODAL' ) or exit;
 											{EXCERPT}
 											<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Post excerpt' ); ?>"></i>
 										</button>
-										<button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{categories}">
+                                        <button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{product_description}">
+                                            {PRODUCT_DESCRIPTION}
+                                            <i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Post excerpt' ); ?>"></i>
+                                        </button>
+                                        <button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{categories}">
 											{CATEGORIES}
 											<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Post Categories' ); ?>"></i>
 										</button>
@@ -537,5 +555,5 @@ defined( 'MODAL' ) or exit;
 			FSPoster.load_script( '<?php echo Pages::asset( 'Base', 'js/fsp-tabs.js' ); ?>' );
 			FSPoster.load_script( '<?php echo Pages::asset( 'Schedules', 'js/fsp-schedule-add.js' ); ?>' );
 		} );
-	} );
+    } );
 </script>

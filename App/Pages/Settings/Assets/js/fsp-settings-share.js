@@ -32,4 +32,6 @@
 			}
 		} ).trigger( 'change' );
 	} );
+
+	$( ".select2-init" ).select2();
 } )( jQuery );

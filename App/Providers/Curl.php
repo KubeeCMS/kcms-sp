@@ -50,6 +50,8 @@ class Curl
 
 		curl_close( $ch );
 
+        unset( $ch );
+
 		return $result;
 	}
 
@@ -130,6 +132,8 @@ class Curl
 		}
 
 		curl_close( $c );
+
+        unset( $c );
 
 		return $result;
 	}

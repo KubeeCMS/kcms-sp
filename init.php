@@ -2,15 +2,15 @@
 /*
  * Plugin Name: Social Poster
  * Description: Auto-publish on Social Media platforms.
- * Version: 5.2.3
+ * Version: 5.2.6
  * Author: Kubee
  * Author URI: https://github.com/KubeeCMS/kcms-sp/
  * Developer: KubeeCMS
  * Developer URI: https://github.com/KubeeCMS/
  * Requires at least: 4.4
  * Tested up to: 5.9
- * WC requires at least: 3.0.0
- * WC tested up to: 5.8
+ * WC requires at least: 5.0.0
+ * WC tested up to: 6.0
  * Text Domain: fs-poster
  * Domain Path: /languages
  * License: GNU General Public License v3.0

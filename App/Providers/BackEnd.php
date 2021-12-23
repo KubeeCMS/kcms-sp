@@ -3,6 +3,7 @@
 namespace FSPoster\App\Providers;
 
 use Exception;
+use FSPoster\App\Pages\Accounts\Controllers\Action;
 
 class BackEnd
 {
@@ -14,7 +15,7 @@ class BackEnd
 	{
 		new Ajax();
 
-		if ( ! Helper::pluginDisabled() )
+		if ( Helper::canLoadPlugin() )
 		{
 			new Popups();
 		}
@@ -23,12 +24,17 @@ class BackEnd
 
 		$this->enqueueAssets();
 		$this->updateService();
-		$this->registerMetaBox();
 
-		$this->registerActions();
-		$this->registerBulkAction();
-		$this->registerNotifications();
-		$this->cleanFSPoster();
+		if ( Helper::canLoadPlugin() )
+		{
+			$this->registerMetaBox();
+
+			$this->registerActions();
+			$this->registerBulkAction();
+			$this->registerNotifications();
+			$this->cleanFSPoster();
+		}
+
 	}
 
 	private function registerMetaBox ()
@@ -149,7 +155,13 @@ class BackEnd
 					{
 						if ( get_post_status( $post_id ) === 'publish' )
 						{
-							echo '<i class="fas fa-rocket fsp-tooltip" data-title="' . fsp__( 'Share' ) . '" data-load-modal="share_saved_post" data-parameter-post_id="' . $post_id . '"></i><i class="fas fa-history fsp-tooltip" data-title="' . fsp__( 'Schedule' ) . '" data-load-modal="add_schedule" data-parameter-post_ids="' . $post_id . '"></i>';
+							$shareCount = DB::DB()->get_row( 'SELECT COUNT(0) AS c FROM ' . DB::table( 'feeds' ) . ' WHERE post_id=\'' . $post_id . '\' AND status=\'ok\'', ARRAY_A );
+
+							$community_text = $shareCount[ 'c' ] == 1 ? fsp__( 'community' ) : fsp__( 'communities' );
+							echo '<i class="fas fa-rocket fsp-tooltip" data-title="' . fsp__( 'Share' ) . '" data-load-modal="share_saved_post" data-parameter-post_id="' . $post_id . '"></i><i class="fas fa-history fsp-tooltip" data-title="' . fsp__( 'Schedule' ) . '" data-load-modal="add_schedule" data-parameter-post_ids="' . $post_id . '"></i><i class="fas fa-bars fsp-tooltip" data-title="' . fsp__( 'This post is shared on %d %s by FS Poster', [
+									$shareCount[ 'c' ],
+									$community_text
+								] ) . '"></i>';
 						}
 						else
 						{
@@ -195,6 +207,27 @@ class BackEnd
 
 		add_action( 'deleted_user', function ( $user_id ) {
 			$this->cleanFSPoster( TRUE );
+		} );
+
+		add_action( 'user_register', function ( $user_id ) {
+			$userData = get_userdata( $user_id );
+
+			if ( ! in_array( $userData->roles, explode( '|', Helper::getOption( 'hide_menu_for', '' ) ) ) )
+			{
+				$activeAccountsForAll = DB::DB()->get_results( 'SELECT `acc`.*, `st`.`categories`, `st`.`filter_type` FROM ' . DB::table( 'accounts' ) . ' AS `acc` LEFT JOIN ' . DB::table( 'account_status' ) . ' AS `st` ON `st`.`account_id` = `acc`.`id`  WHERE `acc`.`for_all` = 1' );
+
+				foreach ( $activeAccountsForAll as $acc )
+				{
+					Action::activate_deactivate_account( $user_id, $acc->id, 1, $acc->filter_type, $acc->categories );
+				}
+
+				$activeNodesForAll = DB::DB()->get_results( 'SELECT `acc`.*, `st`.`categories`, `st`.`filter_type` FROM ' . DB::table( 'account_nodes' ) . ' AS `acc` LEFT JOIN ' . DB::table( 'account_node_status' ) . ' AS `st` ON `st`.`node_id` = `acc`.`id`  WHERE `acc`.`for_all` = 1' );
+
+				foreach ( $activeNodesForAll as $node )
+				{
+					Action::activate_deactivate_node( $user_id, $node->id, 1, $node->filter_type, $node->categories );
+				}
+			}
 		} );
 	}
 

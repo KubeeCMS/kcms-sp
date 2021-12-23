@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) or exit;
 			<i class="fas fa-info-circle"></i><?php echo fsp__( 'Your plugin is disabled. Please activate the plugin.' ); ?>
 		</div>
 		<div class="fsp-box-logo">
-			<img src="<?php echo Pages::asset( 'Base', 'img/logo.svg' ); ?>">
+			<img src="<?php echo Pages::asset( 'Base', 'img/logo.png' ); ?>">
 		</div>
 		<div class="fsp-form-group">
 			<label><?php echo fsp__( 'Reason: %s', [ Helper::getOption( 'plugin_alert' ) ], FALSE ); ?></label>

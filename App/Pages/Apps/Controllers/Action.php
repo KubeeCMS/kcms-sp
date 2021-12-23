@@ -21,7 +21,7 @@ class Action
 {
 	public function get_apps ()
 	{
-		$appsCount = DB::DB()->get_results( "SELECT driver, COUNT(0) AS _count FROM " . DB::table( 'apps' ) . " GROUP BY driver", ARRAY_A );
+		$appsCount = DB::DB()->get_results( "SELECT driver, COUNT(0) AS _count FROM " . DB::table( 'apps' ) . " WHERE IFNULL( `slug`, '')='' GROUP BY driver", ARRAY_A );
 		$appCounts = [
 			'total'     => 0,
 			'fb'        => [ 0, [ 'app_id', 'app_key' ] ],
@@ -55,7 +55,7 @@ class Action
 			$active_tab = 'fb';
 		}
 
-		$appList = DB::fetchAll( 'apps', [ 'driver' => $active_tab ] );
+		$appList = DB::DB()->get_results( DB::DB()->prepare(  'SELECT * FROM ' . DB::table( 'apps' ) . ' WHERE driver=%s AND IFNULL( `slug`, \'\')=\'\'', [ 'driver' => $active_tab ] ), ARRAY_A );
 
 		$callback_urls = [
 			'fb'        => Facebook::callbackURL(),

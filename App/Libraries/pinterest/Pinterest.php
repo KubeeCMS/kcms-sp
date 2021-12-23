@@ -143,7 +143,7 @@ class Pinterest extends SocialNetwork
 	public static function callbackURL ()
 	{
 		//return site_url() . '/?pinterest_callback=1';
-		return site_url();
+		return trim(site_url(), '/') . '/';
 	}
 
 	/**

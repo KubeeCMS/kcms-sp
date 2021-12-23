@@ -54,11 +54,17 @@
 		$( '#fspExportAccounts' ).on( 'change', function () {
 			if ( $( this ).is( ':checked' ) )
 			{
+				$( '#fspExportAccountGroups' ).slideDown();
+				$( '#fspExportAccountGroups' ).slideDown();
+
 				$( '#fspExportFailedAccountsRow' ).slideDown();
 				$( '#fspExportAccountsStatusesRow' ).slideDown();
 			}
 			else
 			{
+				$( '#fspExportAccountGroups' ).slideUp();
+				$( '#fspExportAccountGroups' ).slideUp();
+
 				$( '#fspExportFailedAccountsRow' ).slideUp();
 				$( '#fspExportAccountsStatusesRow' ).slideUp();
 			}

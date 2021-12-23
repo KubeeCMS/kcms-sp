@@ -3,6 +3,7 @@
 namespace FSPoster\App\Providers;
 
 use Exception;
+use FSPoster\App\Libraries\twitter\TwitterPrivateAPI;
 use FSPoster\App\Libraries\vk\Vk;
 use FSPoster\App\Libraries\fb\Facebook;
 use FSPoster\App\Libraries\plurk\Plurk;
@@ -21,10 +22,11 @@ use FSPoster\App\Libraries\instagram\InstagramApi;
 use FSPoster\App\Libraries\google\GoogleMyBusiness;
 use FSPoster\App\Libraries\google\GoogleMyBusinessAPI;
 use FSPoster\App\Libraries\pinterest\PinterestCookieApi;
+use FSPoster\App\Libraries\tumblr\TumblrLoginPassMethod;
 
 class ShareService
 {
-	public static function insertFeeds ( $wpPostId, $nodes_list, $custom_messages, $categoryFilter = TRUE, $schedule_date = NULL, $sharedFrom = NULL, $shareOnBackground = NULL, $scheduleId = NULL, $disableStartInterval = FALSE )
+	public static function insertFeeds ( $wpPostId, $userId, $nodes_list, $custom_messages, $categoryFilter = TRUE, $schedule_date = NULL, $sharedFrom = NULL, $shareOnBackground = NULL, $scheduleId = NULL, $disableStartInterval = FALSE )
 	{
 		/**
 		 * Accounts, communications list array
@@ -133,7 +135,7 @@ class ShareService
 					$dataSendTime = $sendDateTime;
 				}
 
-				if ( ! ( $driver == 'instagram' && $igPostType == '2' ) && ! ( $driver == 'fb' && $fbPostType == '2' ) )
+				if ( ! ( $driver == 'instagram' && $igPostType == '2' ) && ! ( $driver == 'fb' && $nodeType === 'account' && $fbPostType == '2' ) )
 				{
 					$customMessage = isset( $custom_messages[ $driver ] ) ? $custom_messages[ $driver ] : NULL;
 
@@ -144,7 +146,7 @@ class ShareService
 
 					DB::DB()->insert( DB::table( 'feeds' ), [
 						'blog_id'             => Helper::getBlogId(),
-						'user_id'             => get_current_user_id(),
+						'user_id'             => $userId,
 						'driver'              => $driver,
 						'post_id'             => $wpPostId,
 						'node_type'           => $nodeType,
@@ -161,7 +163,7 @@ class ShareService
 					$feedsCount++;
 				}
 
-				if ( ( $driver == 'instagram' && ( $igPostType == '2' || $igPostType == '3' ) ) || ( $driver == 'fb' && ( $fbPostType == '2' || $fbPostType == '3' ) ) )
+				if ( ( $driver == 'instagram' && ( $igPostType == '2' || $igPostType == '3' ) ) || ( $driver == 'fb' && $nodeType === 'account' && ( $fbPostType == '2' || $fbPostType == '3' ) ) )
 				{
 					$customMessage = isset( $custom_messages[ $driver . '_h' ] ) ? $custom_messages[ $driver . '_h' ] : NULL;
 
@@ -172,6 +174,7 @@ class ShareService
 
 					DB::DB()->insert( DB::table( 'feeds' ), [
 						'blog_id'             => Helper::getBlogId(),
+						'user_id'             => $userId,
 						'driver'              => $driver,
 						'post_id'             => $wpPostId,
 						'node_type'           => $nodeType,
@@ -209,7 +212,7 @@ class ShareService
 
 			$now = Date::dateTimeSQL();
 
-			$feeds    = DB::DB()->get_results( DB::DB()->prepare( 'SELECT id FROM `' . DB::table( 'feeds' ) . '` tb1 WHERE `blog_id`=%d AND `share_on_background`=1 and `is_sended`=0 and `send_time`<=%s AND (SELECT count(0) FROM `' . DB::WPtable( 'posts', TRUE ) . '` WHERE `id`=tb1.`post_id` AND (`post_status`=\'publish\' OR `post_type`=\'attachment\'))>0', [
+			$feeds    = DB::DB()->get_results( DB::DB()->prepare( 'SELECT id FROM `' . DB::table( 'feeds' ) . '` tb1 WHERE `blog_id`=%d AND `share_on_background`=1 and `is_sended`=0 and `send_time`<=%s AND (SELECT count(0) FROM `' . DB::WPtable( 'posts', TRUE ) . '` WHERE `id`=tb1.`post_id` AND (`post_status`=\'publish\' OR `post_type`=\'attachment\'))>0 LIMIT 5', [
 				$blog_id,
 				$now
 			] ), ARRAY_A );
@@ -239,6 +242,16 @@ class ShareService
 					ShareService::post( $feed[ 'id' ], TRUE );
 				}
 			}
+
+            $pendingPosts = DB::DB()->get_row( DB::DB()->prepare( 'SELECT COUNT(0) AS `count` FROM `' . DB::table( 'feeds' ) . '` tb1 WHERE `blog_id`=%d AND `share_on_background`=1 and `is_sended`=0 and `send_time`<=%s AND (SELECT count(0) FROM `' . DB::WPtable( 'posts', TRUE ) . '` WHERE `id`=tb1.`post_id` AND (`post_status`=\'publish\' OR `post_type`=\'attachment\'))>0', [
+                $blog_id,
+                $now
+            ] ), ARRAY_A );
+
+            if ( ! empty( $pendingPosts[ 'count' ] ) && $pendingPosts[ 'count' ] > 1 )
+            {
+                wp_remote_get( site_url() .'/wp-cron.php?doing_wp_cron', [ 'blocking' => false ] );
+            }
 
 			Helper::resetBlogId();
 		}
@@ -324,17 +337,17 @@ class ShareService
 				'instagram_h' => Helper::getOption( 'post_text_message_instagram_h', "{title}" ),
 				'twitter'     => Helper::getOption( 'post_text_message_twitter', "{title}" ),
 				'linkedin'    => Helper::getOption( 'post_text_message_linkedin', "{title}" ),
-				'tumblr'      => Helper::getOption( 'post_text_message_tumblr', "{title}" ),
+				'tumblr'      => Helper::getOption( 'post_text_message_tumblr', "<img src='{featured_image_url}'>\n\n{content_full}" ),
 				'reddit'      => Helper::getOption( 'post_text_message_reddit', "{title}" ),
 				'vk'          => Helper::getOption( 'post_text_message_vk', "{title}" ),
 				'ok'          => Helper::getOption( 'post_text_message_ok', "{title}" ),
-				'pinterest'   => Helper::getOption( 'post_text_message_pinterest', "{title}" ),
+				'pinterest'   => Helper::getOption( 'post_text_message_pinterest', "{content_short_500}" ),
 				'google_b'    => Helper::getOption( 'post_text_message_google_b', "{title}" ),
-				'blogger'     => Helper::getOption( 'post_text_message_blogger', "{content_full}" ),
-				'telegram'    => Helper::getOption( 'post_text_message_telegram', "{title}" ),
-				'medium'      => Helper::getOption( 'post_text_message_medium', "{title}" ),
+				'blogger'     => Helper::getOption( 'post_text_message_blogger', "<img src='{featured_image_url}'>\n\n{content_full} \n\n<a href='{link}'>{link}</a>" ),
+				'telegram'    => Helper::getOption( 'post_text_message_telegram', "{title}\n\n<img src='{featured_image_url}'>\n\n{content_full}{link}" ),
+				'medium'      => Helper::getOption( 'post_text_message_medium', "{title}\n\n<img src='{featured_image_url}'>\n\n{content_full}\n\n<a href='{link}'>{link}</a>" ),
 				'wordpress'   => Helper::getOption( 'post_text_message_wordpress', "{content_full}" ),
-				'plurk'       => Helper::getOption( 'post_text_message_plurk', "{title}" )
+				'plurk'       => Helper::getOption( 'post_text_message_plurk', "{title}\n\n{featured_image_url}\n\n{content_short_200}" )
 			];
 
 			$getScheduledFeeds = DB::DB()->get_results( DB::DB()->prepare( "
@@ -397,16 +410,16 @@ class ShareService
 			$post_text_message[ 'instagram_h' ] = Helper::getOption( 'post_text_message_instagram_h', '{title}' );
 			$post_text_message[ 'linkedin' ]    = Helper::getOption( 'post_text_message_linkedin', '{title}' );
 			$post_text_message[ 'vk' ]          = Helper::getOption( 'post_text_message_vk', '{title}' );
-			$post_text_message[ 'pinterest' ]   = Helper::getOption( 'post_text_message_pinterest', '{title}' );
+			$post_text_message[ 'pinterest' ]   = Helper::getOption( 'post_text_message_pinterest', "{content_short_500}" );
 			$post_text_message[ 'reddit' ]      = Helper::getOption( 'post_text_message_reddit', '{title}' );
-			$post_text_message[ 'tumblr' ]      = Helper::getOption( 'post_text_message_tumblr', '{title}' );
+			$post_text_message[ 'tumblr' ]      = Helper::getOption( 'post_text_message_tumblr', "<img src='{featured_image_url}'>\n\n{content_full}" );
 			$post_text_message[ 'ok' ]          = Helper::getOption( 'post_text_message_ok', '{title}' );
 			$post_text_message[ 'google_b' ]    = Helper::getOption( 'post_text_message_google_b', '{title}' );
-			$post_text_message[ 'blogger' ]     = Helper::getOption( 'post_text_message_blogger', '{content_full}' );
+			$post_text_message[ 'blogger' ]     = Helper::getOption( 'post_text_message_blogger', "<img src='{featured_image_url}'>\n\n{content_full} \n\n<a href='{link}'>{link}</a>" );
 			$post_text_message[ 'telegram' ]    = Helper::getOption( 'post_text_message_telegram', '{title}' );
-			$post_text_message[ 'medium' ]      = Helper::getOption( 'post_text_message_medium', '{title}' );
+			$post_text_message[ 'medium' ]      = Helper::getOption( 'post_text_message_medium', "{title}\n\n<img src='{featured_image_url}'>\n\n{content_full}\n\n<a href='{link}'>{link}</a>" );
 			$post_text_message[ 'wordpress' ]   = Helper::getOption( 'post_text_message_wordpress', '{content_full}' );
-			$post_text_message[ 'plurk' ]       = Helper::getOption( 'post_text_message_plurk', '{title}' );
+			$post_text_message[ 'plurk' ]       = Helper::getOption( 'post_text_message_plurk', "{title}\n\n{featured_image_url}\n\n{content_short_200}" );
 		}
 
 		// if the request is from real user
@@ -455,12 +468,12 @@ class ShareService
 					SELECT tb2.id, tb2.driver, tb1.filter_type, tb1.categories, 'account' AS node_type 
 					FROM " . DB::table( 'account_status' ) . " tb1
 					INNER JOIN " . DB::table( 'accounts' ) . " tb2 ON tb2.id=tb1.account_id
-					WHERE tb1.user_id=%d AND tb2.blog_id=%d", [ $userId, Helper::getBlogId() ] ), ARRAY_A );
+					WHERE tb1.user_id=%d AND (tb2.user_id=%d OR tb2.is_public=1) AND tb2.blog_id=%d", [ $userId, $userId, Helper::getBlogId() ] ), ARRAY_A );
 
 			$active_nodes = DB::DB()->get_results( DB::DB()->prepare( "
 					SELECT tb2.id, tb2.driver, tb2.node_type, tb1.filter_type, tb1.categories FROM " . DB::table( 'account_node_status' ) . " tb1
 					LEFT JOIN " . DB::table( 'account_nodes' ) . " tb2 ON tb2.id=tb1.node_id
-					WHERE tb1.user_id=%d AND tb2.blog_id=%d", [ $userId, Helper::getBlogId() ] ), ARRAY_A );
+					WHERE tb1.user_id=%d AND (tb2.user_id=%d OR tb2.is_public=1) AND tb2.blog_id=%d", [ $userId, $userId, Helper::getBlogId() ] ), ARRAY_A );
 
 			$active_nodes = array_merge( $accounts, $active_nodes );
 
@@ -490,7 +503,7 @@ class ShareService
 			$schedule_date = Date::dateTimeSQL( $post->post_date, '+1 minute' );
 		}
 
-		self::insertFeeds( $post_id, $nodes_list, $post_text_message, TRUE, $schedule_date, 'auto_post', $backgroundShare );
+		self::insertFeeds( $post_id, $userId, $nodes_list, $post_text_message, TRUE, $schedule_date, 'auto_post', $backgroundShare );
 
 		if ( $new_status == 'publish' )
 		{
@@ -560,7 +573,7 @@ class ShareService
 
 		$post_id = ! empty( $getRandomPost[ 'ID' ] ) ? $getRandomPost[ 'ID' ] : 0;
 
-		if ( ! ( $post_id > 0 ) && $schedule_info[ 'post_sort' ] !== 'old_first' )
+		if ( ! ( $post_id > 0 ) && ( $schedule_info[ 'post_sort' ] !== 'old_first' || ! empty( $schedule_info[ 'save_post_ids' ] ) )  )
 		{
 			DB::DB()->update( DB::table( 'schedules' ), [ 'status' => 'finished' ], [ 'id' => $scheduleId ] );
 
@@ -655,7 +668,7 @@ class ShareService
 
 		if ( ! empty( $nodes_list ) )
 		{
-			self::insertFeeds( $post_id, $nodes_list, $customPostMessages, FALSE, NULL, 'schedule', 1, $scheduleId, TRUE );
+			self::insertFeeds( $post_id, $userId, $nodes_list, $customPostMessages, FALSE, NULL, 'schedule', 1, $scheduleId, TRUE );
 
 			Helper::resetBlogId();
 
@@ -763,6 +776,10 @@ class ShareService
 				$images       = [ $url1 ];
 				$imagesLocale = [ $url2 ];
 			}
+			else if ( empty( $link1 ) )
+			{
+				$sendType = 'custom_message';
+			}
 
 			if ( ! empty( $link1 ) )
 			{
@@ -802,11 +819,6 @@ class ShareService
 
 			$message = htmlspecialchars_decode( $message );
 			$link    = $shortLink;
-
-			if ( Helper::getOption( 'multiple_newlines_to_single', '0' ) == '1' )
-			{
-				$message = preg_replace( "/\n\s*\n\s*/", "\n\n", $message );
-			}
 		}
 
 		if ( $driver != 'medium' && $driver != 'wordpress' && $driver != 'tumblr' && $driver != 'blogger' )
@@ -821,19 +833,23 @@ class ShareService
 			}
 
 			$message = str_replace( [ '&nbsp;', "\r\n" ], [ '', "\n" ], $message );
-			//$message = preg_replace("/(\n\s*)+/", "\n", $message);
+		}
+
+		if ( Helper::getOption( 'multiple_newlines_to_single', '0' ) == '1' && ! ( $postType == 'fs_post' || $postType == 'fs_post_tmp' ) )
+		{
+			$message = preg_replace( "/\n\s*\n\s*/", "\n\n", $message );
+			//$message = preg_replace( "/(\n\s*){2,}/", "\n\n", $message );
 		}
 
 		if ( $driver == 'fb' )
 		{
 			if ( $sendType != 'image' && $sendType != 'video' )
 			{
-				$pMethod = (int) Helper::getCustomSetting( 'posting_type', Helper::getOption( 'facebook_posting_type', '1' ), $feedInf[ 'node_type' ], $feedInf[ 'node_id' ] );
+				$pMethod   = (int) Helper::getCustomSetting( 'posting_type', Helper::getOption( 'facebook_posting_type', '1' ), $feedInf[ 'node_type' ], $feedInf[ 'node_id' ] );
+				$thumbnail = WPPostThumbnail::getPostThumbnailURL( $post_id, $driver );
 
 				if ( $pMethod === 2 )
 				{
-					$thumbnail = WPPostThumbnail::getPostThumbnailURL( $post_id, $driver );
-
 					if ( ! empty( $thumbnail ) )
 					{
 						$sendType = 'image';
@@ -921,7 +937,7 @@ class ShareService
 
 			if ( $sendType != 'image' && $sendType != 'video' )
 			{
-				$pMethod = (int) Helper::getCustomSetting( 'posting_type', Helper::getOption( 'plurk_posting_type', '1' ), $feedInf[ 'node_type' ], $feedInf[ 'node_id' ] );
+				$pMethod = (int) Helper::getCustomSetting( 'posting_type', Helper::getOption( 'plurk_posting_type', '2' ), $feedInf[ 'node_type' ], $feedInf[ 'node_id' ] );
 
 				if ( $pMethod === 1 )
 				{
@@ -959,7 +975,7 @@ class ShareService
 			{
 				return [
 					'status'    => 'error',
-					'error_msg' => fsp__( 'Error! There isn\'t a Twitter App!' )
+					'error_msg' => fsp__( 'Error! There isn\'t a Plurk App!' )
 				];
 			}
 
@@ -974,7 +990,7 @@ class ShareService
 			if ( $sendType != 'image' && $sendType != 'video' )
 			{
 				$thumbnailPath = WPPostThumbnail::getPostThumbnail( $post_id, $driver );
-				$thumbnailURL = WPPostThumbnail::getPostThumbnailURL( $post_id, $driver );
+				$thumbnailURL  = WPPostThumbnail::getPostThumbnailURL( $post_id, $driver );
 
 				if ( ! empty( $thumbnailPath ) )
 				{
@@ -984,8 +1000,8 @@ class ShareService
 
 				if ( ! empty( $thumbnailURL ) )
 				{
-					$sendType     = 'image';
-					$images = [ $thumbnailURL ];
+					$sendType = 'image';
+					$images   = [ $thumbnailURL ];
 				}
 			}
 			if ( ! empty( $imagesLocale ) || ! empty( $videoURLLocale ) || ! empty( $images ) || ! empty( $videoURL ) )
@@ -1128,7 +1144,7 @@ class ShareService
 		}
 		else if ( $driver == 'pinterest' )
 		{
-			$altText   = Helper::getOption( 'alt_text_pinterest', '' );
+			$altText = Helper::getOption( 'alt_text_pinterest', '' );
 
 			if ( ! empty( $altText ) )
 			{
@@ -1203,8 +1219,10 @@ class ShareService
 		}
 		else if ( $driver == 'tumblr' )
 		{
-			$postTitleTumblr = Helper::getOption( 'post_title_tumblr', "{title}" );
+			$postTitleTumblr = Helper::getOption( 'post_title_tumblr', "" );
 			$postTitleTumblr = Helper::replaceTags( $postTitleTumblr, $postInf, $longLink, $shortLink );
+
+			$thumbnail = WPPostThumbnail::getPostThumbnailURL( $post_id, $driver );
 
 			if ( $sendType != 'image' && $sendType != 'video' )
 			{
@@ -1217,12 +1235,10 @@ class ShareService
 
 				if ( $pMethod === 2 )
 				{
-					$thumbnail = WPPostThumbnail::getPostThumbnailURL( $post_id, $driver );
-
 					if ( ! empty( $thumbnail ) )
 					{
-						$sendType       = 'image';
-						$imagesLocale   = [ $thumbnail ];
+						$sendType     = 'image';
+						$imagesLocale = [ $thumbnail ];
 					}
 				}
 				else if ( $pMethod === 3 )
@@ -1236,7 +1252,7 @@ class ShareService
 				}
 				else if ( ! empty( $message ) )
 				{
-					if (  $pMethod === 4 )
+					if ( $pMethod === 4 )
 					{
 						$sendType = 'text';
 					}
@@ -1247,16 +1263,35 @@ class ShareService
 				}
 			}
 
+			$excerpt = '';
+			if ( $sendType == 'link' )
+			{
+				$excerpt = $postType == 'fs_post' || $postType == 'fs_post_tmp' ? $message : strip_tags( get_the_excerpt( $post_id ) );
+
+				$excerpt = preg_replace( '/\n{2,}/', "\n\n", $excerpt );
+				$excerpt = preg_replace( '/[\t ]+/', ' ', $excerpt );
+
+				$excerpt = empty( $excerpt ) ? TwitterAutoCut::cut( $message, FALSE ) : $excerpt;
+			}
+
 			if ( Helper::getOption( 'tumblr_send_tags', '0' ) == '1' )
 			{
-				$tags = implode( ',', Helper::getPostTags( $postInf, FALSE ) );
+				$tags = implode( ',', Helper::getPostTerms( $postInf, NULL, FALSE ) );
 			}
 			else
 			{
 				$tags = '';
 			}
 
-			$res = Tumblr::sendPost( $node_info[ 'info' ], $sendType, $postTitleTumblr, $message, $link, $imagesLocale, $videoURLLocale, $accessToken, $accessTokenSecret, $appId, $proxy, $tags );
+			if ( empty( $node_info[ 'password' ] ) )
+			{
+				$res = Tumblr::sendPost( $node_info[ 'info' ], $sendType, $postTitleTumblr, $message, $link, $imagesLocale, $videoURLLocale, $accessToken, $accessTokenSecret, $appId, $proxy, $tags, $thumbnail, $excerpt );
+			}
+			else
+			{
+				$tumblr = new TumblrLoginPassMethod( $node_info[ 'email' ], $node_info[ 'password' ], $proxy );
+				$res    = $tumblr->sendPost( $node_info[ 'info' ][ 'screen_name' ], $sendType, $postTitleTumblr, $message, $link, $tags, $imagesLocale, $videoURLLocale, $thumbnail, $excerpt );
+			}
 		}
 		else if ( $driver == 'twitter' )
 		{
@@ -1291,39 +1326,21 @@ class ShareService
 
 			if ( Helper::getOption( 'twitter_auto_cut_tweets', '1' ) == 1 )
 			{
-				$message       = preg_replace( '/\n+/', "\n", $message );
-				$message       = preg_replace( '/[\t ]+/', ' ', $message );
-				$emojis        = Helper::count_emojis( $message ) * 2; // count each emoji as 2 bytes
-				$twitter_limit = 280 - $emojis;
+				$message = preg_replace( '/\n{2,}/', "\n\n", $message );
+				$message = preg_replace( '/[\t ]+/', ' ', $message );
 
-				if ( $sendType === 'link' )
-				{
-					if ( mb_strlen( "\n" . $link, 'UTF-8' ) <= $twitter_limit )
-					{
-						$limit = $twitter_limit - 25;
-
-						if ( mb_strlen( $message, 'UTF-8' ) > $limit )
-						{
-							$message = mb_substr( $message, 0, $limit - 3, 'UTF-8' ) . '...';
-						}
-					}
-					else
-					{
-						$link = '';
-
-						if ( mb_strlen( $message, 'UTF-8' ) > $twitter_limit )
-						{
-							$message = mb_substr( $message, 0, $twitter_limit - 3, 'UTF-8' ) . '...';
-						}
-					}
-				}
-				else if ( mb_strlen( $message, 'UTF-8' ) > $twitter_limit )
-				{
-					$message = mb_substr( $message, 0, $twitter_limit - 3, 'UTF-8' ) . '...';
-				}
+				$message = TwitterAutoCut::cut( $message, $sendType === 'link' );
 			}
 
-			$res = Twitter::sendPost( $appId, $sendType, $message, $link, $imagesLocale, $videoURLLocale, $accessToken, $accessTokenSecret, $proxy );
+			if ( empty( $options ) )
+			{
+				$res = Twitter::sendPost( $appId, $sendType, $message, $link, $imagesLocale, $videoURLLocale, $accessToken, $accessTokenSecret, $proxy );
+			}
+			else
+			{
+				$twitterPrivateAPI = new TwitterPrivateAPI( $options, $proxy );
+				$res               = $twitterPrivateAPI->sendPost( $sendType, $message, $link, $imagesLocale, $videoURLLocale );
+			}
 		}
 		else if ( $driver == 'ok' )
 		{
@@ -1462,7 +1479,7 @@ class ShareService
 		}
 		else if ( $driver == 'blogger' )
 		{
-			$page_as_page       =  Helper::getCustomSetting( 'posting_type', Helper::getOption( 'blogger_posting_type', '0' ), $feedInf[ 'node_type' ], $feedInf[ 'node_id' ] ) == '1';
+			$page_as_page       = Helper::getCustomSetting( 'posting_type', Helper::getOption( 'blogger_posting_type', '0' ), $feedInf[ 'node_type' ], $feedInf[ 'node_id' ] ) == '1';
 			$blogger_post_type  = ( $postType === 'page' && $page_as_page ) ? 'page' : 'post';
 			$isDraft            = Helper::getOption( 'blogger_post_status', 'publish' ) !== 'publish';
 			$post_title_blogger = Helper::getOption( 'post_title_blogger', "{title}" );
@@ -1471,7 +1488,7 @@ class ShareService
 
 			if ( Helper::getOption( 'blogger_post_with_terms', 1 ) == 1 )
 			{
-				$labels = Helper::getPostTags( $postInf, FALSE, TRUE, ',' );
+				$labels = Helper::getPostTerms( $postInf, NULL, FALSE, TRUE, ',' );
 			}
 
 			$labels_cut = [];
@@ -1545,7 +1562,7 @@ class ShareService
 		{
 			if ( Helper::getOption( 'medium_send_tags', '0' ) == '1' )
 			{
-				$tags = Helper::getPostTags( $postInf, FALSE );
+				$tags = Helper::getPostTerms( $postInf, NULL, FALSE );
 			}
 			else
 			{

@@ -6,14 +6,17 @@
 
 		if ( selectedMethod === '1' ) // app method
 		{
-			let _this = $( this );
-			let appID = $( '#fspModalAppSelector' ).val().trim();
 			let proxy = $( '#fspProxy' ).val().trim();
-			let openURL = `${ fspConfig.siteURL }/?google_b_app_redirect=${ appID }&proxy=${ proxy }`;
+			let openURL;
 
-			if ( $( '#fspModalAppSelector > option:selected' ).data( 'is-standart' ).toString() === '1' )
+			if ( ! $( '#fspUseCustomApp' ).is( ':checked' ) )
 			{
 				openURL = `${ fspConfig.standartAppURL }&proxy=${ proxy }&encode=true`;
+			}
+			else
+			{
+				let appID = $( '#fspModalAppSelector' ).val().trim();
+				openURL   = `${ fspConfig.siteURL }/?google_b_app_redirect=${ appID }&proxy=${ proxy }`;
 			}
 
 			window.open( openURL, 'fs-app', 'width=750, height=550' );

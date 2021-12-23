@@ -5,37 +5,40 @@
 
 	doc.ready( function () {
 		let currentPage = 1;
+		let retriedFeedId = 0;
+		let retriedLogDiv = '';
 
 		doc.on( 'change', '#fspRowsSelector, #fspFilterSelector', function () {
 			FSPLoadLogs( 1 );
 		} )
 		   .on( 'change', '#fspLogsPageSelector', function () {
-			let page = $( this ).val();
+			   let page = $( this ).val();
 
-			FSPLoadLogs( page );
-		} )
+			   FSPLoadLogs( page );
+		   } )
 		   .on( 'click', '.fsp-logs-page', function () {
-			let _this = $( this );
-			let page = _this.data( 'page' );
+			   let _this = $( this );
+			   let page = _this.data( 'page' );
 
-			if ( page === currentPage )
-			{
-				return;
-			}
-			else
-			{
-				currentPage = page;
-			}
+			   if ( page === currentPage )
+			   {
+				   return;
+			   }
+			   else
+			   {
+				   currentPage = page;
+			   }
 
-			FSPLoadLogs( page );
-		} ).on( 'change', '#fspDeleteLogs', function () {
+			   FSPLoadLogs( page );
+		   } ).on( 'change', '#fspDeleteLogs', function () {
 
+			let scheduleID = $( '#fspLogsScheduleID' ).val();
 			let confirmMessage = '';
 
 			let data = {
-				'type': $( this ).val()
-			}
-
+				'type': $( this ).val(),
+				'schedule_id': scheduleID
+			};
 
 			if ( data.type === 'all' )
 			{
@@ -83,55 +86,51 @@
 			$( this ).children( '#fspDeleteLogsDefault' ).prop( 'selected', true );
 		} )
 		   .on( 'click', '.fsp-logs-retry', function () {
-			let _this = $( this );
-			let feedId = _this.data( 'feed-id' );
+			   let _this = $( this );
+			   retriedFeedId = _this.data( 'feed-id' );
 
-			if ( feedId )
-			{
-				FSPoster.ajax(
-					'get_feed_details',
-					{
-						'feed_id': feedId
-					},
-					function ( data ) {
-						FSPoster.ajax(
-							'share_saved_post',
-							{
-								'post_id': data.result.post_id,
-								'nodes': data.result.nodes,
-								'background': 0,
-								'custom_messages': data.result.customMessages,
-								'shared_from': data.result.sharedFrom,
-								'retried': 1
-							},
-							function () {
-								FSPoster.loadModal( 'share_feeds', { 'post_id': data.result.post_id }, true );
-							}
-						);
-					}
-				);
-			}
-		} )
-
+			   if ( retriedFeedId )
+			   {
+				   FSPoster.ajax(
+					   'get_feed_details',
+					   {
+						   'feed_id': retriedFeedId
+					   },
+					   function ( data ) {
+						   FSPoster.loadModal( 'share_feeds', { 'post_id': data.result.post_id }, true );
+					   }
+				   );
+			   }
+		   } )
+		   .on( 'click', '[data-modal-close=true]', function () {
+			   FSPoster.ajax( 'report3_data', { feed_id: retriedFeedId }, function ( result ) {
+				   $( '[data-feed-id=' + retriedFeedId + ']' ).parent().parent().replaceWith( logData( result[ 'data' ][ 0 ] ) );
+			   } );
+		   } )
 		   .on( 'click', '#fspExportLogs', function () {
-			FSPoster.ajax(
-				'export_logs_to_csv',
-				{},
-				function ( result )
-				{
-					let a = $( '<a>' );
 
-					a.attr( 'href', result.file );
+			   let scheduleID = $( '#fspLogsScheduleID' ).val();
+			   let filter = $( '#fspFilterSelector' ).val();
 
+			   FSPoster.ajax(
+				   'export_logs_to_csv',
+				   {
+					   'schedule_id': scheduleID,
+					   'filter_results': filter
+				   },
+				   function ( result ) {
+					   let a = $( '<a>' );
 
-					$( 'body' ).append( a );
+					   a.attr( 'href', result.file );
 
-					a.attr('download', result.filename );
-					a[ 0 ].click();
-					a.remove();
-				}
-			);
-		} );
+					   $( 'body' ).append( a );
+
+					   a.attr( 'download', result.filename );
+					   a[ 0 ].click();
+					   a.remove();
+				   }
+			   );
+		   } );
 		FSPLoadLogs( FSPObject.page );
 	} );
 } )( jQuery );
@@ -181,92 +180,7 @@ function FSPLoadLogs ( page )
 
 		for ( let i in result[ 'data' ] )
 		{
-			let statusBtn;
-
-			if ( result[ 'data' ][ i ][ 'status' ] === 'ok' )
-			{
-				statusBtn = `<div class="fsp-status fsp-is-success"><i class="fas fa-check"></i>${ fsp__( 'SUCCESS' ) }</div>`;
-			}
-			else if ( result[ 'data' ][ i ][ 'status' ] === 'error' )
-			{
-				statusBtn = `<div class="fsp-status fsp-is-danger fsp-tooltip" data-title="${ result[ 'data' ][ i ][ 'error_msg' ] }"><i class="fas fa-times"></i>${ fsp__( 'ERROR' ) }</div>
-						<button class="fsp-button fsp-is-warning fsp-logs-retry" data-feed-id="${ result[ 'data' ][ i ][ 'id' ] }"><i class="fas fa-sync"></i>${ fsp__( 'RETRY' ) }</button>`;
-			}
-			else
-			{
-				statusBtn = `<div class="fsp-status fsp-is-warning"><i class="fas fa-check"></i>${ fsp__( 'NOT SENT' ) }</div>`;
-			}
-
-			let  post_link = ``;
-
-			if (  result[ 'data' ][ i ][ 'has_post_link' ] )
-			{
-				post_link = `<a target="_blank" href="${ fspConfig.siteURL }/?p=${ result[ 'data' ][ i ][ 'wp_post_id' ] }" class="fsp-tooltip" data-title="${ fsp__( 'Post permalink' ) }"><i class="fas fa-external-link-alt"></i></a>`;
-			}
-
-			let account_link = ``;
-
-			if ( ! result[ 'data' ][ i ][ 'is_deleted' ] )
-			{
-				account_link = `<a target="_blank" href="${ result[ 'data' ][ i ][ 'profile_link' ] }" class="fsp-tooltip" data-title="${ fsp__( 'Profile link' ) }"><i class="fas fa-external-link-alt"></i></a>`;
-			}
-
-			let driverIcon = result[ 'data' ][ i ][ 'icon' ];
-
-			$( '#fspLogs' ).append( `
-				<div class="fsp-log">
-					<div class="fsp-is-second">
-						<input type="checkbox" class="fsp-form-checkbox fsp-log-clear-checkbox" data-id="${ result[ 'data' ][ i ][ 'id' ] }">
-					</div>
-					&nbsp;
-					<div class="fsp-log-image">
-						<img src="${ result[ 'data' ][ i ][ 'cover' ] }" onerror="FSPoster.no_photo( this );">
-					</div>
-					<div class="fsp-log-title">
-						<div class="fsp-log-title-text">
-							${ result[ 'data' ][ i ][ 'name' ] }
-							${ account_link }
-						</div>
-						<div class="fsp-log-title-subtext">
-							${ result[ 'data' ][ i ][ 'date' ] }
-
-							${ post_link }
-
-							<span class="fsp-tooltip" data-title="${ result[ 'data' ][ i ][ 'shared_from' ] }"><i class="fa fa-info-circle"></i></span>
-						</div>
-					</div>
-					<div class="fsp-log-title fsp-is-second">
-						<div class="fsp-log-title-link">
-							<a target="_blank" href="${ result[ 'data' ][ i ][ 'post_link' ] }">
-								<i class="fas fa-external-link-alt"></i>
-								${ fsp__( 'Shared post link' ) }
-							</a>
-						</div>
-						<div class="fsp-log-title-subtext fsp-log-title-sublink">
-							<i class="${ driverIcon }"></i>&nbsp;${ result[ 'data' ][ i ][ 'driver' ][ 0 ].toUpperCase() + result[ 'data' ][ i ][ 'driver' ].substring( 1 ) }&nbsp;>&nbsp;${ result[ 'data' ][ i ][ 'node_type' ] + ( result[ 'data' ][ i ][ 'feed_type' ] !== '' ? ' > ' + result[ 'data' ][ i ][ 'feed_type' ] : '' ) }
-						</div>
-					</div>
-					<div class="fsp-log-status-container">
-						${ statusBtn }
-					</div>
-					<div class="fsp-log-stats">
-						${ result[ 'data' ][ i ][ 'hide_stats' ] ? '' : `
-							<div class="fsp-log-stat">
-								<i class="far fa-eye"></i> ${ fsp__( 'Hits' ) }: <span class="fsp-log-stat-value">${ result[ 'data' ][ i ][ 'hits' ] }</span>
-							</div>
-							<div class="fsp-log-stat">
-								<i class="far fa-comments"></i> ${ fsp__( 'Comments' ) }: <span class="fsp-log-stat-value">${ typeof result[ 'data' ][ i ][ 'insights' ][ 'comments' ] != 'undefined' ? result[ 'data' ][ i ][ 'insights' ][ 'comments' ] : 0 }</span>
-							</div>
-							<div class="fsp-log-stat">
-								<i class="far fa-thumbs-up"></i> ${ fsp__( 'Likes' ) }: <span class="fsp-log-stat-value">${ result[ 'data' ][ i ][ 'insights' ][ 'like' ] }</span>
-							</div>
-							<div class="fsp-log-stat">
-								<i class="fas fa-share-alt"></i> ${ fsp__( 'Shares' ) }: <span class="fsp-log-stat-value">${ typeof result[ 'data' ][ i ][ 'insights' ][ 'shares' ] != 'undefined' ? result[ 'data' ][ i ][ 'insights' ][ 'shares' ] : 0 }</span>
-							</div>
-						` }
-					</div>
-				</div>
-			` );
+			$( '#fspLogs' ).append( logData( result[ 'data' ][ i ] ) );
 		}
 
 		let logsPages = '';
@@ -294,4 +208,98 @@ function FSPLoadLogs ( page )
 
 		$( '#fspLogsPages' ).html( logsPages );
 	} );
+}
+
+function logData ( result )
+{
+	let statusBtn;
+
+	if ( result[ 'status' ] === 'ok' )
+	{
+		statusBtn = `<div class="fsp-status fsp-is-success"><i class="fas fa-check"></i>${ fsp__( 'SUCCESS' ) }</div>`;
+	}
+	else if ( result[ 'status' ] === 'error' )
+	{
+		statusBtn = `<div class="fsp-status fsp-is-danger fsp-tooltip" data-title="${ result[ 'error_msg' ] }"><i class="fas fa-info-circle"></i>${ fsp__( 'ERROR' ) }</div>`;
+
+		if ( ! result[ 'is_deleted' ] )
+		{
+			statusBtn += `<button class="fsp-button fsp-is-warning fsp-logs-retry" data-feed-id="${ result[ 'id' ] }"><i class="fas fa-sync"></i>${ fsp__( 'RETRY' ) }</button>`;
+		}
+	}
+	else
+	{
+		statusBtn = `<div class="fsp-status fsp-is-warning"><i class="fas fa-check"></i>${ fsp__( 'NOT SENT' ) }</div>`;
+	}
+
+	let driverIcon = result[ 'icon' ];
+
+	let post_link = ``;
+
+	if ( result[ 'has_post_link' ] )
+	{
+		post_link = `<a target="_blank" href="${ fspConfig.siteURL }/?p=${ result[ 'wp_post_id' ] }" class="fsp-tooltip" data-title="${ fsp__( 'Post permalink' ) }"><i class="fas fa-external-link-alt"></i></a>`;
+	}
+
+	let account_link = ``;
+
+	if ( ! result[ 'is_deleted' ] )
+	{
+		account_link = `<a target="_blank" href="${ result[ 'profile_link' ] }" class="fsp-tooltip" data-title="${ fsp__( 'Profile link' ) }"><i class="fas fa-external-link-alt"></i></a>`;
+	}
+
+	return `
+				<div class="fsp-log">
+					<div class="fsp-is-second">
+						<input type="checkbox" class="fsp-form-checkbox fsp-log-clear-checkbox" data-id="${ result[ 'id' ] }">
+					</div>
+					&emsp;
+					<div class="fsp-log-image">
+						<img src="${ result[ 'cover' ] }" onerror="FSPoster.no_photo( this );">
+					</div>
+					<div class="fsp-log-title">
+						<div class="fsp-log-title-text">
+							${ result[ 'name' ] }
+							${ account_link }
+						</div>
+						<div class="fsp-log-title-subtext">
+							${ result[ 'date' ] }
+
+							${ post_link }
+
+							<span class="fsp-tooltip" data-title="${ result[ 'shared_from' ] }"><i class="fa fa-info-circle"></i></span>
+						</div>
+					</div>
+					<div class="fsp-log-title fsp-is-second">
+						<div class="fsp-log-title-link">
+							<a target="_blank" href="${ result[ 'post_link' ] }">
+								<i class="fas fa-external-link-alt"></i>
+								${ fsp__( 'Shared post link' ) }
+							</a>
+						</div>
+						<div class="fsp-log-title-subtext fsp-log-title-sublink">
+							<i class="${ driverIcon }"></i>&nbsp;${ result[ 'driver' ][ 0 ].toUpperCase() + result[ 'driver' ].substring( 1 ) }&nbsp;>&nbsp;${ result[ 'node_type' ] + ( result[ 'feed_type' ] !== '' ? ' > ' + result[ 'feed_type' ] : '' ) }
+						</div>
+					</div>
+					<div class="fsp-log-status-container">
+						${ statusBtn }
+					</div>
+					<div class="fsp-log-stats">
+						${ result[ 'hide_stats' ] ? '' : `
+							<div class="fsp-log-stat">
+								<i class="far fa-eye"></i> ${ fsp__( 'Hits' ) }: <span class="fsp-log-stat-value">${ result[ 'hits' ] }</span>
+							</div>
+							<div class="fsp-log-stat">
+								<i class="far fa-comments"></i> ${ fsp__( 'Comments' ) }: <span class="fsp-log-stat-value">${ typeof result[ 'insights' ][ 'comments' ] != 'undefined' ? result[ 'insights' ][ 'comments' ] : 0 }</span>
+							</div>
+							<div class="fsp-log-stat">
+								<i class="far fa-thumbs-up"></i> ${ fsp__( 'Likes' ) }: <span class="fsp-log-stat-value">${ result[ 'insights' ][ 'like' ] }</span>
+							</div>
+							<div class="fsp-log-stat">
+								<i class="fas fa-share-alt"></i> ${ fsp__( 'Shares' ) }: <span class="fsp-log-stat-value">${ typeof result[ 'insights' ][ 'shares' ] != 'undefined' ? result[ 'insights' ][ 'shares' ] : 0 }</span>
+							</div>
+						` }
+					</div>
+				</div>
+			`;
 }

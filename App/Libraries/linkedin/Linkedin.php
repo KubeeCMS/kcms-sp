@@ -337,11 +337,11 @@ class Linkedin extends SocialNetwork
 		{
 			exit( $me[ 'error' ][ 'message' ] );
 		}
-		else if ( isset( $me[ 'status' ] ) && $me[ 'status' ] == 401 )
+		else if ( isset( $me[ 'status' ] ) && $me[ 'status' ] === '401' )
 		{
 			exit( fsp__( 'LinkedIn API access token life is a year and it is expired. Please add your account to the plugin again without deleting the account from the plugin; as a result, account settings will remain as it is.' ) );
 		}
-		else if ( isset( $me[ 'status' ] ) && $me[ 'status' ] == 429 )
+		else if ( isset( $me[ 'status' ] ) && $me[ 'status' ] === '429' )
 		{
 			exit( fsp__( 'You reached a limit. Please try again later.' ) );
 		}

@@ -29,7 +29,7 @@ trait Ajax
 		{
 			Helper::response( FALSE, fsp__( 'You don\'t have permission to delete the App!' ) );
 		}
-		else if ( $check_app[ 'is_standart' ] > 0 )
+		else if ( ! empty( $check_app[ 'slug' ] ) )
 		{
 			Helper::response( FALSE, fsp__( 'You can\'t delete the App!' ) );
 		}
@@ -94,14 +94,13 @@ trait Ajax
 		{
 			$appName = Facebook::checkApp( $data[ 'app_id' ], $data[ 'app_key' ], $data[ 'version' ] );
 		}
-		else if( $driver === 'instagram' ){
+		else if ( $driver === 'instagram' )
+		{
 			$appName = InstagramAppMethod::checkApp( $data[ 'app_id' ], $data[ 'app_key' ] );
 		}
 
-		$checkParams[ 'is_public' ]   = 0;
-		$checkParams[ 'is_standart' ] = 0;
-
-		$checkParams[ 'name' ] = isset( $appName ) ? $appName : ( empty( $data[ 'app_id' ] ) ? $data[ 'app_key' ] : $data[ 'app_id' ] );
+		$checkParams[ 'is_public' ] = 0;
+		$checkParams[ 'name' ]      = isset( $appName ) ? $appName : ( empty( $data[ 'app_id' ] ) ? $data[ 'app_key' ] : $data[ 'app_id' ] );
 
 		DB::DB()->insert( DB::table( 'apps' ), $checkParams );
 

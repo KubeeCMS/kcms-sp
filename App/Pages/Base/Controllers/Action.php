@@ -23,14 +23,15 @@ class Action
 SELECT tb2.*, tb1.filter_type, tb1.categories, (SELECT GROUP_CONCAT(`name`) FROM " . DB::WPtable( 'terms', TRUE ) . " WHERE FIND_IN_SET(term_id,tb1.categories) ) AS categories_name,'account' AS node_type
 FROM " . DB::table( 'account_status' ) . " tb1
 INNER JOIN " . DB::table( 'accounts' ) . " tb2 ON tb2.id=tb1.account_id
-WHERE tb1.user_id=%d AND tb2.blog_id=%d
-ORDER BY name", [ get_current_user_id(), Helper::getBlogId() ] ), ARRAY_A );
+WHERE tb1.user_id=%d AND (tb2.user_id=%d OR tb2.is_public=1) AND tb2.blog_id=%d
+ORDER BY name", [ get_current_user_id(), get_current_user_id(), Helper::getBlogId() ] ), ARRAY_A );
 
 				$active_nodes = DB::DB()->get_results( DB::DB()->prepare( "
 SELECT tb2.*, tb1.filter_type, tb1.categories, (SELECT GROUP_CONCAT(`name`) FROM " . DB::WPtable( 'terms', TRUE ) . " WHERE FIND_IN_SET(term_id,tb1.categories) ) AS categories_name FROM " . DB::table( 'account_node_status' ) . " tb1
 LEFT JOIN " . DB::table( 'account_nodes' ) . " tb2 ON tb2.id=tb1.node_id
-WHERE tb1.user_id=%d AND tb2.blog_id=%d
+WHERE tb1.user_id=%d AND (tb2.user_id=%d OR tb2.is_public=1) AND tb2.blog_id=%d
 ORDER BY (CASE node_type WHEN 'ownpage' THEN 1 WHEN 'group' THEN 2 WHEN 'page' THEN 3 END), name", [
+					get_current_user_id(),
 					get_current_user_id(),
 					Helper::getBlogId()
 				] ), ARRAY_A );
@@ -100,16 +101,16 @@ ORDER BY node_type, name", [
 		$cm_fs_post_text_message_instagram_h = Helper::getOption( 'post_text_message_instagram_h', '{title}' );
 		$cm_fs_post_text_message_linkedin    = Helper::getOption( 'post_text_message_linkedin', '{title}' );
 		$cm_fs_post_text_message_vk          = Helper::getOption( 'post_text_message_vk', '{title}' );
-		$cm_fs_post_text_message_pinterest   = Helper::getOption( 'post_text_message_pinterest', '{title}' );
+		$cm_fs_post_text_message_pinterest   = Helper::getOption( 'post_text_message_pinterest', "{content_short_500}" );
 		$cm_fs_post_text_message_reddit      = Helper::getOption( 'post_text_message_reddit', '{title}' );
-		$cm_fs_post_text_message_tumblr      = Helper::getOption( 'post_text_message_tumblr', '{title}' );
+		$cm_fs_post_text_message_tumblr      = Helper::getOption( 'post_text_message_tumblr', "<img src='{featured_image_url}'>\n\n{content_full}" );
 		$cm_fs_post_text_message_ok          = Helper::getOption( 'post_text_message_ok', '{title}' );
 		$cm_fs_post_text_message_google_b    = Helper::getOption( 'post_text_message_google_b', '{title}' );
-		$cm_fs_post_text_message_blogger     = Helper::getOption( 'post_text_message_blogger', '{content_full}' );
+		$cm_fs_post_text_message_blogger     = Helper::getOption( 'post_text_message_blogger', "<img src='{featured_image_url}'>\n\n{content_full} \n\n<a href='{link}'>{link}</a>" );
 		$cm_fs_post_text_message_telegram    = Helper::getOption( 'post_text_message_telegram', '{title}' );
-		$cm_fs_post_text_message_medium      = Helper::getOption( 'post_text_message_medium', '{title}' );
+		$cm_fs_post_text_message_medium      = Helper::getOption( 'post_text_message_medium', "{title}\n\n<img src='{featured_image_url}'>\n\n{content_full}\n\n<a href='{link}'>{link}</a>" );
 		$cm_fs_post_text_message_wordpress   = Helper::getOption( 'post_text_message_wordpress', '{content_full}' );
-		$cm_fs_post_text_message_plurk       = Helper::getOption( 'post_text_message_plurk', '{title}' );
+		$cm_fs_post_text_message_plurk       = Helper::getOption( 'post_text_message_plurk', "{title}\n\n{featured_image_url}\n\n{content_short_200}" );
 
 		if ( ! defined( 'NOT_CHECK_SP' ) && $share === '1' )
 		{

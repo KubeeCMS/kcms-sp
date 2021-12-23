@@ -33,6 +33,40 @@ class Action
 			'custom'           => fsp__( 'Custom date range' )
 		];
 
+		foreach ( $schedules as $key => $schedule )
+		{
+			$selectedAccounts = explode( ',', $schedule[ 'share_on_accounts' ] );
+			$accountList      = [];
+			$nodeList         = [];
+
+			foreach ( $selectedAccounts as $account )
+			{
+				$accountData = explode( ':', $account );
+
+				if ( ! isset( $accountData[ 1 ] ) )
+				{
+					continue;
+				}
+				else
+				{
+					if ( $accountData[ 0 ] === 'account' )
+					{
+						$accountList[] = $accountData[ 1 ];
+					}
+					else
+					{
+						$nodeList[] = $accountData[ 1 ];
+					}
+				}
+			}
+
+			$userId = get_current_user_id();
+			$count1 = ! empty( $accountList ) ? DB::DB()->get_row( 'SELECT COUNT(0) AS c FROM ' . DB::table( 'accounts' ) . ' WHERE (is_public=1 OR user_id=' . $userId . ') AND id IN (' . implode( ',', $accountList ) . ')', ARRAY_A ) : [ 'c' => 0 ];
+			$count2 = ! empty( $nodeList ) ? DB::DB()->get_row( 'SELECT COUNT(0) AS c FROM ' . DB::table( 'account_nodes' ) . ' WHERE (is_public=1 OR user_id=' . $userId . ') AND id IN (' . implode( ',', $nodeList ) . ')', ARRAY_A ) : [ 'c' => 0 ];
+
+			$schedules[ $key ][ 'accounts_count' ] = $count1[ 'c' ] + $count2[ 'c' ];
+		}
+
 		return [
 			'schedules'   => $schedules,
 			'namesArray1' => $names_array1,

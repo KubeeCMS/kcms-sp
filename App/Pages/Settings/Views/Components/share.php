@@ -98,6 +98,24 @@ defined( 'ABSPATH' ) or exit;
 </div>
 <div class="fsp-settings-row">
 	<div class="fsp-settings-col">
+		<div class="fsp-settings-label-text"><?php echo fsp__( 'Taxonomies as hashtags' ); ?></div>
+		<div class="fsp-settings-label-subtext"><?php echo fsp__( 'Select taxonomies that you want to share as social network hashtags. Adding the {terms} keyword to the custom message section will share selected terms as hashtags.' ); ?></div>
+	</div>
+	<div class="fsp-settings-col">
+		<select class="fsp-form-input select2-init" id="fs_hashtag_taxonomies" name="fs_hashtag_taxonomies[]" multiple>
+			<?php
+			$selectedTaxonomies = explode( '|', Helper::getOption( 'hashtag_taxonomies', 'post_tag|category' ) );
+
+			foreach ( get_taxonomies(['public'=>TRUE]) as $taxonomy )
+			{
+				echo '<option value="' . htmlspecialchars( $taxonomy ) . '"' . ( in_array( $taxonomy, $selectedTaxonomies ) ? ' selected' : '' ) . '>' . htmlspecialchars( get_taxonomy($taxonomy)->label ) . '</option>';
+			}
+			?>
+		</select>
+	</div>
+</div>
+<div class="fsp-settings-row">
+	<div class="fsp-settings-col">
 		<div class="fsp-settings-label-text"><?php echo fsp__( 'Replace the multiple blank lines with a single blank line' ); ?></div>
 		<div class="fsp-settings-label-subtext"><?php echo fsp__( 'Enable the option to replace multiple blank lines inside posts with a single blank line while sharing on social networks.' ); ?></div>
 	</div>
@@ -119,6 +137,18 @@ defined( 'ABSPATH' ) or exit;
 			<label class="fsp-toggle-label" for="fs_replace_whitespaces_with_underscore"></label>
 		</div>
 	</div>
+</div>
+<div class="fsp-settings-row">
+    <div class="fsp-settings-col">
+        <div class="fsp-settings-label-text"><?php echo fsp__( 'Uppercase hashtags' ); ?></div>
+        <div class="fsp-settings-label-subtext"><?php echo fsp__( 'Enable the option to share social network hashtags with uppercase characters.' ); ?></div>
+    </div>
+    <div class="fsp-settings-col">
+        <div class="fsp-toggle">
+            <input type="checkbox" name="fs_uppercase_hashtags" class="fsp-toggle-checkbox" id="fs_uppercase_hashtags"<?php echo Helper::getOption( 'uppercase_hashtags', '0' ) ? ' checked' : ''; ?>>
+            <label class="fsp-toggle-label" for="fs_uppercase_hashtags"></label>
+        </div>
+    </div>
 </div>
 <div class="fsp-settings-row">
 	<div class="fsp-settings-col">

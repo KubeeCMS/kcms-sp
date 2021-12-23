@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) or exit;
 			<i class="fas fa-info-circle"></i><?php echo fsp__( 'A new version %s is available. Please update the plugin.', [ esc_html( Helper::getVersion() ) ] ); ?>
 		</div>
 		<div class="fsp-box-logo">
-			<img src="<?php echo Pages::asset( 'Base', 'img/logo.svg' ); ?>">
+			<img src="<?php echo Pages::asset( 'Base', 'img/logo.png' ); ?>">
 		</div>
 		<div class="fsp-form-group">
 			<input type="text" id="fspPurchaseKey" autocomplete="off" class="fsp-form-input" placeholder="<?php echo fsp__( 'Enter the purchase key' ); ?>">

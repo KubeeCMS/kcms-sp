@@ -24,9 +24,11 @@ use FSPoster\App\Libraries\pinterest\Pinterest;
 use FSPoster\App\Libraries\fb\FacebookCookieApi;
 use FSPoster\App\Libraries\instagram\InstagramApi;
 use FSPoster\App\Libraries\google\GoogleMyBusiness;
+use FSPoster\App\Libraries\twitter\TwitterPrivateAPI;
 use FSPoster\App\Libraries\google\GoogleMyBusinessAPI;
 use FSPoster\App\Libraries\pinterest\PinterestCookieApi;
 use FSPoster\App\Libraries\instagram\InstagramAppMethod;
+use FSPoster\App\Libraries\tumblr\TumblrLoginPassMethod;
 use FSPoster\App\Libraries\instagram\InstagramCookieMethod;
 use FSPoster\App\Libraries\instagram\InstagramLoginPassMethod;
 
@@ -154,7 +156,7 @@ trait Ajax
 		$filter_type    = empty( $filter_type ) || empty( $categories_arr ) ? 'no' : $filter_type;
 		$for_all        = $for_all && ( current_user_can( 'administrator' ) || defined( 'FS_POSTER_IS_DEMO' ) );
 
-		$res = Action::activate_deactivate_account( $id, $checked, $filter_type, $categories_arr, $for_all );
+		$res = Action::activate_deactivate_account( get_current_user_id(), $id, $checked, $filter_type, $categories_arr, $for_all );
 
 		if ( $res[ 'status' ] === FALSE )
 		{
@@ -378,6 +380,53 @@ trait Ajax
 
 		Helper::response( FALSE, fsp__( 'The entered cookies are wrong!' ) );
 
+	}
+
+	public function add_tumblr_account ()
+	{
+		$email    = Request::post( 'email', '', 'string' );
+		$password = Request::post( 'password', '', 'string' );
+		$proxy    = Request::post( 'proxy', '', 'string' );
+
+		if ( empty( $email ) || empty( $password ) )
+		{
+			Helper::response( FALSE, [ 'error_msg' => fsp__( 'Please enter the email and password!' ) ] );
+		}
+
+		$tumblr = new TumblrLoginPassMethod( $email, $password, $proxy, FALSE );
+		$result = $tumblr->authorize();
+
+		if ( isset( $result[ 'status' ] ) && $result[ 'status' ] == 'error' )
+		{
+			$error_msg = empty( $result[ 'error_msg' ] ) ? fsp__( 'Unknown error!' ) : fsp__( $result[ 'error_msg' ] );
+
+			Helper::response( FALSE, [ 'error_msg' => $error_msg ] );
+		}
+
+		Helper::response( TRUE );
+	}
+
+	public function add_twitter_account ()
+	{
+		$auth_token    = Request::post( 'auth_token', '', 'string' );
+		$proxy    = Request::post( 'proxy', '', 'string' );
+
+		if ( empty( $auth_token ) )
+		{
+			Helper::response( FALSE, [ 'error_msg' => fsp__( 'Please enter the cookie auth_token!' ) ] );
+		}
+
+		$twitter = new TwitterPrivateAPI( $auth_token, $proxy );
+		$result = $twitter->authorize();
+
+		if ( isset( $result[ 'status' ] ) && $result[ 'status' ] == 'error' )
+		{
+			$error_msg = empty( $result[ 'error_msg' ] ) ? fsp__( 'Unknown error!' ) : fsp__( $result[ 'error_msg' ] );
+
+			Helper::response( FALSE, [ 'error_msg' => $error_msg ] );
+		}
+
+		Helper::response( TRUE );
 	}
 
 	public function add_vk_account ()
@@ -1217,6 +1266,7 @@ trait Ajax
 		$app_id              = $info[ 'app_id' ];
 		$profile_id          = $info[ 'account_id' ];
 		$password            = $info[ 'password' ];
+		$email               = $info[ 'email' ];
 
 		if ( $driver === 'fb' )
 		{
@@ -1264,9 +1314,15 @@ trait Ajax
 		}
 		else if ( $driver === 'tumblr' )
 		{
-			$app_info = DB::fetch( 'apps', [ 'id' => $app_id ] );
+			if(empty($password)){
+				$app_info = DB::fetch( 'apps', [ 'id' => $app_id ] );
 
-			$res = Tumblr::refetch_account( $account_id, $app_info[ 'app_key' ], $app_info[ 'app_secret' ], $access_token, $access_token_secret, $proxy );
+				$res = Tumblr::refetch_account( $account_id, $app_info[ 'app_key' ], $app_info[ 'app_secret' ], $access_token, $access_token_secret, $proxy );
+			}
+			else{
+				$tm = new TumblrLoginPassMethod($email, $password, $proxy);
+				$res = $tm->refetchAccount();
+			}
 		}
 		else if ( $driver === 'ok' )
 		{
@@ -1404,7 +1460,7 @@ trait Ajax
 		$filter_type    = empty( $filter_type ) ? 'no' : $filter_type;
 		$for_all        = $for_all && ( current_user_can( 'administrator' ) || defined( 'FS_POSTER_IS_DEMO' ) );
 
-		$res = Action::activate_deactivate_node( $id, $checked, $filter_type, $categories_arr, $for_all );
+		$res = Action::activate_deactivate_node( get_current_user_id(), $id, $checked, $filter_type, $categories_arr, $for_all );
 
 		if ( $res[ 'status' ] === FALSE )
 		{
@@ -1575,9 +1631,9 @@ trait Ajax
 			exit();
 		}
 
-		$node_id                         = Request::post('fs_node_id', '0', 'num');
-		$node_type                       = Request::post('fs_node_type', 'account', 'string', ['account', 'node']);
-		$node_driver                     = Request::post( 'fs_node_driver', '', 'string' );
+		$node_id     = Request::post( 'fs_node_id', '0', 'num' );
+		$node_type   = Request::post( 'fs_node_type', 'account', 'string', [ 'account', 'node' ] );
+		$node_driver = Request::post( 'fs_node_driver', '', 'string' );
 
 		$fs_unique_link                  = Request::post( 'fs_unique_link', 0, 'string', [ 'on' ] ) === 'on' ? 1 : 0;
 		$fs_url_shortener                = Request::post( 'fs_url_shortener', 0, 'string', [ 'on' ] ) === 'on' ? 1 : 0;
@@ -1619,20 +1675,20 @@ trait Ajax
 		Helper::response( TRUE, [ 'msg' => fsp__( 'Saved successfully!' ) ] );
 	}
 
-    function reset_custom_settings ()
-    {
-        if ( ! ( current_user_can( 'administrator' ) || defined( 'FS_POSTER_IS_DEMO' ) ) )
-        {
-            exit();
-        }
+	function reset_custom_settings ()
+	{
+		if ( ! ( current_user_can( 'administrator' ) || defined( 'FS_POSTER_IS_DEMO' ) ) )
+		{
+			exit();
+		}
 
-        $node_id     = Request::post('fs_node_id', '0', 'num');
-        $node_type   = Request::post('fs_node_type', 'account', 'string', [ 'account', 'node' ] );
+		$node_id   = Request::post( 'fs_node_id', '0', 'num' );
+		$node_type = Request::post( 'fs_node_type', 'account', 'string', [ 'account', 'node' ] );
 
-        Helper::deleteCustomSettings( $node_type, $node_id );
+		Helper::deleteCustomSettings( $node_type, $node_id );
 
-        Helper::response( TRUE, [ 'msg' => fsp__( 'Saved successfully!' ) ] );
-    }
+		Helper::response( TRUE, [ 'msg' => fsp__( 'Saved successfully!' ) ] );
+	}
 
 	public function get_group_nodes ()
 	{
@@ -1743,7 +1799,7 @@ trait Ajax
 	{
 		$nodeId   = Request::post( 'node_id', '', 'num' );
 		$nodeType = Request::post( 'node_type', 'account', 'string', [ 'account', 'node' ] );
-		$group_id  = Request::post( 'group_id', '', 'num' );
+		$group_id = Request::post( 'group_id', '', 'num' );
 
 		$rows[] = [
 			'node_type' => $nodeType,
@@ -1764,7 +1820,7 @@ trait Ajax
 
 		if ( empty( $nodeId ) || empty( $nodeType ) || empty( $groupId ) )
 		{
-			Helper::response(FALSE);
+			Helper::response( FALSE );
 		}
 
 		DB::DB()->delete( DB::table( 'account_groups_data' ), [
@@ -1773,34 +1829,36 @@ trait Ajax
 			'group_id'  => $groupId
 		] );
 
-		Helper::response(TRUE);
+		Helper::response( TRUE );
 	}
 
-	function delete_account_group(){
-		$group_id = Request::post('group_id', '', 'num');
+	function delete_account_group ()
+	{
+		$group_id = Request::post( 'group_id', '', 'num' );
 
-		$deleted = DB::DB()->delete(DB::table('account_groups'), [
-			'id' => $group_id,
+		$deleted = DB::DB()->delete( DB::table( 'account_groups' ), [
+			'id'      => $group_id,
 			'blog_id' => Helper::getBlogId(),
 			'user_id' => get_current_user_id()
-		]);
+		] );
 
-		if($deleted > 0){
-			DB::DB()->delete(DB::table('account_groups_data'), [
+		if ( $deleted > 0 )
+		{
+			DB::DB()->delete( DB::table( 'account_groups_data' ), [
 				'group_id' => $group_id
-			]);
+			] );
 
-			Helper::response(TRUE);
+			Helper::response( TRUE );
 		}
 
-		Helper::response(FALSE);
+		Helper::response( FALSE );
 	}
 
-	function edit_account_group()
+	function edit_account_group ()
 	{
-		$groupId  = Request::post( 'group_id', '', 'num' );
-		$name     = Request::post( 'name', '', 'string' );
-		$group    = DB::fetch( 'account_groups', [ 'name' => $name ] );
+		$groupId = Request::post( 'group_id', '', 'num' );
+		$name    = Request::post( 'name', '', 'string' );
+		$group   = DB::fetch( 'account_groups', [ 'name' => $name ] );
 
 		if ( ! empty( $group ) )
 		{
@@ -1812,12 +1870,12 @@ trait Ajax
 				'name' => $name
 			],
 			[
-			'id' => $groupId,
-			'blog_id' => Helper::getBlogId(),
-			'user_id' => get_current_user_id()
+				'id'      => $groupId,
+				'blog_id' => Helper::getBlogId(),
+				'user_id' => get_current_user_id()
 			] );
 
-		if( $updated )
+		if ( $updated )
 		{
 			Helper::response( TRUE );
 		}

@@ -28,15 +28,6 @@
 
             const step = String($( '.fsp-modal-tab.fsp-is-active' ).data( 'step' ));
 
-            if (  step == '1' )
-            {
-	            $( '.fsp-modal-title-text' ).html( fsp__( 'Select accounts' ) );
-            }
-            else if ( step == '2' )
-            {
-	            $( '.fsp-modal-title-text' ).html( fsp__( 'Select groups' ) );
-            }
-
             $( `.${tabID}-step` ).hide();
             $( `#${tabID}_${step}` ).show();
         }).eq( index ).click();

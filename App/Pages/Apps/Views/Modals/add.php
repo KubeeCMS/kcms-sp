@@ -20,7 +20,10 @@ defined( 'MODAL' ) or exit;
 </div>
 <div class="fsp-modal-body">
 	<p class="fsp-modal-p">
-		<?php echo fsp__( 'Type <b>%s</b>', [ implode( fsp__( '</b>, <b>', [], FALSE ), $fsp_params[ 'fields' ] ) ], FALSE ); ?>
+		<?php
+        $type = $fsp_params['driver'] == 'twitter' ? 'api_key, api_secret' : implode( fsp__( '</b>, <b>', [], FALSE ), $fsp_params[ 'fields' ] );
+        echo fsp__( 'Type <b>%s</b>', [ $type ], FALSE );
+        ?>
 	</p>
 	<div class="fsp-modal-step">
 		<input type="hidden" id="fspAppDriver" value="<?php echo esc_html( $fsp_params[ 'driver' ] ); ?>">
@@ -29,12 +32,12 @@ defined( 'MODAL' ) or exit;
 			<input id="fspAppID" autocomplete="off" class="fsp-form-input" placeholder="<?php echo fsp__( 'The App ID' ); ?>">
 		</div>
 		<div class="fsp-form-group <?php echo in_array( 'app_key', $fsp_params[ 'fields' ] ) ? '' : 'fsp-hide' ?>">
-			<label><?php echo fsp__( 'The App Key' ); ?></label>
-			<input id="fspAppKey" autocomplete="off" class="fsp-form-input" placeholder="<?php echo fsp__( 'The App Key' ); ?>">
+			<label><?php echo $fsp_params['driver'] == 'twitter' ? fsp__( 'The Api Secret' ) : fsp__( 'The Api Key' ); ?></label>
+			<input id="fspAppKey" autocomplete="off" class="fsp-form-input" placeholder="<?php echo $fsp_params['driver'] == 'twitter' ? fsp__( 'The Api Key' ) : fsp__( 'The Api Key' ); ?>">
 		</div>
 		<div class="fsp-form-group <?php echo in_array( 'app_secret', $fsp_params[ 'fields' ] ) ? '' : 'fsp-hide' ?>">
-			<label><?php echo fsp__( 'The App Secret' ); ?></label>
-			<input id="fspAppSecret" autocomplete="off" class="fsp-form-input" placeholder="<?php echo fsp__( 'The App Secret' ); ?>">
+			<label><?php echo $fsp_params['driver'] == 'twitter' ? fsp__( 'The Api Secret' ) : fsp__( 'The Api Secret' ); ?></label>
+			<input id="fspAppSecret" autocomplete="off" class="fsp-form-input" placeholder="<?php echo $fsp_params['driver'] == 'twitter' ? fsp__( 'The Api Secret' ) : fsp__( 'The Api Secret' ); ?>">
 		</div>
 		<div class="fsp-form-group <?php echo $fsp_params[ 'driver' ] === 'fb' ? '' : 'fsp-hide'; ?>">
 			<label><?php echo fsp__( 'The App Version' ); ?></label>

@@ -9,14 +9,6 @@ defined( 'ABSPATH' ) or exit;
 ?>
 
 <link rel="stylesheet" href="<?php echo Pages::asset( 'Logs', 'css/fsp-logs.css' ); ?>">
-
-<div id="fspMoreMenu" class="fsp-dropdown">
-	<div class="fsp-dropdown-item fsp-dropdown-clear-logs" data-type="all"><?php echo fsp__( 'All' ); ?></div>
-	<div class="fsp-dropdown-item fsp-dropdown-clear-logs" data-type="only_errors"><?php echo fsp__( 'Only errors' ); ?></div>
-	<div class="fsp-dropdown-item fsp-dropdown-clear-logs" data-type="only_successful_logs"><?php echo fsp__( 'Only successful logs' ); ?></div>
-	<div class="fsp-dropdown-item fsp-dropdown-clear-logs" data-type="only_selected_logs"><?php echo fsp__( 'Only selected logs' ); ?></div>
-</div>
-
 <div class="fsp-row">
 	<input id="fspLogsScheduleID" type="hidden" value="<?php echo $fsp_params[ 'scheudleId' ]; ?>">
 	<div class="fsp-col-12 fsp-title fsp-logs-title">
@@ -51,12 +43,10 @@ defined( 'ABSPATH' ) or exit;
 					<option value="only_successful_logs"><?php echo fsp__( 'Only successful logs' ); ?></option>
 				</select>
 			</div>
-
 			<button id="fspExportLogs" class="fsp-button fsp-is-gray">
 				<i class="fas fa-upload"></i>
 				<span class="fsp-show"><?php echo fsp__( 'EXPORT TO CSV' ); ?></span>
 			</button>
-
 		</div>
 	</div>
 	<div id="fspLogs" class="fsp-col-12">
@@ -64,7 +54,6 @@ defined( 'ABSPATH' ) or exit;
 	</div>
 	<div id="fspLogsPages" class="fsp-col-12 fsp-logs-pagination"></div>
 </div>
-
 <script>
 	FSPObject.page = <?php echo $fsp_params[ 'logs_page' ]; ?>;
 

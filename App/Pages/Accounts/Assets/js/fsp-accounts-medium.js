@@ -2,18 +2,21 @@
 
 ( function ( $ ) {
 	$( '.fsp-modal-footer > #fspModalAddButton' ).on( 'click', function () {
-		let _this = $( this );
 		let selectedMethod = String( $( '.fsp-modal-option.fsp-is-selected' ).data( 'step' ) );
 
 		if ( selectedMethod === '1' )
 		{
-			let appID = $( '#fspModalStep_1 #fspModalAppSelector' ).val().trim();
 			let proxy = $( '#fspProxy' ).val().trim();
-			let openURL = `${ fspConfig.siteURL }/?medium_app_redirect=${ appID }&proxy=${ proxy }`;
+			let openURL;
 
-			if ( $( '#fspModalAppSelector > option:selected' ).data( 'is-standart' ).toString() === '1' )
+			if ( ! $( '#fspUseCustomApp' ).is( ':checked' ) )
 			{
 				openURL = `${ fspConfig.standartAppURL }&proxy=${ proxy }&encode=true`;
+			}
+			else
+			{
+				let appID = $( '#fspModalStep_1 #fspModalAppSelector' ).val().trim();
+				openURL   = `${ fspConfig.siteURL }/?medium_app_redirect=${ appID }&proxy=${ proxy }`;
 			}
 
 			window.open( openURL, 'fs-app', 'width=750, height=550' );

@@ -22,6 +22,8 @@ defined( 'MODAL' ) or exit;
 	</div>
 </div>
 <div class="fsp-modal-body">
+    <div class="fsp-modal-notification-container"><div class="fsp-modal-notification"><div class="fsp-notification-info"><div class="fsp-notification-icon fsp-is-warning"></div><div class="fsp-notification-text"><div class="fsp-notification-message"><?php echo fsp__('Note that the custom settings for the account override configuration in the Settings menu.'); ?></div></div></div></div></div>
+
 	<div id="fspComponent" class="fsp-layout-right fsp-col-12 fsp-col-md-8 fsp-col-lg-9">
 		<form id="fspSettingsForm" class="fsp-settings">
 			<input type="hidden" name="fs_node_id" value="<?php echo $fsp_params['node_id'] ?>">

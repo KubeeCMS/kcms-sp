@@ -178,11 +178,7 @@ defined( 'ABSPATH' ) or exit;
 						<?php } ?>
 					</div>
 					<div class="fsp-app-controls">
-						<?php if ( $app[ 'is_standart' ] > 0 ) { ?>
-							<i class="fas fa-exclamation-circle fsp-tooltip fsp-icon-button" data-title="<?php echo fsp__( 'You can\'t delete the App' ); ?>"></i>
-						<?php } else { ?>
 							<i class="far fa-trash-alt fsp-tooltip fsp-icon-button fsp-delete-app" data-id="<?php echo $app[ 'id' ]; ?>" data-title="<?php echo fsp__( 'Delete' ); ?>"></i>
-						<?php } ?>
 					</div>
 				</div>
 			<?php } ?>

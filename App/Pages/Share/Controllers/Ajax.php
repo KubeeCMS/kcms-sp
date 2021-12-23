@@ -63,7 +63,7 @@ trait Ajax
 			Helper::response( FALSE );
 		}
 
-		if ( ! ShareService::insertFeeds( $post_id, $nodes, $custom_messages, FALSE, NULL, $sharedFrom, $background, NULL, TRUE ) )
+		if ( ! ShareService::insertFeeds( $post_id, get_current_user_id(), $nodes, $custom_messages, FALSE, NULL, $sharedFrom, $background, NULL, TRUE ) )
 		{
 			Helper::response( FALSE, fsp__( 'There isn\'t any active account or community to share the post!' ) );
 		}
@@ -96,16 +96,17 @@ trait Ajax
 			'sharedFrom'    => $feed[ 'shared_from' ]
 		];
 
-		if ( ! is_null( $feed[ 'custom_post_message' ] ) )
-		{
-			$result[ 'customMessages' ][ $feed[ 'driver' ] ] = $feed[ 'custom_post_message' ];
-		}
-		else
-		{
-			$result[ 'customMessages' ][ $feed[ 'driver' ] ] = Helper::getOption( 'post_text_message_' . $feed[ 'driver' ], "{title}" );
-		}
-
-		DB::DB()->delete( DB::table( 'feeds' ), [ 'id' => $feed[ 'id' ] ] );
+		DB::DB()->update(DB::table( 'feeds' ), [
+			'shared_from' => strpos($feed[ 'shared_from' ], 'retried') ? $feed[ 'shared_from' ] : $feed[ 'shared_from' ] . '_retried',
+			'share_on_background'  => 0,
+			'status'      => NULL,
+			'is_sended'   => 0,
+			'error_msg'   => NULL,
+			'send_time'   => Date::dateTimeSQL()
+		],
+		[
+			'id' => $feedId
+		]);
 
 		Helper::response( TRUE, [ 'result' => $result ] );
 	}

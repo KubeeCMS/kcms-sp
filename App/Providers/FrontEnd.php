@@ -257,24 +257,51 @@ class FrontEnd
 			'blogger'
 		];
 
-		$sn       = Request::get( 'sn', '', 'string', $supportedFSApps );
-		$callback = Request::get( 'fs_app_redirect', '0', 'num', [ '1' ] );
-		$proxy    = Request::get( 'proxy', '', 'string' );
+		$sn = Request::get( 'sn', '', 'string', $supportedFSApps );
+
+		if ( empty( $sn ) )
+		{
+			return;
+		}
+
+		$callback  = Request::get( 'fs_app_redirect', '0', 'num', [ '1' ] );
+		$proxy     = Request::get( 'proxy', '', 'string' );
+		$slug      = Request::get( 'slug', '', 'string' );
+		$name      = Request::get( 'name', '', 'string' );
+		$appId     = Request::get( 'app_id', '', 'string' );
+		$appKey    = Request::get( 'app_key', '', 'string' );
+		$appSecret = Request::get( 'app_secret', '', 'string' );
+
+		$appInf = DB::fetch( 'apps', [
+			'driver' => $sn,
+			'slug'   => $slug
+		] );
+
+		if ( empty( $appInf ) && ! empty( $slug ) )
+		{
+			$appInf = [
+				'driver'      => $sn,
+				'name'        => $name,
+				'app_id'      => $appId,
+				'app_key'     => $appKey,
+				'app_secret'  => $appSecret,
+				'slug'        => $slug
+			];
+
+			DB::DB()->insert( DB::table( 'apps' ), $appInf );
+
+			$appInf[ 'id' ] = DB::DB()->insert_id;
+		}
 
 		if ( ! empty( $proxy ) )
 		{
 			$proxy = strrev( $proxy );
 		}
 
-		if ( ! $callback || empty( $sn ) )
+		if ( ! $callback  )
 		{
 			return;
 		}
-
-		$appInf = DB::fetch( 'apps', [
-			'driver'      => $sn,
-			'is_standart' => 1
-		] );
 
 		if ( $sn === 'fb' )
 		{

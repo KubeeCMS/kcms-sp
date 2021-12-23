@@ -40,7 +40,14 @@ class Tumblr extends SocialNetwork
 		}
 		catch ( Exception $e )
 		{
-			self::error( $e->getMessage() );
+            $error_msg = $e->getMessage();
+
+            if ( $e->getCode() == 429 )
+            {
+                $error_msg = fsp__('The Standard APP has reached the hourly limit for adding accounts. The limit is assigned by Tumblr and you either need to <a href="https://www.fs-poster.com/documentation/fs-poster-schedule-share-wordpress-posts-to-tumblr-automatically" target="_blank">create a Tumblr App</a> for your own use or use the <a href="https://www.fs-poster.com/documentation/fs-poster-schedule-share-wordpress-posts-to-tumblr-automatically" target="_blank">email & pass method</a> to add your account to the plugin.', [], FALSE);
+            }
+
+			self::error( $error_msg, FALSE );
 		}
 
 		$username = $me->user->name;
@@ -66,19 +73,19 @@ class Tumblr extends SocialNetwork
 			'proxy'    => $proxy
 		];
 
-		if ( ! $checkLoginRegistered )
-		{
-			DB::DB()->insert( DB::table( 'accounts' ), $dataSQL );
-
-			$accId = DB::DB()->insert_id;
-		}
-		else
+		if ( $checkLoginRegistered && empty($checkLoginRegistered['password']) )
 		{
 			$accId = $checkLoginRegistered[ 'id' ];
 
 			DB::DB()->update( DB::table( 'accounts' ), $dataSQL, [ 'id' => $accId ] );
 
 			DB::DB()->delete( DB::table( 'account_access_tokens' ), [ 'account_id' => $accId, 'app_id' => $appId ] );
+		}
+		else
+		{
+			DB::DB()->insert( DB::table( 'accounts' ), $dataSQL );
+
+			$accId = DB::DB()->insert_id;
 		}
 
 		// acccess token
@@ -124,7 +131,7 @@ class Tumblr extends SocialNetwork
 	 *
 	 * @return array
 	 */
-	public static function sendPost ( $blogInfo, $type, $title, $message, $link, $images, $video, $accessToken, $accessTokenSecret, $appId, $proxy, $tags = [] )
+	public static function sendPost ( $blogInfo, $type, $title, $message, $link, $images, $video, $accessToken, $accessTokenSecret, $appId, $proxy, $tags = [], $thumbnail = '', $excerpt = '' )
 	{
 		$appInf = self::getAppInf( $appId );
 
@@ -166,6 +173,16 @@ class Tumblr extends SocialNetwork
 			$sendData[ 'title' ]       = $title;
 			$sendData[ 'url' ]         = $link;
 			$sendData[ 'description' ] = $message;
+
+			if ( ! empty( $thumbnail ) )
+			{
+				$sendData[ 'thumbnail' ] = $thumbnail;
+			}
+
+			if ( ! empty( $excerpt ) )
+			{
+				$sendData[ 'excerpt' ] = $excerpt;
+			}
 		}
 
 		if ( ! empty( $tags ) )
@@ -179,9 +196,16 @@ class Tumblr extends SocialNetwork
 		}
 		catch ( Exception $e )
 		{
+            $error_msg = $e->getMessage();
+
+            if ( $e->getCode() == 429 )
+            {
+                $error_msg = fsp__('The Standard APP has reached the hourly limit for sharing posts. The limit is assigned by Tumblr and you either need to <a href="https://www.fs-poster.com/documentation/fs-poster-schedule-share-wordpress-posts-to-tumblr-automatically" target="_blank">create a Tumblr App</a> for your own use or use the <a href="https://www.fs-poster.com/documentation/fs-poster-schedule-share-wordpress-posts-to-tumblr-automatically" target="_blank">email & pass method</a> to add your account to the plugin.', [], FALSE);
+            }
+
 			return [
 				'status'    => 'error',
-				'error_msg' => esc_html( $e->getMessage() )
+				'error_msg' => htmlspecialchars($error_msg)
 			];
 		}
 

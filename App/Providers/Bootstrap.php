@@ -26,11 +26,14 @@ namespace FSPoster\App\Providers {
 		 */
 		public function __construct ()
 		{
-			CronJob::init();
+            if ( Helper::canLoadPlugin() )
+            {
+                CronJob::init();
+            }
 
 			$this->registerDefines();
 
-			$this->loadPluginTextdomaion();
+			$this->loadPluginTextdomain();
 			$this->loadPluginLinks();
 			$this->createCustomPostTypes();
 			$this->createPostSaveEvent();
@@ -64,7 +67,7 @@ namespace FSPoster\App\Providers {
 			} );
 		}
 
-		private function loadPluginTextdomaion ()
+		private function loadPluginTextdomain ()
 		{
 			add_action( 'init', function () {
 				load_plugin_textdomain( 'fs-poster', FALSE, 'fs-poster/languages' );

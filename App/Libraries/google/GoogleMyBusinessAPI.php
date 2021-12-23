@@ -6,15 +6,15 @@ use Exception;
 use Google_Client;
 use FSP_GuzzleHttp\Client;
 use FSPoster\App\Providers\DB;
-use Google_Service_MyBusiness;
+use GoogleFSP_Service_MyBusiness;
 use FSPoster\App\Providers\Date;
 use FSPoster\App\Providers\Helper;
 use FSPoster\App\Providers\Request;
 use FSPoster\App\Providers\Session;
-use Google_Service_MyBusiness_MediaItem;
-use Google_Service_MyBusiness_LocalPost;
+use GoogleFSP_Service_MyBusiness_MediaItem;
+use GoogleFSP_Service_MyBusiness_LocalPost;
 use FSPoster\App\Providers\SocialNetwork;
-use Google_Service_MyBusiness_CallToAction;
+use GoogleFSP_Service_MyBusiness_CallToAction;
 
 require_once 'MyBusiness.php';
 
@@ -45,8 +45,8 @@ class GoogleMyBusinessAPI extends SocialNetwork
 			$client->setAccessToken( $access_token );
 			$client->setApiFormatV2( TRUE );
 
-			$gmb  = new Google_Service_MyBusiness( $client );
-			$post = new Google_Service_MyBusiness_LocalPost();
+			$gmb  = new GoogleFSP_Service_MyBusiness( $client );
+			$post = new GoogleFSP_Service_MyBusiness_LocalPost();
 			$post->setSummary( $message );
 			$post->setTopicType( 'STANDARD' );
 
@@ -54,7 +54,7 @@ class GoogleMyBusinessAPI extends SocialNetwork
 			{
 				foreach ( $images as $image )
 				{
-					$media = new Google_Service_MyBusiness_MediaItem();
+					$media = new GoogleFSP_Service_MyBusiness_MediaItem();
 					$media->setMediaFormat( 'PHOTO' );
 					$media->setSourceUrl( $image );
 					$post->setMedia( $media );
@@ -62,21 +62,21 @@ class GoogleMyBusinessAPI extends SocialNetwork
 			}
 			else if ( $type === 'video' && ! empty( $video ) && is_string( $video ) )
 			{
-				$media = new Google_Service_MyBusiness_MediaItem();
+				$media = new GoogleFSP_Service_MyBusiness_MediaItem();
 				$media->setMediaFormat( 'VIDEO' );
 				$media->setSourceUrl( $video );
 				$post->setMedia( $media );
 			}
 			else if ( $type === 'link' )
 			{
-				$call_to_action = new Google_Service_MyBusiness_CallToAction();
+				$call_to_action = new GoogleFSP_Service_MyBusiness_CallToAction();
 				$call_to_action->setActionType( Helper::getOption( 'google_b_button_type', 'LEARN_MORE' ) );
 				$call_to_action->setUrl( $link );
 				$post->setCallToAction( $call_to_action );
 
 				if ( ! empty( $images ) && is_array( $images ) )
 				{
-					$media = new Google_Service_MyBusiness_MediaItem();
+					$media = new GoogleFSP_Service_MyBusiness_MediaItem();
 					$media->setMediaFormat( 'PHOTO' );
 					$media->setSourceUrl( reset( $images ) );
 					$post->setMedia( $media );
@@ -197,7 +197,7 @@ class GoogleMyBusinessAPI extends SocialNetwork
 			$client = self::getClient( $app_info, $proxy );
 			$client->setAccessToken( $access_token );
 
-			$gmb      = new Google_Service_MyBusiness( $client );
+			$gmb      = new GoogleFSP_Service_MyBusiness( $client );
 			$accounts = $gmb->accounts->listAccounts()->getAccounts();
 
 			foreach ( $accounts as $account )
@@ -285,7 +285,7 @@ class GoogleMyBusinessAPI extends SocialNetwork
 			$client = self::getClient( $app_info, $proxy );
 			$client->setAccessToken( $access_token );
 
-			$gmb = new Google_Service_MyBusiness( $client );
+			$gmb = new GoogleFSP_Service_MyBusiness( $client );
 			$gmb->accounts->get( $account );
 
 			$result[ 'error' ] = FALSE;
@@ -308,7 +308,7 @@ class GoogleMyBusinessAPI extends SocialNetwork
 			$client = self::getClient( $app_info, $proxy );
 			$client->setAccessToken( $access_token );
 
-			$gmb = new Google_Service_MyBusiness( $client );
+			$gmb = new GoogleFSP_Service_MyBusiness( $client );
 
 			$locations = self::getAllLocations( $gmb, $profile_id );
 			$get_nodes = DB::DB()->get_results( DB::DB()->prepare( 'SELECT id, node_id FROM ' . DB::table( 'account_nodes' ) . ' WHERE account_id = %d', [ $account_id ] ), ARRAY_A );

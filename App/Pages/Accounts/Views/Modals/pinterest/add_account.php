@@ -29,25 +29,32 @@ defined( 'MODAL' ) or exit;
 		</a>
 	</p>
 	<div class="fsp-modal-options">
-		<div class="fsp-modal-option fsp-is-selected" data-step="2">
+        <div class="fsp-modal-option fsp-is-selected" data-step="1">
+            <div class="fsp-modal-option-image">
+                <img src="<?php echo Pages::asset( 'Accounts', 'img/android.svg' ); ?>">
+            </div>
+			<?php echo fsp__( 'App method' ); ?>
+        </div>
+		<div class="fsp-modal-option" data-step="2">
 			<div class="fsp-modal-option-image">
 				<img src="<?php echo Pages::asset( 'Accounts', 'img/rocket.svg' ); ?>">
 			</div>
 			<?php echo fsp__( 'Cookie method' ); ?>
 		</div>
-		<div class="fsp-modal-option" data-step="1">
-			<div class="fsp-modal-option-image">
-				<img src="<?php echo Pages::asset( 'Accounts', 'img/android.svg' ); ?>">
-			</div>
-			<?php echo fsp__( 'App method' ); ?>
-		</div>
 	</div>
-	<div id="fspModalStep_1" class="fsp-modal-step fsp-hide">
-		<div class="fsp-form-group">
-			<label><?php echo fsp__( 'Select an App' ); ?></label>
+	<div id="fspModalStep_1" class="fsp-modal-step">
+        <div class="fsp-form-checkbox-group">
+            <input id="fspUseCustomApp" type="checkbox" class="fsp-form-checkbox">
+            <label for="fspUseCustomApp">
+				<?php echo fsp__( 'Use a custom App' ); ?>
+            </label>
+            <span class="fsp-tooltip" data-title="<?php echo fsp__( 'Check the option to select an App that was created by you.' ); ?>"><i class="far fa-question-circle"></i></span>
+        </div>
+        <div id="fspCustomAppContainer" class="fsp-form-group fsp-hide">
+            <label><?php echo fsp__( 'Select an App' ); ?></label>
 			<select class="fsp-form-select" id="fspModalAppSelector">
 				<?php foreach ( $fsp_params[ 'applications' ] as $app ) { ?>
-					<option value="<?php echo $app[ 'id' ]; ?>" data-is-standart="<?php echo ( int ) $app[ 'is_standart' ]; ?>"><?php echo esc_html( $app[ 'name' ] ); ?></option>
+					<option value="<?php echo $app[ 'id' ]; ?>"><?php echo esc_html( $app[ 'name' ] ); ?></option>
 				<?php }
 				if ( empty( $fsp_params[ 'applications' ] ) )
 				{ ?>
@@ -56,7 +63,7 @@ defined( 'MODAL' ) or exit;
 			</select>
 		</div>
 	</div>
-	<div id="fspModalStep_2" class="fsp-modal-step">
+	<div id="fspModalStep_2" class="fsp-modal-step fsp-hide">
 		<div class="fsp-form-group">
 			<label><?php echo fsp__( 'Enter the cookie' ); ?> _pinterest_sess</label>
 			<div class="fsp-form-input-has-icon">

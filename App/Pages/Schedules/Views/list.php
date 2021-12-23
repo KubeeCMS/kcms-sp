@@ -139,6 +139,10 @@ defined( 'ABSPATH' ) or exit;
 						<i class="fas fa-bars"></i>
 						<span class="fsp-schedule-control-text"><?php echo (int) $schedule_info[ 'shares_count' ]; ?></span>
 					</div>
+					<div class="fsp-schedule-control">
+						<i class="far fa-user fsp-tooltip" data-title="<?php echo  fsp__( 'Selected account(s)' ); ?>"></i>
+						<span class="fsp-schedule-control-text"><?php echo  (int) $schedule_info[ 'accounts_count' ]; ?></span>
+					</div>
 					<?php if ( $schedule_info[ 'status' ] != 'finished' ) { ?>
 						<div class="fsp-schedule-control" data-load-modal="edit_schedule" data-parameter-schedule_id="<?php echo $schedule_info[ 'id' ]; ?>">
 							<i class="far fa-edit"></i>

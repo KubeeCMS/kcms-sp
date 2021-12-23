@@ -161,6 +161,10 @@
 			$( '#fsp-node-search-input' ).val( '' ).trigger( 'keyup' );
 
 			$( this ).removeClass( 'fa-times' ).addClass( 'fa-search' );
+		} ).on( 'click', '#fspUseCustomApp', function () {
+			let checked = ! ( $( this ).is( ':checked' ) );
+
+			$( '#fspCustomAppContainer' ).toggleClass( 'fsp-hide', checked );
 		} );
 
 		$( '.fsp-tab.fsp-is-active' ).click();
@@ -260,6 +264,7 @@
 
 			accountDiv.find( '.fsp-account-checkbox > i' ).removeClass( 'far' ).addClass( 'fas fsp-is-checked' );
 			accountDiv.data( 'active', 1 );
+			accountDiv.find( '.fsp-account-is-public' ).removeClass( 'fsp-hide' );
 
 			if ( $( '.fsp-account-checkbox > .fsp-is-checked, .fsp-account-checkbox > .fsp-is-checked-conditionally' ).length > 0 )
 			{
@@ -269,12 +274,6 @@
 			{
 				$( '.fsp-tab.fsp-is-active > .fsp-tab-badges' ).removeClass( 'fsp-has-active-accounts' );
 			}
-
-			let ajaxAction = type === 'community' ? 'settings_node_make_public' : 'make_account_public';
-
-			FSPoster.ajax( ajaxAction, { id, checked: 1 }, function () {
-				accountDiv.find( '.fsp-account-is-public' ).removeClass( 'fsp-hide' );
-			} );
 		} );
 
 		$( '#fspActivateMenu #fspDeactivate' ).on( 'click', function () {

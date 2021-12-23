@@ -40,7 +40,7 @@
 	} );
 
 	$( '#fspLicenseStatus' ).on( 'change', function () {
-		FSPoster.confirm( fsp__( 'Are you sure you want to save changes?' ), function () {
+		FSPoster.confirm( fsp__( 'Are you sure to disable the plugin license?' ), function () {
 			FSPoster.ajax( 'settings_general_save', { 'fsp_license_status': 0 }, function (result) {
 				if ( result[ 'redirect' ] )
 				{

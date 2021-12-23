@@ -42,8 +42,15 @@ defined( 'MODAL' ) or exit;
 		</div>
 	</div>
 	<div id="fspModalStep_1" class="fsp-modal-step">
-		<div class="fsp-form-group">
-			<label class="fsp-is-jb">
+        <div class="fsp-form-checkbox-group">
+            <input id="fspUseCustomApp" type="checkbox" class="fsp-form-checkbox">
+            <label for="fspUseCustomApp">
+				<?php echo fsp__( 'Use a custom App' ); ?>
+            </label>
+            <span class="fsp-tooltip" data-title="<?php echo fsp__( 'Check the option to select an App that was created by you.' ); ?>"><i class="far fa-question-circle"></i></span>
+        </div>
+        <div id="fspCustomAppContainer" class="fsp-form-group fsp-hide">
+            <label class="fsp-is-jb">
 				<?php echo fsp__( 'Select an App' ); ?>
 				<a href="https://www.fs-poster.com/documentation/fs-poster-auto-publish-wordpress-posts-to-google-my-business" target="_blank" class="fsp-tooltip" data-title="<?php echo fsp__( 'How to?' ); ?>">
 					<i class="far fa-question-circle"></i>
@@ -51,7 +58,7 @@ defined( 'MODAL' ) or exit;
 			</label>
 			<select class="fsp-form-select" id="fspModalAppSelector">
 				<?php foreach ( $fsp_params[ 'applications' ] as $app ) { ?>
-					<option value="<?php echo $app[ 'id' ]; ?>" data-is-standart="<?php echo ( int ) $app[ 'is_standart' ]; ?>"><?php echo esc_html( $app[ 'name' ] ); ?></option>
+					<option value="<?php echo $app[ 'id' ]; ?>"><?php echo esc_html( $app[ 'name' ] ); ?></option>
 				<?php }
 				if ( empty( $fsp_params[ 'applications' ] ) )
 				{ ?>

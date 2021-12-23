@@ -691,8 +691,8 @@ var FSPoster;
 			theme: '',
 			minimumResultsForSearch: Infinity,
 			width: '',
-			containerCssClass: 'fsp-select2',
-			dropdownCssClass: 'fsp-select2'
+			containerCssClass: 'fsp-select2-container',
+			dropdownCssClass: 'fsp-select2-dropdown'
 		} );
 
 		$( '.fsp-custom-post > textarea' ).on( 'input, keyup', function () {

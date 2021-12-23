@@ -77,6 +77,14 @@ trait WPHelper
 
 			if ( $product->is_type( 'variable' ) )
 			{
+if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+    if ( version_compare( WC_VERSION, '3.2', '<' ) ) {
+        //Old version code
+				$variation_id     = $product->get_children();
+				$variable_product = new WC_Product_Variation( reset( $variation_id ) );
+        //Old version code				
+    } else {
+        //New version code
 				$variations = wc_products_array_orderby(
 					$product->get_available_variations( 'objects' ),
 					'price',
@@ -101,6 +109,9 @@ trait WPHelper
 				{
 					$variable_product = $variations_in_stock[ 0 ];
 				}
+		//New version code		
+    }
+}
 
 				$productRegularPrice = $variable_product->get_regular_price();
 				$productSalePrice    = $variable_product->get_sale_price();
@@ -138,85 +149,95 @@ trait WPHelper
 		}
 	}
 
-	public static function getPostTags ( $postInf, $addSharp = TRUE, $asArray = TRUE, $separator = ' ' )
+	public static function getPostTerms ( $postInf, $tax_name = NULL, $addSharp = TRUE, $asArray = TRUE, $separator = ' ' )
 	{
-		if ( ( get_post_type( $postInf[ 'ID' ] ) === 'product' || get_post_type( $postInf[ 'ID' ] ) === 'product_variation' ) && function_exists( 'wc_get_product' ) )
+		if ( empty( $tax_name ) )
 		{
-			if ( get_post_type( $postInf[ 'ID' ] ) === 'product' )
-			{
-				$tags = wp_get_post_terms( $postInf[ 'ID' ], 'product_tag' );
-			}
-			else
-			{
-				$tags = wp_get_post_terms( $postInf[ 'post_parent' ], 'product_tag' );
-			}
+			$allowed_taxes = Helper::getOption( 'hashtag_taxonomies' );
+			$allowed_taxes = empty($allowed_taxes) ? [] : explode( '|', $allowed_taxes );
 		}
 		else
 		{
-			$tags = wp_get_post_tags( $postInf[ 'ID' ] );
+			$allowed_taxes = [ $tax_name ];
+		}
+
+		$post_taxes = get_post_taxonomies( $postInf[ 'ID' ] );
+
+		$taxes = [];
+
+		if ( empty( $allowed_taxes ) )
+		{
+			$taxes = $post_taxes;
+		}
+		else
+		{
+			foreach ( $post_taxes as $post_tax )
+			{
+				if ( in_array( $post_tax, $allowed_taxes ) )
+				{
+					$taxes[] = $post_tax;
+				}
+			}
+		}
+
+		$terms = [];
+
+		foreach ( $taxes as $tax )
+		{
+			if ( ( get_post_type( $postInf[ 'ID' ] ) === 'product' || get_post_type( $postInf[ 'ID' ] ) === 'product_variation' ) && function_exists( 'wc_get_product' ) && in_array( $tax, [
+					'product_tag',
+					'product_cat'
+				] ) )
+			{
+				if ( get_post_type( $postInf[ 'ID' ] ) === 'product' )
+				{
+					$tax_terms = wp_get_post_terms( $postInf[ 'ID' ], $tax, [ 'fields' => 'names' ] );
+				}
+				else
+				{
+					$tax_terms = wp_get_post_terms( $postInf[ 'post_parent' ], 'product_tag' );
+				}
+			}
+			else
+			{
+				$tax_terms = wp_get_post_terms( $postInf[ 'ID' ], $tax, [ 'fields' => 'names' ] );
+			}
+
+			if ( is_array( $tax_terms ) )
+			{
+				$terms = array_merge( $terms, $tax_terms );
+			}
 		}
 
 		$replaceWhitespaces = Helper::getOption( 'replace_whitespaces_with_underscore', '0' ) == 1 ? '_' : '';
-		$tags_arr           = [];
+		$terms_arr          = [];
 
-		foreach ( $tags as $tagInf )
+		foreach ( $terms as $termInf )
 		{
-			$formatted_tag = htmlspecialchars_decode( $tagInf->name );
+			$formatted_tag = htmlspecialchars_decode( $termInf );
 			$formatted_tag = preg_replace( [ '/\s+/', '/&+/', '/-+/' ], $replaceWhitespaces, $formatted_tag );
 			$formatted_tag = preg_replace( '/[!@#\$%^*()=+{}\[\]\'\",>\/?;:]/', '', $formatted_tag );
 			$formatted_tag = preg_replace( '/_+/', '_', $formatted_tag );
 
-			$sharp      = $addSharp ? '#' : '';
-			$tags_arr[] = $sharp . trim( $formatted_tag, ' _' );
+            $uppercase = Helper::getOption('uppercase_hashtags', '0') == '1';
+
+            if ( $uppercase )
+            {
+                $formatted_tag = mb_strtoupper( $formatted_tag );
+            }
+
+			$sharp       = $addSharp ? '#' : '';
+			$terms_arr[] = $sharp . trim( $formatted_tag, ' _' );
 		}
 
 		if ( $asArray )
 		{
-			return $tags_arr;
+			return $terms_arr;
 		}
 		else
 		{
-			return implode( $separator, $tags_arr );
+			return implode( $separator, $terms_arr );
 		}
-	}
-
-	/**
-	 * @param $postInf
-	 *
-	 * @return string
-	 */
-	public static function getPostCats ( $postInf )
-	{
-		if ( ( get_post_type( $postInf[ 'ID' ] ) === 'product' || get_post_type( $postInf[ 'ID' ] ) === 'product_variation' ) && function_exists( 'wc_get_product' ) )
-		{
-			if ( get_post_type( $postInf[ 'ID' ] ) === 'product' )
-			{
-				$cats = wp_get_post_terms( $postInf[ 'ID' ], 'product_cat' );
-			}
-			else
-			{
-				$cats = wp_get_post_terms( $postInf[ 'post_parent' ], 'product_cat' );
-			}
-		}
-		else
-		{
-			$cats = get_the_category( $postInf[ 'ID' ] );
-		}
-
-		$replaceWhitespaces = Helper::getOption( 'replace_whitespaces_with_underscore', '0' ) == 1 ? '_' : '';
-		$catsString         = [];
-
-		foreach ( $cats as $catInf )
-		{
-			$formatted_tag = htmlspecialchars_decode( $catInf->name );
-			$formatted_tag = preg_replace( [ '/\s+/', '/&+/', '/-+/' ], $replaceWhitespaces, $formatted_tag );
-			$formatted_tag = preg_replace( '/[!@#\$%^*()=+{}\[\]\'\",>\/?;:]/', '', $formatted_tag );
-			$formatted_tag = preg_replace( '/_+/', '_', $formatted_tag );
-
-			$catsString[] = '#' . trim( $formatted_tag, ' _' );
-		}
-
-		return implode( ' ', $catsString );
 	}
 
 	/**
@@ -291,7 +312,13 @@ trait WPHelper
 			], $link );
 
 			// custom fields
-			$link = preg_replace_callback( '/\{cf_(.+)\}/iU', function ( $n ) use ( $postInf ) {
+			$link = preg_replace_callback( '/\{cf_(.*?)_raw\}/iU', function ( $n ) use ( $postInf ) {
+				$customField = isset( $n[ 1 ] ) ? $n[ 1 ] : '';
+
+				return get_post_meta( $postInf[ 'ID' ], $customField, TRUE );
+			}, $link );
+
+			$link = preg_replace_callback( '/\{cf_(.*?)\}/iU', function ( $n ) use ( $postInf ) {
 				$customField = isset( $n[ 1 ] ) ? $n[ 1 ] : '';
 
 				return rawurlencode( get_post_meta( $postInf[ 'ID' ], $customField, TRUE ) );

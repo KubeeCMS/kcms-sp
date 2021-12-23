@@ -46,7 +46,7 @@ class CatWalker extends \Walker
 			//'child_of'      => 0,
 			//'hierarchical'  => 1,
 			'depth'         => 3,
-			'taxonomy'      => $walker->taxonomies,
+			//'taxonomy'      => $walker->taxonomies,
 			'hide_if_empty' => FALSE
 		];
 
@@ -56,12 +56,20 @@ class CatWalker extends \Walker
 			$args['number'] = 50;
 		}
 
-		$terms = get_terms($args);
+        if ( version_compare( get_bloginfo( 'version' ) , '4.5.0' ,  '>=' ) )
+        {
+            $terms = get_terms( $args );
+        }
+        else
+        {
+            $terms = get_terms( $walker->taxonomies,$args );
+        }
 
 		//makes hierarchy
 		$walker->walk($terms, 10);
 
-		foreach ($walker->data as $item){
+		foreach ($walker->data as $item)
+        {
 			$walker->response[$item['taxonomy']]['children'][] = [
 				'text' => $item['text'],
 				'id' => $item['id']

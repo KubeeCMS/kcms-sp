@@ -30,7 +30,7 @@ defined( 'ABSPATH' ) or exit;
 <div class="fsp-settings-row">
 	<div class="fsp-settings-col">
 		<div class="fsp-settings-label-text"><?php echo fsp__( 'Share Facebook posts on' ); ?></div>
-		<div class="fsp-settings-label-subtext"><?php echo fsp__( 'Select where to share posts on Facebook. Note that Facebook API does not support sharing posts on the story so that accounts have to be added to the plugin via the cookie method to share posts on the story.' ); ?></div>
+		<div class="fsp-settings-label-subtext"><?php echo fsp__( 'Select where to share posts on Facebook. Note that Facebook API does not support sharing posts on the story so that accounts have to be added to the plugin via the <a target="_blank" href="https://www.fs-poster.com/documentation/facebook-cookie-method-fs-poster-wordpress-plugin">cookie method</a> to share posts on the account story.', [], FALSE ); ?></div>
 	</div>
 	<div class="fsp-settings-col">
 		<select name="fs_fb_post_in_type" id="fspFbPostInTypeSelector" class="fsp-form-select">
@@ -101,7 +101,7 @@ defined( 'ABSPATH' ) or exit;
 		<div class="fsp-settings-label-text"><?php echo fsp__( 'Custom message' ); ?>
 			<i class="fas fa-angle-up fsp-settings-collapse-state fsp-is-rotated"></i>
 		</div>
-		<div class="fsp-settings-label-subtext"><?php echo fsp__( 'You can customize the text of the shared post as you like by using the current keywords.' ); ?></div>
+		<div class="fsp-settings-label-subtext"><?php echo fsp__( 'You can customize the text of the shared post as you like by using the available keywords. You can add the keywords to the custom message section easily by clicking on the keyword.' ); ?></div>
 	</div>
 	<div class="fsp-settings-collapse">
 		<div class="fsp-settings-col">
@@ -137,6 +137,10 @@ defined( 'ABSPATH' ) or exit;
 						{PRODUCT_REGULAR_PRICE}
 						<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'WooCommerce - product price' ); ?>"></i>
 					</button>
+					<button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{terms}">
+						{TERMS}
+						<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Post Terms' ); ?>"></i>
+					</button>
 					<button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{product_sale_price}">
 						{PRODUCT_SALE_PRICE}
 						<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'WooCommerce - product sale price' ); ?>"></i>
@@ -157,6 +161,10 @@ defined( 'ABSPATH' ) or exit;
 						{EXCERPT}
 						<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Post excerpt' ); ?>"></i>
 					</button>
+                    <button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{product_description}">
+                        {PRODUCT_DESCRIPTION}
+                        <i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Product short description' ); ?>"></i>
+                    </button>
 					<button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{categories}">
 						{CATEGORIES}
 						<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Post Categories' ); ?>"></i>
@@ -211,7 +219,7 @@ defined( 'ABSPATH' ) or exit;
 		<div class="fsp-settings-label-text"><?php echo fsp__( 'Customize story' ); ?>
 			<i class="fas fa-angle-up fsp-settings-collapse-state fsp-is-rotated"></i>
 		</div>
-		<div class="fsp-settings-label-subtext"><?php echo fsp__( 'You can customize the text of the story as you like by using the current keywords. You can also customize the appearance of the story using available options.' ); ?></div>
+		<div class="fsp-settings-label-subtext"><?php echo fsp__( 'You can customize the text of the shared story as you like by using the available keywords. You can add the keywords to the custom message section easily by clicking on the keyword. You can also customize the appearance of the story using available options.' ); ?></div>
 	</div>
 	<div class="fsp-settings-collapse">
 		<div id="fspSettingsFbStoryMessageRow" class="fsp-settings-col fsp-flex-grow-1">
@@ -259,6 +267,10 @@ defined( 'ABSPATH' ) or exit;
 						{PRODUCT_SALE_PRICE}
 						<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'WooCommerce - product sale price' ); ?>"></i>
 					</button>
+					<button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{terms}">
+						{TERMS}
+						<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Post Terms' ); ?>"></i>
+					</button>
 					<button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{content_full}">
 						{CONTENT_FULL}
 						<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Post full content' ); ?>"></i>
@@ -271,6 +283,10 @@ defined( 'ABSPATH' ) or exit;
 						{EXCERPT}
 						<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Post excerpt' ); ?>"></i>
 					</button>
+                    <button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{product_description}">
+                        {PRODUCT_DESCRIPTION}
+                        <i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Product short description' ); ?>"></i>
+                    </button>
 					<button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{categories}">
 						{CATEGORIES}
 						<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Post Categories' ); ?>"></i>

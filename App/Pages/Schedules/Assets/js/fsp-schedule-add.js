@@ -5,9 +5,16 @@
 	let schedule_data = $( '#fspKeepLogs' ).val();
 	let schedule_id = $( '#fspScheduleID' ).val();
 
+	let date_range_is_hidden = $( '#fspScheduleDateRangeRow' ).hasClass('fsp-hide');
+	let post_type_is_hidden = $( '#fspSchedulePostTypeFilterRow' ).hasClass('fsp-hide');
+	let out_of_stock_is_hidden = $( '#fspScheduleOutOfStockRow' ).hasClass('fsp-hide');
+	let category_filter_is_hidden = $( '#fspScheduleCategoryFilterRow' ).hasClass('fsp-hide');
+
 	doc.ready( function () {
 		$('body').append("<style>.select2.select2-container.select2-container--default{width:100%!important;}</style>");
 		$( '.select2-init' ).select2( {
+			containerCssClass: 'fsp-select2-container',
+			dropdownCssClass: 'fsp-select2-dropdown',
 			placeholder: fsp__( 'Search categories, tags... ( min. 2 character )' ), ajax: {
 				url: ajaxurl, type: 'POST', dataType: 'json', data: function ( params ) {
 					return {
@@ -20,6 +27,47 @@
 				}, minimumInputLength: 2
 			}
 		} );
+
+		$( '.schedule_input_post_ids' ).on('keyup', function (){
+			let idsFieldIsNotEmpty = $( this ).val() !== '' && $( this ).val() !== undefined;
+
+			if( idsFieldIsNotEmpty || date_range_is_hidden )
+			{
+				$( '#fspScheduleDateRangeRow' ).addClass('fsp-hide');
+			}
+			else
+			{
+				$( '#fspScheduleDateRangeRow' ).removeClass('fsp-hide');
+			}
+
+			if( idsFieldIsNotEmpty || post_type_is_hidden )
+			{
+				$( '#fspSchedulePostTypeFilterRow' ).addClass('fsp-hide');
+			}
+			else
+			{
+				$( '#fspSchedulePostTypeFilterRow' ).removeClass('fsp-hide');
+			}
+
+			if( idsFieldIsNotEmpty || out_of_stock_is_hidden )
+			{
+				$( '#fspScheduleOutOfStockRow' ).addClass('fsp-hide');
+			}
+			else
+			{
+				$( '#fspScheduleOutOfStockRow' ).removeClass('fsp-hide');
+			}
+
+			if( idsFieldIsNotEmpty || category_filter_is_hidden )
+			{
+				$( '#fspScheduleCategoryFilterRow' ).addClass('fsp-hide');
+			}
+			else
+			{
+				$( '#fspScheduleCategoryFilterRow' ).removeClass('fsp-hide');
+			}
+
+		});
 
 		$( '.schedule_popup' ).on( 'click', '.schedule_save_btn', function () {
 			let title = $( '.schedule_popup .schedule_input_title' ).val(),
@@ -355,6 +403,8 @@
 			{
 				$( '#fspScheduleOutOfStockRow' ).addClass( 'fsp-hide' );
 			}
+
+			out_of_stock_is_hidden = $( '#fspScheduleOutOfStockRow' ).hasClass('fsp-hide');
 		} );
 	}
 } )( jQuery );

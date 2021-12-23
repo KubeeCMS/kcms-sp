@@ -15,8 +15,10 @@ use FSPoster\App\Libraries\pinterest\Pinterest;
 use FSPoster\App\Libraries\wordpress\Wordpress;
 use FSPoster\App\Libraries\fb\FacebookCookieApi;
 use FSPoster\App\Libraries\instagram\InstagramApi;
+use FSPoster\App\Libraries\twitter\TwitterPrivateAPI;
 use FSPoster\App\Libraries\google\GoogleMyBusinessAPI;
 use FSPoster\App\Libraries\pinterest\PinterestCookieApi;
+use FSPoster\App\Libraries\tumblr\TumblrLoginPassMethod;
 
 class AccountService
 {
@@ -53,7 +55,15 @@ class AccountService
 			}
 			else if ( $driver === 'twitter' )
 			{
-				$result = Twitter::checkAccount( $appId, $accessToken, $accessTokenSecret, $proxy );
+				if ( empty( $options ) )
+				{
+					$result = Twitter::checkAccount( $appId, $accessToken, $accessTokenSecret, $proxy );
+				}
+				else
+				{
+					$tp     = new TwitterPrivateAPI( $options, $proxy );
+					$result = $tp->checkAccount();
+				}
 			}
 			else if ( $driver === 'instagram' )
 			{
@@ -90,7 +100,15 @@ class AccountService
 			}
 			else if ( $driver === 'tumblr' )
 			{
-				$result = Tumblr::checkAccount( $accessToken, $accessTokenSecret, $appId, $proxy );
+				if ( empty( $account[ 'password' ] ) )
+				{
+					$result = Tumblr::checkAccount( $accessToken, $accessTokenSecret, $appId, $proxy );
+				}
+				else
+				{
+					$tm     = new TumblrLoginPassMethod( $account[ 'email' ], $account[ 'password' ], $proxy );
+					$result = $tm->checkAccount();
+				}
 			}
 			else if ( $driver === 'ok' )
 			{

@@ -269,6 +269,8 @@ class Action
 			return [];
 		}
 
+		$my_accounts_id = [-1];
+
 		foreach ( $accounts_list as $i => $account_info )
 		{
 			$my_accounts_id[] = (int) $account_info[ 'id' ];
@@ -830,91 +832,91 @@ class Action
 	public function get_fb_apps ()
 	{
 		return [
-			'applications' => DB::fetchAll( 'apps', [ 'driver' => 'fb' ] )
+			'applications' => DB::DB()->get_results( 'SELECT * FROM ' . DB::table( 'apps' ) . ' WHERE `driver`=\'fb\' AND  IFNULL( `slug`, \'\')=\'\'', ARRAY_A )
 		];
 	}
 
 	public function get_instagram_apps ()
 	{
 		return [
-			'applications' => DB::fetchAll( 'apps', [ 'driver' => 'instagram' ] )
+			'applications' => DB::DB()->get_results( 'SELECT * FROM ' . DB::table( 'apps' ) . ' WHERE `driver`=\'instagram\' AND  IFNULL( `slug`, \'\')=\'\'', ARRAY_A )
 		];
 	}
 
 	public function get_twitter_apps ()
 	{
 		return [
-			'applications' => DB::fetchAll( 'apps', [ 'driver' => 'twitter' ] )
+			'applications' => DB::DB()->get_results( 'SELECT * FROM ' . DB::table( 'apps' ) . ' WHERE `driver`=\'twitter\' AND  IFNULL( `slug`, \'\')=\'\'', ARRAY_A )
 		];
 	}
 
 	public function get_plurk_apps ()
 	{
 		return [
-			'applications' => DB::fetchAll( 'apps', [ 'driver' => 'plurk' ] )
+			'applications' => DB::DB()->get_results( 'SELECT * FROM ' . DB::table( 'apps' ) . ' WHERE `driver`=\'plurk\' AND  IFNULL( `slug`, \'\')=\'\'', ARRAY_A )
 		];
 	}
 
 	public function get_linkedin_apps ()
 	{
 		return [
-			'applications' => DB::fetchAll( 'apps', [ 'driver' => 'linkedin' ] )
+			'applications' => DB::DB()->get_results( 'SELECT * FROM ' . DB::table( 'apps' ) . ' WHERE `driver`=\'linkedin\' AND  IFNULL( `slug`, \'\')=\'\'', ARRAY_A )
 		];
 	}
 
 	public function get_ok_apps ()
 	{
 		return [
-			'applications' => DB::fetchAll( 'apps', [ 'driver' => 'ok' ] )
+			'applications' => DB::DB()->get_results( 'SELECT * FROM ' . DB::table( 'apps' ) . ' WHERE `driver`=\'ok\' AND  IFNULL( `slug`, \'\')=\'\'', ARRAY_A )
 		];
 	}
 
 	public function get_pinterest_apps ()
 	{
 		return [
-			'applications' => DB::fetchAll( 'apps', [ 'driver' => 'pinterest' ] )
+			'applications' => DB::DB()->get_results( 'SELECT * FROM ' . DB::table( 'apps' ) . ' WHERE `driver`=\'pinterest\' AND  IFNULL( `slug`, \'\')=\'\'', ARRAY_A )
 		];
 	}
 
 	public function get_reddit_apps ()
 	{
 		return [
-			'applications' => DB::fetchAll( 'apps', [ 'driver' => 'reddit' ] )
+			'applications' => DB::DB()->get_results( 'SELECT * FROM ' . DB::table( 'apps' ) . ' WHERE `driver`=\'reddit\' AND  IFNULL( `slug`, \'\')=\'\'', ARRAY_A )
 		];
 	}
 
 	public function get_tumblr_apps ()
 	{
 		return [
-			'applications' => DB::fetchAll( 'apps', [ 'driver' => 'tumblr' ] )
+			'applications' => DB::DB()->get_results( 'SELECT * FROM ' . DB::table( 'apps' ) . ' WHERE `driver`=\'tumblr\' AND  IFNULL( `slug`, \'\')=\'\'', ARRAY_A )
 		];
 	}
 
 	public function get_vk_apps ()
 	{
 		return [
-			'applications' => DB::fetchAll( 'apps', [ 'driver' => 'vk' ] )
+			'applications' => DB::DB()->get_results( 'SELECT * FROM ' . DB::table( 'apps' ) . ' WHERE `driver`=\'vk\' AND  IFNULL( `slug`, \'\')=\'\'', ARRAY_A )
 		];
 	}
 
 	public function get_google_b_apps ()
 	{
 		return [
-			'applications' => DB::fetchAll( 'apps', [ 'driver' => 'google_b' ] )
+			'applications' => DB::DB()->get_results( 'SELECT * FROM ' . DB::table( 'apps' ) . ' WHERE `driver`=\'google_b\' AND  IFNULL( `slug`, \'\')=\'\'', ARRAY_A )
 		];
 	}
 
 	public function get_blogger_apps ()
 	{
 		return [
-			'applications' => DB::fetchAll( 'apps', [ 'driver' => 'blogger' ] )
+			'applications' => DB::DB()->get_results( 'SELECT * FROM ' . DB::table( 'apps' ) . ' WHERE `driver`=\'blogger\' AND  IFNULL( `slug`, \'\')=\'\'', ARRAY_A )
 		];
 	}
 
 	public function get_medium_apps ()
 	{
 		return [
-			'applications' => DB::fetchAll( 'apps', [ 'driver' => 'medium' ] )
+			'applications' => DB::DB()->get_results( 'SELECT * FROM ' . DB::table( 'apps' ) . ' WHERE `driver`=\'medium\' AND  IFNULL( `slug`, \'\')=\'\'', ARRAY_A )
 		];
 	}
 
@@ -1456,12 +1458,12 @@ class Action
 
 		foreach ( $account_ids as $account_id )
 		{
-			self::activate_deactivate_account( $account_id, 1, 'no', NULL, $for_all );
+			self::activate_deactivate_account( get_current_user_id(), $account_id, 1, 'no', NULL, $for_all );
 		}
 
 		foreach ( $node_ids as $node_id )
 		{
-			self::activate_deactivate_node( $node_id, 1, 'no', NULL, $for_all );
+			self::activate_deactivate_node( get_current_user_id(), $node_id, 1, 'no', NULL, $for_all );
 		}
 
 		return [ 'status' => TRUE ];
@@ -1493,12 +1495,12 @@ class Action
 
 		foreach ( $account_ids as $account_id )
 		{
-			self::activate_deactivate_account( $account_id, 1, $filter_type, $categories_arr, $for_all );
+			self::activate_deactivate_account( get_current_user_id(), $account_id, 1, $filter_type, $categories_arr, $for_all );
 		}
 
 		foreach ( $node_ids as $node_id )
 		{
-			self::activate_deactivate_node( $node_id, 1, $filter_type, $categories_arr, $for_all );
+			self::activate_deactivate_node( get_current_user_id(), $node_id, 1, $filter_type, $categories_arr, $for_all );
 		}
 
 		if ( $for_all )
@@ -1528,12 +1530,12 @@ class Action
 
 		foreach ( $account_ids as $account_id )
 		{
-			self::activate_deactivate_account( $account_id, 0, 'no', NULL, $for_all );
+			self::activate_deactivate_account( get_current_user_id(), $account_id, 0, 'no', NULL, $for_all );
 		}
 
 		foreach ( $node_ids as $node_id )
 		{
-			self::activate_deactivate_node( $node_id, 0, 'no', NULL, $for_all );
+			self::activate_deactivate_node( get_current_user_id(), $node_id, 0, 'no', NULL, $for_all );
 		}
 
 		return [ 'status' => TRUE ];
@@ -1771,7 +1773,7 @@ class Action
 		return [ 'status' => TRUE ];
 	}
 
-	public static function activate_deactivate_account ( $account_id, $checked, $filter_type = 'no', $categories_arr = NULL, $for_all = FALSE )
+	public static function activate_deactivate_account ( $user_id, $account_id, $checked, $filter_type = 'no', $categories_arr = NULL, $for_all = FALSE )
 	{
 		$check_account = DB::fetch( 'accounts', $account_id );
 
@@ -1780,7 +1782,7 @@ class Action
 			return [ 'status' => FALSE, 'error_msg' => fsp__( 'The account isn\'t found!' ) ];
 		}
 
-		if ( $check_account[ 'user_id' ] != get_current_user_id() && $check_account[ 'is_public' ] != 1 )
+		if ( $check_account[ 'user_id' ] != $user_id && $check_account[ 'is_public' ] != 1 )
 		{
 			return [
 				'status'    => FALSE,
@@ -1799,8 +1801,16 @@ class Action
 			{
 				DB::DB()->delete( DB::table( 'account_status' ), [ 'account_id' => $account_id ] );
 
+                DB::DB()->update( DB::table( 'accounts' ), [
+                    'for_all' => 1,
+                    'is_public' => 1
+                ], [
+                    'id' => $account_id
+                ] );
+
 				$offset = 0;
 				$number = 400;
+
 				while ( $users = get_users( [
 					'role__not_in' => explode( '|', Helper::getOption( 'hide_menu_for', '' ) ),
 					'fields'       => 'ID',
@@ -1829,14 +1839,14 @@ class Action
 			{
 				$check_is_active = DB::fetch( 'account_status', [
 					'account_id' => $account_id,
-					'user_id'    => get_current_user_id(),
+					'user_id'    => $user_id,
 				] );
 
 				if ( ! $check_is_active )
 				{
 					DB::DB()->insert( DB::table( 'account_status' ), [
 						'account_id'  => $account_id,
-						'user_id'     => get_current_user_id(),
+						'user_id'     => $user_id,
 						'filter_type' => $filter_type,
 						'categories'  => $categories_arr
 					] );
@@ -1854,6 +1864,13 @@ class Action
 		{
 			if ( $for_all )
 			{
+                DB::DB()->update( DB::table( 'accounts' ), [
+                    'for_all' => 0,
+                    'is_public' => 0
+                ], [
+                    'id' => $account_id
+                ] );
+
 				$sql = [
 					'account_id' => $account_id
 				];
@@ -1862,7 +1879,7 @@ class Action
 			{
 				$sql = [
 					'account_id' => $account_id,
-					'user_id'    => get_current_user_id()
+					'user_id'    => $user_id
 				];
 			}
 
@@ -1872,7 +1889,7 @@ class Action
 		return [ 'status' => TRUE ];
 	}
 
-	public static function activate_deactivate_node ( $node_id, $checked, $filter_type = 'no', $categories_arr = NULL, $for_all = FALSE )
+	public static function activate_deactivate_node ( $user_id, $node_id, $checked, $filter_type = 'no', $categories_arr = NULL, $for_all = FALSE )
 	{
 		$check_account = DB::fetch( 'account_nodes', $node_id );
 
@@ -1881,7 +1898,7 @@ class Action
 			return [ 'status' => FALSE, 'error_msg' => fsp__( 'The account isn\'t found!' ) ];
 		}
 
-		if ( $check_account[ 'user_id' ] != get_current_user_id() && $check_account[ 'is_public' ] != 1 )
+		if ( $check_account[ 'user_id' ] != $user_id && $check_account[ 'is_public' ] != 1 )
 		{
 			return [
 				'status'    => FALSE,
@@ -1907,6 +1924,14 @@ class Action
 
 				$offset = 0;
 				$number = 400;
+
+                DB::DB()->update( DB::table( 'account_nodes' ), [
+                    'for_all' => 1,
+                    'is_public' => 1
+                ], [
+                    'id' => $node_id
+                ] );
+
 				while ( $users = get_users( [
 					'role__not_in' => explode( '|', Helper::getOption( 'hide_menu_for', '' ) ),
 					'fields'       => 'ID',
@@ -1940,14 +1965,14 @@ class Action
 			{
 				$check_is_active = DB::fetch( 'account_node_status', [
 					'node_id' => $node_id,
-					'user_id' => get_current_user_id()
+					'user_id' => $user_id
 				] );
 
 				if ( ! $check_is_active )
 				{
 					DB::DB()->insert( DB::table( 'account_node_status' ), [
 						'node_id'     => $node_id,
-						'user_id'     => get_current_user_id(),
+						'user_id'     => $user_id,
 						'filter_type' => $filter_type,
 						'categories'  => $categories_arr
 					] );
@@ -1968,12 +1993,19 @@ class Action
 				$sql = [
 					'node_id' => $node_id
 				];
+
+                DB::DB()->update( DB::table( 'account_nodes' ), [
+                    'for_all' => 0,
+                    'is_public' => 0
+                ], [
+                    'id' => $node_id
+                ] );
 			}
 			else
 			{
 				$sql = [
 					'node_id' => $node_id,
-					'user_id' => get_current_user_id()
+					'user_id' => $user_id
 				];
 			}
 

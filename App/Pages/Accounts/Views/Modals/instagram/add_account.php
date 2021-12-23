@@ -73,11 +73,11 @@ defined( 'MODAL' ) or exit;
 		</div>
 	</div>
 	<div id="fspModalStep_3" class="fsp-modal-step fsp-hide">
-		<div class="fsp-form-group">
+        <div id="fspCustomAppContainer" class="fsp-form-group">
 			<label><?php echo fsp__( 'Select an App' ); ?></label>
 			<select class="fsp-form-select" id="fspModalAppSelector">
 				<?php foreach ( $fsp_params[ 'applications' ] as $app ) { ?>
-					<option value="<?php echo $app[ 'id' ]; ?>" data-is-standart="<?php echo ( int ) $app[ 'is_standart' ]; ?>"><?php echo esc_html( $app[ 'name' ] ); ?></option>
+					<option value="<?php echo $app[ 'id' ]; ?>"><?php echo esc_html( $app[ 'name' ] ); ?></option>
 				<?php }
 				if ( empty( $fsp_params[ 'applications' ] ) )
 				{ ?>

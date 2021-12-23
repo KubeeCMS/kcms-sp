@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) or exit;
 			<i class="fas fa-info-circle"></i><?php echo fsp__( 'Please activate the plugin.' ); ?>
 		</div>
 		<div class="fsp-box-logo">
-			<img src="<?php echo Pages::asset( 'Base', 'img/logo.svg' ); ?>">
+			<img src="<?php echo Pages::asset( 'Base', 'img/logo.png' ); ?>">
 		</div>
 		<div class="fsp-form-group">
 			<input type="text" value="babiato.net" autocomplete="off" id="fspPurchaseKey" class="fsp-form-input" placeholder="<?php echo fsp__( 'Please Enter babiato.net' ); ?>">

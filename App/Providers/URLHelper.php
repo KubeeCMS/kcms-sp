@@ -41,8 +41,11 @@ trait URLHelper
 		{
 			return $url;
 		}
-		//edit by lgokul return Curl::getURL( 'https://tinyurl.com/api-create.php?url=' . urlencode($url) );
-		return Curl::getURL( 'https://tinyurl.com/api-create.php?url=' . $url );
+        //fix edit by lgokul
+        $shortenURL = Curl::getURL( 'https://tinyurl.com/api-create.php?url=' . $url );
+        //$shortenURL = Curl::getURL( 'https://tinyurl.com/api-create.php?url=' . urlencode( $url ) );
+
+		return filter_var( $shortenURL, FILTER_VALIDATE_URL ) ? $shortenURL : $url ;
 	}
 
 	/**
@@ -57,7 +60,7 @@ trait URLHelper
 			'longUrl'      => $url
 		];
 
-		if ( empty( $params[ 'access_token' ] ) )
+		if ( empty( $url ) || empty( $params[ 'access_token' ] ) )
 		{
 			return $url;
 		}
@@ -66,7 +69,7 @@ trait URLHelper
 
 		$result = json_decode( Curl::getURL( $requestUrl ), TRUE );
 
-		return isset( $result[ 'data' ][ 'url' ] ) && ! empty( $result[ 'data' ][ 'url' ] ) ? $result[ 'data' ][ 'url' ] : $url;
+		return ! empty( $result[ 'data' ][ 'url' ] ) ? $result[ 'data' ][ 'url' ] : $url;
 	}
 
 	/**

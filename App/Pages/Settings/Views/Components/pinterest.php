@@ -85,13 +85,13 @@ defined( 'ABSPATH' ) or exit;
 		<div class="fsp-settings-label-text"><?php echo fsp__( 'Custom message' ); ?>
 			<i class="fas fa-angle-up fsp-settings-collapse-state fsp-is-rotated"></i>
 		</div>
-		<div class="fsp-settings-label-subtext"><?php echo fsp__( 'You can customize the text of the shared post as you like by using the current keywords. The custom message will be shared as Pin description and the limit is 500 characters. Pinterest cuts the custom message if it exceeds the limit. Note that shortened links are not supported by Pinterest.' ); ?></div>
+		<div class="fsp-settings-label-subtext"><?php echo fsp__( 'You can customize the text of the shared post as you like by using the available keywords. You can add the keywords to the custom message section easily by clicking on the keyword. The custom message will be shared as Pin description and the limit is 500 characters. Pinterest cuts the custom message if it exceeds the limit. Note that shortened links are not supported by Pinterest.' ); ?></div>
 	</div>
 	<div class="fsp-settings-collapse">
 		<div class="fsp-settings-col">
 			<div class="fsp-settings-col-title"><?php echo fsp__( 'Text' ); ?></div>
 			<div class="fsp-custom-post" data-preview="fspCustomPostPreview">
-				<textarea name="fs_post_text_message_pinterest" class="fsp-form-textarea"><?php echo esc_html( Helper::getOption( 'post_text_message_pinterest', "{title}" ) ); ?></textarea>
+				<textarea name="fs_post_text_message_pinterest" class="fsp-form-textarea"><?php echo esc_html( Helper::getOption( 'post_text_message_pinterest', "{content_short_500}" ) ); ?></textarea>
 				<div class="fsp-custom-post-buttons">
 					<button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{id}">
 						{ID}
@@ -121,6 +121,10 @@ defined( 'ABSPATH' ) or exit;
 						{PRODUCT_REGULAR_PRICE}
 						<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'WooCommerce - product price' ); ?>"></i>
 					</button>
+					<button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{terms}">
+						{TERMS}
+						<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Post Terms' ); ?>"></i>
+					</button>
 					<button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{product_sale_price}">
 						{PRODUCT_SALE_PRICE}
 						<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'WooCommerce - product sale price' ); ?>"></i>
@@ -137,6 +141,10 @@ defined( 'ABSPATH' ) or exit;
 						{EXCERPT}
 						<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Post excerpt' ); ?>"></i>
 					</button>
+                    <button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{product_description}">
+                        {PRODUCT_DESCRIPTION}
+                        <i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Product short description' ); ?>"></i>
+                    </button>
 					<button type="button" class="fsp-button fsp-is-gray fsp-append-to-text" data-key="{categories}">
 						{CATEGORIES}
 						<i class="fas fa-info-circle fsp-tooltip" data-title="<?php echo fsp__( 'Post Categories' ); ?>"></i>
@@ -168,7 +176,7 @@ defined( 'ABSPATH' ) or exit;
 					<i class="fas fa-ellipsis-v fsp-settings-preview-dots"></i>
 				</div>
 				<div class="fsp-settings-preview-body">
-					<span id="fspCustomPostPreview" class="fsp-settings-preview-body-text"><?php echo esc_html( Helper::getOption( 'post_text_message_pinterest', "{title}" ) ); ?></span>
+					<span id="fspCustomPostPreview" class="fsp-settings-preview-body-text"><?php echo esc_html( Helper::getOption( 'post_text_message_pinterest', "{content_short_500}" ) ); ?></span>
 					<div class="fsp-settings-preview-image"></div>
 				</div>
 				<div class="fsp-settings-preview-footer">
